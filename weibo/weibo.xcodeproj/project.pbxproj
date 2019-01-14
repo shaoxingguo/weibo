@@ -9,17 +9,31 @@
 /* Begin PBXBuildFile section */
 		336CD66138F77DA75E592225 /* Pods_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6792319D52B5BD0A4081F28 /* Pods_weibo.framework */; };
 		8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */; };
+		8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7621EC4DA200F2E958 /* XGMineTableViewController.swift */; };
+		8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */; };
+		8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */; };
+		8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
+		8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */; };
+		8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */; };
+		8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC321EC9ECE0008B868 /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		69E3567696EA90B0465C6A0B /* Pods-weibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-weibo/Pods-weibo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGTabBarController.swift; sourceTree = "<group>"; };
+		8C11BF7621EC4DA200F2E958 /* XGMineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMineTableViewController.swift; sourceTree = "<group>"; };
+		8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDiscoverTableViewController.swift; sourceTree = "<group>"; };
+		8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMessageTableViewController.swift; sourceTree = "<group>"; };
+		8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGHomeTableViewController.swift; sourceTree = "<group>"; };
 		8C51F8A121EB74CA0015FC0C /* weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C51F8B021EB74CB0015FC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		8CF43FC321EC9ECE0008B868 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		BAFD46C9B95B61530AFD5263 /* Pods-weibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-weibo/Pods-weibo.release.xcconfig"; sourceTree = "<group>"; };
 		E6792319D52B5BD0A4081F28 /* Pods_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,6 +79,10 @@
 		8C11BF6921EC422600F2E958 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C11BF7421EC4D6400F2E958 /* Mine */,
+				8C11BF7321EC4D4600F2E958 /* Discover */,
+				8C11BF7221EC4D4000F2E958 /* Message */,
+				8C11BF7121EC4D3900F2E958 /* Home */,
 				8C11BF6F21EC428F00F2E958 /* Other */,
 				8C11BF6B21EC423B00F2E958 /* Main */,
 			);
@@ -90,6 +108,7 @@
 		8C11BF6F21EC428F00F2E958 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8CF43FC221EC9EC50008B868 /* Common */,
 				8C11BF7021EC429700F2E958 /* Extension */,
 			);
 			path = Other;
@@ -98,8 +117,74 @@
 		8C11BF7021EC429700F2E958 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */,
+				8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		8C11BF7121EC4D3900F2E958 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7E21EC4E7000F2E958 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8C11BF7221EC4D4000F2E958 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7B21EC4E6400F2E958 /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		8C11BF7321EC4D4600F2E958 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7821EC4DA500F2E958 /* View */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		8C11BF7421EC4D6400F2E958 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7521EC4D6E00F2E958 /* View */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		8C11BF7521EC4D6E00F2E958 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7621EC4DA200F2E958 /* XGMineTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8C11BF7821EC4DA500F2E958 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8C11BF7B21EC4E6400F2E958 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8C11BF7E21EC4E7000F2E958 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8C51F89821EB74C90015FC0C = {
@@ -128,6 +213,14 @@
 				8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */,
 			);
 			path = weibo;
+			sourceTree = "<group>";
+		};
+		8CF43FC221EC9EC50008B868 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8CF43FC321EC9ECE0008B868 /* Common.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,7 +335,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
+				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
+				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,
 				8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */,
+				8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */,
+				8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */,
+				8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */,
+				8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */,
+				8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +478,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.heima.woaiweibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -398,6 +499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.heima.woaiweibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
