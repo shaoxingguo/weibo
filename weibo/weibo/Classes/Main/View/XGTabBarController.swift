@@ -77,7 +77,7 @@ class XGTabBarController: UITabBarController
             return
         }
         
-        let nav = UINavigationController(rootViewController: viewControler)
+        let nav = XGNavigationController(rootViewController: viewControler)
         viewControler.navigationItem.title = title
         viewControler.tabBarItem.title = title
         viewControler.tabBarItem.image = UIImage(named: imageName)

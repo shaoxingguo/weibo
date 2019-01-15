@@ -13,11 +13,15 @@ class XGHomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(registerAction))
+    }
+    
+    @objc private func registerAction() -> Void
+    {
+        let vc = UIViewController()
+        vc.view.backgroundColor = UIColor.purple
+        navigationController?.pushViewController(vc
+            , animated: true)
     }
 
     // MARK: - Table view data source
