@@ -10,7 +10,6 @@ import UIKit
 
 class XGTabBarController: UITabBarController
 {
-
     // MARK: - 控制器生命周期方法
     override func viewDidLoad()
     {
@@ -27,6 +26,7 @@ class XGTabBarController: UITabBarController
     {
         super.viewWillAppear(animated)
         
+        // 将发布按钮置前
         tabBar.bringSubviewToFront(publishButton)
     }
     
@@ -36,17 +36,28 @@ class XGTabBarController: UITabBarController
         XGPrint("发布微博")
     }
     
-    // MARK: - 内部私有方法
+    // MARK: - 懒加载
+    private lazy var publishButton:UIButton = { [weak self] in
+        let button = UIButton(backgroundImageName: "tabbar_compose_button", imageName: "tabbar_compose_icon_add", target:self, action: #selector(publishAction))
+        return button
+    }()
+}
+
+// MARK: - 设置界面
+extension XGTabBarController
+{
+    /// 设置外观
     private func setUpAppearance() -> Void
     {
-        // 设置渲染颜色
-        UITabBar.appearance().tintColor = UIColor.orange
+        // 设置tabbar渲染颜色
+        let tabBar = UITabBar.appearance(whenContainedInInstancesOf: [XGTabBarController.self])
+        tabBar.tintColor = UIColor.orange
         
         // 设置tabbar字体大小
         let attributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)]
-        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: UIControl.State(rawValue: 0))
+        let tabBarItem = UITabBarItem.appearance(whenContainedInInstancesOf: [XGTabBarController.self])
+        tabBarItem.setTitleTextAttributes(attributes, for: UIControl.State(rawValue: 0))
     }
-    
     
     /// 添加所有子控制器
     private func addAllChildViewControllers() -> Void
@@ -56,7 +67,6 @@ class XGTabBarController: UITabBarController
         addChild(UIViewController())
         addChildViewController(className: "XGDiscoverTableViewController", imageName: "tabbar_discover", title: "发现")
         addChildViewController(className: "XGMineTableViewController", imageName: "tabbar_profile", title: "我的")
-
     }
     
     /// 添加子控制器
@@ -85,7 +95,6 @@ class XGTabBarController: UITabBarController
         addChild(nav)
     }
     
-    
     /// 设置发布按钮
     private func setUpPublishButton() -> Void
     {
@@ -95,10 +104,4 @@ class XGTabBarController: UITabBarController
         publishButton.frame = tabBar.bounds.insetBy(dx: 2.0 * width, dy: 0)
         tabBar.addSubview(publishButton)
     }
-    
-    // MARK: - 懒加载
-    private lazy var publishButton:UIButton = { [weak self] in
-        let button = UIButton(backgroundImageName: "tabbar_compose_button", imageName: "tabbar_compose_icon_add", target:self, action: #selector(publishAction))
-        return button
-    }()
 }
