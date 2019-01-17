@@ -41,17 +41,11 @@ class XGNavigationController: UINavigationController
          */
         
         guard let value = interactivePopGestureRecognizer?.value(forKey:
-            "targets") as? NSArray
+            "targets") as? NSArray,
+            let recognizerTarget = value.firstObject as? NSObject,
+            let target = recognizerTarget.value(forKey: "target")
             else {
                 return
-        }
-        
-        guard let recognizerTarget = value.firstObject as? NSObject else {
-            return
-        }
-        
-        guard let target = recognizerTarget.value(forKey: "target") else {
-            return
         }
         
         // 添加滑动手势

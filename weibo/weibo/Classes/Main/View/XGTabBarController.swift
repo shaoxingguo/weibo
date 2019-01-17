@@ -62,11 +62,11 @@ extension XGTabBarController
     /// 添加所有子控制器
     private func addAllChildViewControllers() -> Void
     {
-        addChildViewController(className: "XGHomeTableViewController", imageName: "tabbar_home", title: "首页")
-        addChildViewController(className: "XGMessageTableViewController", imageName: "tabbar_message_center", title: "信息")
+        addChildViewController(className: "XGHomeTableViewController", imageName: "tabbar_home", title: "首页",visitorInfo: ["imageName": "","title": "关注一些人,回这里看看有什么惊喜"])
+        addChildViewController(className: "XGMessageTableViewController", imageName: "tabbar_message_center", title: "信息",visitorInfo: ["imageName": "visitordiscover_image_message","title": "登录后,别人评论你的微薄,发给你的消息,都会在这里收到通知"])
         addChild(UIViewController())
-        addChildViewController(className: "XGDiscoverTableViewController", imageName: "tabbar_discover", title: "发现")
-        addChildViewController(className: "XGMineTableViewController", imageName: "tabbar_profile", title: "我的")
+        addChildViewController(className: "XGDiscoverTableViewController", imageName: "tabbar_discover", title: "发现",visitorInfo: ["imageName": "visitordiscover_image_message","title": "登录后,最新、最热微博尽在掌握,不会再与时事潮流擦肩而过"])
+        addChildViewController(className: "XGMineTableViewController", imageName: "tabbar_profile", title: "我的",visitorInfo: ["imageName": "visitordiscover_image_profile","title": "登录后,你的微博、相册、个人资料会显示在这里,展示给别人"])
     }
     
     /// 添加子控制器
@@ -75,18 +75,20 @@ extension XGTabBarController
     ///   - className: 类名
     ///   - imageName: 图片名称
     ///   - title: 标题
-    private func addChildViewController(className:String,imageName:String, title:String) -> Void
+    ///   - visitorInfo: 访客视图信息
+    private func addChildViewController(className:String,imageName:String, title:String,visitorInfo:[String:String]) -> Void
     {
         guard  let appName = (Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String) else {
             return
         }
         
         let className = appName + "." + className
-        let classType = NSClassFromString(className) as? UIViewController.Type
+        let classType = NSClassFromString(className) as? XGVisitorViewController.Type
         guard let viewControler = classType?.init() else {
             return
         }
         
+        viewControler.visitorInfo = visitorInfo
         let nav = XGNavigationController(rootViewController: viewControler)
         viewControler.navigationItem.title = title
         viewControler.tabBarItem.title = title

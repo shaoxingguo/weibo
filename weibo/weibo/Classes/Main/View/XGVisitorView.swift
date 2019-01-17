@@ -11,6 +11,26 @@ import SnapKit
 
 class XGVisitorView: UIView
 {
+    var visitorInfo:[String:String]? {
+        didSet {
+            guard let imageName = visitorInfo?["imageName"],
+            let title = visitorInfo?["title"] else {
+                return
+            }
+            
+            if imageName == "" {
+                // 首页
+                titleLabel.text = title
+                startAnimation()
+            } else {
+                // 非首页
+                houseImageView.isHidden = true
+                maskImageView.isHidden = true
+                circleImageView.image = UIImage(named: imageName)
+                titleLabel.text = title
+            }
+        }
+    }
     // MARK: - 构造方法
     override init(frame: CGRect)
     {
@@ -29,7 +49,7 @@ class XGVisitorView: UIView
     /// 圆圈
     private lazy var circleImageView:UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_smallicon"))
     /// 标题
-    private lazy var titleLabel:UILabel = UILabel(text: "关注一些人,回来看看有什么惊喜!关注一些人,回来看看有什么惊喜!", fontSize: 17, textColor: UIColor.lightGray, textAlignment: .left)
+    private lazy var titleLabel:UILabel = UILabel(text: "关注一些人,回来看看有什么惊喜!关注一些人,回来看看有什么惊喜!", fontSize: 17, textColor: UIColor.lightGray, textAlignment: .center)
     /// 注册按钮
     private lazy var registerButton:UIButton = UIButton(title: "注册", backgroundImageName: "common_button_white_disable", fontSize: 15, normalColor: UIColor.orange, highlightedColor: UIColor.orange, target: nil, action: nil)
     /// 登录按钮
@@ -41,6 +61,18 @@ class XGVisitorView: UIView
 // MARK: - 设置界面
 extension XGVisitorView
 {
+    /// 开始动画
+    private func startAnimation() -> Void
+    {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.fromValue = 0
+        animation.toValue = 2.0 * Double.pi
+        animation.duration = 8
+        animation.repeatCount = MAXFLOAT
+        animation.isRemovedOnCompletion = false
+        circleImageView.layer.add(animation, forKey: nil)
+    }
+    
     /// 设置界面
     private func setUpUI() -> Void
     {

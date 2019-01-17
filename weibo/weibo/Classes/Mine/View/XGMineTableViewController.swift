@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XGMineTableViewController: UITableViewController {
+class XGMineTableViewController: XGVisitorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

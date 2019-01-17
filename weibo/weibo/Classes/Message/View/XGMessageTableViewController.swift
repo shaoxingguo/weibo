@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XGMessageTableViewController: UITableViewController {
+class XGMessageTableViewController: XGVisitorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
