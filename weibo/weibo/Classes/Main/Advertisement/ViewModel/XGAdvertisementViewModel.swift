@@ -73,7 +73,7 @@ extension XGAdvertisementViewModel
     private func loadData() -> Void
     {
         XGDataManager.loadAdvertisementData { (advertisementModel, error) in
-            if error != nil {
+            if error != nil || advertisementModel == nil {
                 XGPrint("广告数据加载失败")
                 return
             }
@@ -108,11 +108,6 @@ extension XGAdvertisementViewModel
             
             try? data!.write(to: URL(fileURLWithPath: self.imageCachePath))
         }
-    }
-    
-    open func demo() -> Void
-    {
-        
     }
 }
 

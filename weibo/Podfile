@@ -12,4 +12,6 @@ pod 'AFNetworking'
 pod 'MJExtension'
 pod 'SDWebImage'
 pod 'SVProgressHUD'
+pod 'MLeaksFinder'
+
 end
