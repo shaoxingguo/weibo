@@ -12,6 +12,7 @@ import SDWebImage
 class XGAdvertisementViewModel
 {
     // MARK: - 公开方法和属性
+    /// 单例
     public static let sharedViewModel:XGAdvertisementViewModel = XGAdvertisementViewModel()
     
     /// 广告图片
@@ -73,7 +74,7 @@ extension XGAdvertisementViewModel
     {
         XGDataManager.loadAdvertisementData { (advertisementModel, error) in
             if error != nil {
-                XGPrint("广告图片下载失败")
+                XGPrint("广告数据加载失败")
                 return
             }
             
