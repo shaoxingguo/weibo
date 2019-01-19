@@ -16,10 +16,16 @@
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
+		8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */; };
 		8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */; };
 		8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */; };
 		8CC26CA521EF669000A9E074 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA421EF669000A9E074 /* UILabel+Extension.swift */; };
 		8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA621EF712800A9E074 /* UIImage+Extension.swift */; };
+		8CCAB9CD21F3134300A7FC70 /* XGLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9CC21F3134300A7FC70 /* XGLoginViewController.swift */; };
+		8CCAB9D021F3191900A7FC70 /* XGAdvertisementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9CF21F3191900A7FC70 /* XGAdvertisementViewController.swift */; };
+		8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */; };
+		8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */; };
+		8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */; };
 		8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */; };
 		8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */; };
 		8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC321EC9ECE0008B868 /* Common.swift */; };
@@ -37,10 +43,16 @@
 		8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C51F8B021EB74CB0015FC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNetworkManager.swift; sourceTree = "<group>"; };
 		8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorViewController.swift; sourceTree = "<group>"; };
 		8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorView.swift; sourceTree = "<group>"; };
 		8CC26CA421EF669000A9E074 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		8CC26CA621EF712800A9E074 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		8CCAB9CC21F3134300A7FC70 /* XGLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGLoginViewController.swift; sourceTree = "<group>"; };
+		8CCAB9CF21F3191900A7FC70 /* XGAdvertisementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementViewController.swift; sourceTree = "<group>"; };
+		8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDataManager.swift; sourceTree = "<group>"; };
+		8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementModel.swift; sourceTree = "<group>"; };
+		8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementViewModel.swift; sourceTree = "<group>"; };
 		8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC321EC9ECE0008B868 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -102,6 +114,7 @@
 		8C11BF6B21EC423B00F2E958 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8CCAB9D421F31BC000A7FC70 /* Advertisement */,
 				8C11BF6C21EC426400F2E958 /* View */,
 			);
 			path = Main;
@@ -110,10 +123,9 @@
 		8C11BF6C21EC426400F2E958 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */,
-				8C46F43F21EDC1460071281F /* XGNavigationController.swift */,
-				8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */,
-				8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */,
+				8CCAB9CB21F3133100A7FC70 /* Login */,
+				8CCAB9CA21F3132500A7FC70 /* Main */,
+				8CCAB9C921F3131A00A7FC70 /* Visitor */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -121,6 +133,7 @@
 		8C11BF6F21EC428F00F2E958 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8C9BEF3A21F2245300390BB0 /* Network */,
 				8CF43FC221EC9EC50008B868 /* Common */,
 				8C11BF7021EC429700F2E958 /* Extension */,
 			);
@@ -230,6 +243,75 @@
 			path = weibo;
 			sourceTree = "<group>";
 		};
+		8C9BEF3A21F2245300390BB0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */,
+				8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8CCAB9C921F3131A00A7FC70 /* Visitor */ = {
+			isa = PBXGroup;
+			children = (
+				8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */,
+				8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */,
+			);
+			path = Visitor;
+			sourceTree = "<group>";
+		};
+		8CCAB9CA21F3132500A7FC70 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */,
+				8C46F43F21EDC1460071281F /* XGNavigationController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8CCAB9CB21F3133100A7FC70 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8CCAB9CC21F3134300A7FC70 /* XGLoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8CCAB9D421F31BC000A7FC70 /* Advertisement */ = {
+			isa = PBXGroup;
+			children = (
+				8CCAB9D921F336FD00A7FC70 /* ViewModel */,
+				8CCAB9D621F31BCD00A7FC70 /* Model */,
+				8CCAB9D521F31BC800A7FC70 /* View */,
+			);
+			path = Advertisement;
+			sourceTree = "<group>";
+		};
+		8CCAB9D521F31BC800A7FC70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CCAB9CF21F3191900A7FC70 /* XGAdvertisementViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CCAB9D621F31BCD00A7FC70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8CCAB9D921F336FD00A7FC70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8CF43FC221EC9EC50008B868 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,10 +413,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-weibo/Pods-weibo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,16 +440,22 @@
 				8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */,
 				8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
+				8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
+				8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */,
 				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,
+				8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */,
 				8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */,
+				8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */,
 				8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */,
 				8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */,
 				8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */,
 				8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */,
 				8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */,
 				8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */,
+				8CCAB9CD21F3134300A7FC70 /* XGLoginViewController.swift in Sources */,
 				8CC26CA521EF669000A9E074 /* UILabel+Extension.swift in Sources */,
+				8CCAB9D021F3191900A7FC70 /* XGAdvertisementViewController.swift in Sources */,
 				8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

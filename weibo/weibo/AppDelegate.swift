@@ -16,10 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let tabBarController = XGTabBarController()
-        window?.rootViewController = tabBarController
+        window?.rootViewController = rootViewController()
         window?.makeKeyAndVisible()
-
         return true
     }
 
@@ -46,3 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: - 其他方法
+extension AppDelegate
+{
+    private func rootViewController() -> UIViewController
+    {
+        if XGAdvertisementViewModel.sharedViewModel.isNeedShowAdvertisement {
+            return XGAdvertisementViewController()
+        } else {
+            return XGTabBarController()
+        }
+    }
+}

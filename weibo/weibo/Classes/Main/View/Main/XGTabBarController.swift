@@ -57,6 +57,13 @@ extension XGTabBarController
         let attributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)]
         let tabBarItem = UITabBarItem.appearance(whenContainedInInstancesOf: [XGTabBarController.self])
         tabBarItem.setTitleTextAttributes(attributes, for: UIControl.State(rawValue: 0))
+        
+        // 设置navigationBar渲染颜色
+        let navigationBar = UINavigationBar.appearance(whenContainedInInstancesOf: [XGNavigationController.self])
+        navigationBar.tintColor = UIColor.orange
+        
+        // 设置navigationBar标题字体大小
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 20), NSAttributedString.Key.foregroundColor:UIColor.orange]
     }
     
     /// 添加所有子控制器

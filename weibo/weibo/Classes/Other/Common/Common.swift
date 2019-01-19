@@ -15,4 +15,3 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
     print("fileName:\(fileName)" + "\t" + "lineNum:\(lineNum)" + "\t" + "\(item)")
     #endif
 }
-

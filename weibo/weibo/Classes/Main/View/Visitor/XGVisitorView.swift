@@ -51,9 +51,9 @@ class XGVisitorView: UIView
     /// 标题
     private lazy var titleLabel:UILabel = UILabel(text: "关注一些人,回来看看有什么惊喜!关注一些人,回来看看有什么惊喜!", fontSize: 17, textColor: UIColor.lightGray, textAlignment: .center)
     /// 注册按钮
-    private lazy var registerButton:UIButton = UIButton(title: "注册", backgroundImageName: "common_button_white_disable", fontSize: 15, normalColor: UIColor.orange, highlightedColor: UIColor.orange, target: nil, action: nil)
+    open lazy var registerButton:UIButton = UIButton(title: "注册", backgroundImageName: "common_button_white_disable", fontSize: 15, normalColor: UIColor.orange, highlightedColor: UIColor.orange, target: nil, action: nil)
     /// 登录按钮
-    private lazy var loginButton:UIButton = UIButton(title: "登录", backgroundImageName: "common_button_white_disable", fontSize: 15, normalColor: UIColor.darkGray, highlightedColor: UIColor.darkGray, target: nil, action: nil)
+    open lazy var loginButton:UIButton = UIButton(title: "登录", backgroundImageName: "common_button_white_disable", fontSize: 15, normalColor: UIColor.darkGray, highlightedColor: UIColor.darkGray, target: nil, action: nil)
     /// 遮罩层
     private lazy var maskImageView:UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_mask_smallicon"))
 }
