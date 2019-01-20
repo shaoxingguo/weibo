@@ -84,7 +84,8 @@ extension XGLoginViewController:WKNavigationDelegate
                         XGPrint("加载accessToken失败 \(error!)")
                         return
                     } else {
-                        XGPrint(accountModel ?? "")
+                        XGAccountViewModel.shared.setAccountModel(accountModel: accountModel)
+                        
                     }
                 }
                 

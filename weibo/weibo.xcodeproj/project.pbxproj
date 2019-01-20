@@ -17,6 +17,7 @@
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
 		8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832121F45F5D004F5CD8 /* XGAccountModel.swift */; };
+		8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */; };
 		8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */; };
 		8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */; };
 		8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */; };
@@ -45,6 +46,7 @@
 		8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C51F8B021EB74CB0015FC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C8E832121F45F5D004F5CD8 /* XGAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAccountModel.swift; sourceTree = "<group>"; };
+		8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAccountViewModel.swift; sourceTree = "<group>"; };
 		8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNetworkManager.swift; sourceTree = "<group>"; };
 		8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorViewController.swift; sourceTree = "<group>"; };
 		8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorView.swift; sourceTree = "<group>"; };
@@ -116,20 +118,12 @@
 		8C11BF6B21EC423B00F2E958 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8CCAB9C921F3131A00A7FC70 /* Visitor */,
+				8CCAB9CA21F3132500A7FC70 /* Main */,
+				8CCAB9CB21F3133100A7FC70 /* Login */,
 				8CCAB9D421F31BC000A7FC70 /* Advertisement */,
-				8C11BF6C21EC426400F2E958 /* View */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		8C11BF6C21EC426400F2E958 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				8CCAB9CB21F3133100A7FC70 /* Login */,
-				8CCAB9CA21F3132500A7FC70 /* Main */,
-				8CCAB9C921F3131A00A7FC70 /* Visitor */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		8C11BF6F21EC428F00F2E958 /* Other */ = {
@@ -261,6 +255,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8C8E832421F4A6E4004F5CD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8C9BEF3A21F2245300390BB0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +293,7 @@
 		8CCAB9CB21F3133100A7FC70 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				8C8E832421F4A6E4004F5CD8 /* ViewModel */,
 				8C8E832321F45F66004F5CD8 /* Model */,
 				8C8E832021F45F41004F5CD8 /* View */,
 			);
@@ -471,6 +474,7 @@
 				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,
 				8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */,
 				8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */,
+				8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */,
 				8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */,
 				8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */,
 				8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */,

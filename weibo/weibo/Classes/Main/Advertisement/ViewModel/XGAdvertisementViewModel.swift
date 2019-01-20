@@ -56,7 +56,7 @@ class XGAdvertisementViewModel
     /// 模型缓存路径
     private lazy var modelCachePath:String = {
         let cachePath =  NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
-       return (cachePath as NSString).appendingPathComponent("XGAdvertisement.plist")
+       return (cachePath as NSString).appendingPathComponent("XGAdvertisementModel.plist")
     }()
     
     // MARK: - 构造方法

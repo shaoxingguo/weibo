@@ -11,7 +11,6 @@ import SnapKit
 
 class XGVisitorViewController: UITableViewController
 {
-    var isLogin:Bool = false
     var visitorInfo:[String:String]? {
         didSet {
             visitorView.visitorInfo = visitorInfo
@@ -21,7 +20,7 @@ class XGVisitorViewController: UITableViewController
     // MARK: - 控制器生命周期方法
     override func loadView()
     {
-        isLogin ? super.loadView() : setUpUI()
+        XGAccountViewModel.shared.isLogin ? super.loadView() : setUpUI()
     }
     
     // MARK: - 事件监听
