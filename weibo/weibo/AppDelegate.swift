@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootViewController()
+        window?.rootViewController = XGTabBarController()//rootViewController()
         window?.makeKeyAndVisible()
+        
+        setUpAppearance()
         return true
     }
 
@@ -54,5 +57,11 @@ extension AppDelegate
         } else {
             return XGTabBarController()
         }
+    }
+    
+    private func setUpAppearance() -> Void
+    {
+        SVProgressHUD.setBackgroundColor(UIColor(white: 0.9, alpha: 1))
+        SVProgressHUD.setMaximumDismissTimeInterval(3)
     }
 }

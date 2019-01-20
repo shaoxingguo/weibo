@@ -9,17 +9,20 @@
 import UIKit
 import MJExtension
 
-@objcMembers
-class XGAdvertisementModel: NSObject,NSCoding
+@objcMembers class XGAdvertisementModel: NSObject,NSCoding
 {
+    // MARK: - 模型属性
     open var pictureImageURL:String?
     open var webURL:String?
     
-    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+    // MARK: - 其他方法
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]!
+    {
         return ["pictureImageURL": "w_picurl",
          "webURL": "ori_curl"]
     }
     
+    // MARK: - NSCoding
     /// 归档
     func encode(with aCoder: NSCoder) -> Void
     {
@@ -35,3 +38,4 @@ class XGAdvertisementModel: NSObject,NSCoding
         webURL = aDecoder.decodeObject(forKey: "webURL") as? String
     }
 }
+

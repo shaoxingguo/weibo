@@ -16,7 +16,7 @@ class XGAdvertisementViewModel
     public static let sharedViewModel:XGAdvertisementViewModel = XGAdvertisementViewModel()
     
     /// 广告图片
-    public var advertisementImage:UIImage? {
+    open var advertisementImage:UIImage? {
         if advertisementModel != nil {
             let data = try! Data(contentsOf: URL(fileURLWithPath: imageCachePath))
             return UIImage(data: data)
@@ -26,7 +26,7 @@ class XGAdvertisementViewModel
     }
     
     /// 广告详情
-    public var webURL:URL? {
+    open var webURL:URL? {
         if advertisementModel != nil {
             return URL(string: advertisementModel?.webURL ?? "")
         } else {
@@ -35,7 +35,7 @@ class XGAdvertisementViewModel
     }
     
     /// 是否需要展示广告
-    public var isNeedShowAdvertisement:Bool {
+    open var isNeedShowAdvertisement:Bool {
         if advertisementModel != nil {
             loadData()
             return true
