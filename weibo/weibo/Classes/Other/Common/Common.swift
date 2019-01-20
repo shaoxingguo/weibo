@@ -6,7 +6,7 @@
 //  Copyright © 2019 itcast. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 {
@@ -15,6 +15,12 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
     print("fileName:\(fileName)" + "\t" + "lineNum:\(lineNum)" + "\t" + "\(item)")
     #endif
 }
+
+
+/// 屏幕宽度
+public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
+/// 屏幕高度
+public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
 
 // MARK: - 网络相关
 /// 应用程序AppKey

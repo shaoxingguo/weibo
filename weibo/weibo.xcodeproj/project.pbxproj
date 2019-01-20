@@ -18,6 +18,7 @@
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
 		8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832121F45F5D004F5CD8 /* XGAccountModel.swift */; };
 		8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */; };
+		8C8E832921F4B9ED004F5CD8 /* XGNewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832821F4B9ED004F5CD8 /* XGNewFeatureViewController.swift */; };
 		8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */; };
 		8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */; };
 		8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */; };
@@ -47,6 +48,7 @@
 		8C51F8B021EB74CB0015FC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C8E832121F45F5D004F5CD8 /* XGAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAccountModel.swift; sourceTree = "<group>"; };
 		8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAccountViewModel.swift; sourceTree = "<group>"; };
+		8C8E832821F4B9ED004F5CD8 /* XGNewFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNewFeatureViewController.swift; sourceTree = "<group>"; };
 		8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNetworkManager.swift; sourceTree = "<group>"; };
 		8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorViewController.swift; sourceTree = "<group>"; };
 		8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		8C11BF6B21EC423B00F2E958 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8C8E832721F4B9D9004F5CD8 /* NewFeature */,
 				8CCAB9C921F3131A00A7FC70 /* Visitor */,
 				8CCAB9CA21F3132500A7FC70 /* Main */,
 				8CCAB9CB21F3133100A7FC70 /* Login */,
@@ -261,6 +264,14 @@
 				8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8C8E832721F4B9D9004F5CD8 /* NewFeature */ = {
+			isa = PBXGroup;
+			children = (
+				8C8E832821F4B9ED004F5CD8 /* XGNewFeatureViewController.swift */,
+			);
+			path = NewFeature;
 			sourceTree = "<group>";
 		};
 		8C9BEF3A21F2245300390BB0 /* Network */ = {
@@ -480,6 +491,7 @@
 				8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */,
 				8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */,
 				8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */,
+				8C8E832921F4B9ED004F5CD8 /* XGNewFeatureViewController.swift in Sources */,
 				8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */,
 				8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */,
 				8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */,
