@@ -11,4 +11,5 @@ import UIKit
 @objcMembers class XGStatusModel: NSObject
 {
     open var text:String?
+    open var id:Int64 = 0
 }

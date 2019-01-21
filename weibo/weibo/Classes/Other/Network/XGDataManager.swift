@@ -71,9 +71,16 @@ extension XGDataManager
 // MARK: - 获取微博数据
 extension XGDataManager
 {
-    class func loadStatusList(completion:@escaping ([XGStatusModel]?,Error?) -> Void) -> Void
+    class func loadStatusList(sinceId:Int64,maxId:Int64,completion:@escaping ([XGStatusModel]?,Error?) -> Void) -> Void
     {
-        accessTokenRequest(type: .Get, URLString: kHomeTimelineAPI, parameters: nil) { (responseObject, error) in
+        var parameters:[String:Any]? = nil
+        if sinceId > 0 {
+            parameters = ["since_id":sinceId]
+        } else if maxId > 0 {
+            parameters = ["max_id":maxId]
+        }
+        
+        accessTokenRequest(type: .Get, URLString: kHomeTimelineAPI, parameters: parameters) { (responseObject, error) in
             if error != nil {
                 XGPrint(error?.localizedDescription ?? "")
                 completion(nil,error)
@@ -86,7 +93,7 @@ extension XGDataManager
                 }
                 
                 // 字典转模型
-               let modelArray =  XGStatusModel.mj_objectArray(withKeyValuesArray: dictionaryArray)?.copy()
+                let modelArray =  XGStatusModel.mj_objectArray(withKeyValuesArray: dictionaryArray)?.copy()
                 completion(modelArray as? [XGStatusModel],nil)
             }
         }
@@ -101,7 +108,7 @@ extension XGDataManager
     ///   - completion: 完成回调
     private class func accessTokenRequest(type:HttpMethodType, URLString:String,parameters:[String:Any]?,completion:@escaping (Any?,Error?) ->Void) -> Void
     {
-        let accessToken = XGAccountViewModel.shared.accessToken ?? ""
+        let accessToken = XGAccountViewModel.shared.accessToken!
         var parameters = parameters
         if parameters == nil {
             parameters = ["access_token":accessToken]

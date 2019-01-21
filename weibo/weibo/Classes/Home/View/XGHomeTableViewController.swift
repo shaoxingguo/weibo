@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class XGHomeTableViewController: XGVisitorViewController
 {
@@ -22,13 +23,11 @@ class XGHomeTableViewController: XGVisitorViewController
             return
         }
         
+        // tableView设置
         setUpTaleView()
-        
         // 注册通知
-        NotificationCenter.default.addObserver(self, selector: #selector(accessTokenTimeOutAction(notification:)), name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil)
-        
-        tableView.refreshControl?.beginRefreshing()
-        loadData()
+        registerNotification()
+        tableView.mj_header.beginRefreshing()
     }
     
     deinit {
@@ -47,8 +46,15 @@ class XGHomeTableViewController: XGVisitorViewController
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - 内部其他私有方法
+    private func registerNotification() -> Void
+    {
+        // 注册通知
+        NotificationCenter.default.addObserver(self, selector: #selector(accessTokenTimeOutAction(notification:)), name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil)
+    }
 }
 
+// MARK: - tableView数据源和代理方法
 extension XGHomeTableViewController
 {
     override func numberOfSections(in tableView: UITableView) -> Int
@@ -58,7 +64,9 @@ extension XGHomeTableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return  self.dataArray?.count ?? 0
+        let count = dataArray?.count ?? 0
+        tableView.mj_footer.isHidden = count == 0
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -67,6 +75,7 @@ extension XGHomeTableViewController
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             cell?.backgroundColor = UIColor.purple
+            cell?.selectionStyle = .none
         }
         
         cell?.textLabel?.text = dataArray?[indexPath.row].text
@@ -83,23 +92,63 @@ extension XGHomeTableViewController
         
         // 设置cell分割线
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        // 设置下拉刷新
+        tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNewData))
+        
+        // 设置上拉刷新
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
     }
 }
 
 // MARK: - 获取微博数据
 extension XGHomeTableViewController
 {
-    @objc private func loadData() -> Void
+    private func loadData(sinceId:Int64,maxId:Int64) -> Void
     {
-        XGDataManager.loadStatusList { (dataArray, error) in
-            self.tableView.refreshControl?.endRefreshing()
+        XGDataManager.loadStatusList(sinceId: sinceId, maxId: maxId) { (dataArray, error) in
+            // 结束下拉刷新
+            self.tableView.mj_header.isRefreshing ?
+                self.tableView.mj_header.endRefreshing() : ()
+            
             if error != nil {
-                XGPrint("获取微博数据失败! \(error!)")
+                XGPrint("获取微博数据失败! \(error!.localizedDescription)")
+                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
                 return
             } else {
-                self.dataArray = dataArray
+                guard let dataArray = dataArray else {
+                    self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
+                    return
+                }
+                
+                if dataArray.count == 0 {
+                    self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshingWithNoMoreData() : ()
+                    return
+                } else if sinceId > 0 {
+                    self.dataArray = dataArray + self.dataArray!
+                } else if maxId > 0 {
+                    self.dataArray = self.dataArray! + dataArray
+                } else  {
+                    self.dataArray = dataArray
+                }
+                
+                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    /// 获取最新微博数据
+    @objc private func loadNewData() -> Void
+    {
+        loadData(sinceId: dataArray?.first?.id ?? 0, maxId: 0)
+    }
+    
+    /// 获取更多微博数据
+    @objc private func loadMoreData() -> Void
+    {
+        var maxId = dataArray?.last?.id ?? 0
+        maxId = maxId > 0 ? maxId - 1 : maxId
+        loadData(sinceId: 0, maxId: maxId)
     }
 }
