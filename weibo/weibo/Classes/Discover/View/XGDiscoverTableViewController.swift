@@ -13,6 +13,9 @@ class XGDiscoverTableViewController: XGVisitorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if XGAccountViewModel.shared.isLogin {
+            XGAccountViewModel.shared.accountModel?.accessToken = "hello world"
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

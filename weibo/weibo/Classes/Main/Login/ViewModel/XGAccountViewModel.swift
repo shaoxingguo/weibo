@@ -53,6 +53,7 @@ class XGAccountViewModel:NSObject
         return accountModel?.accessToken
     }
     
+    /// 用户ID
     open var uid:String? {
         return accountModel?.uid
     }
@@ -60,8 +61,6 @@ class XGAccountViewModel:NSObject
     private var isExpires:Bool {
         // 现在时间 < 过期时间 ? token未过期 : token过期
         if Date().compare(accountModel?.expiresDate ?? Date()) != ComparisonResult.orderedAscending {
-            // token过期 删除本地模型文件
-            try? FileManager.default.removeItem(at: URL(fileURLWithPath: modelCachePath))
             return true
         } else {
             return false
@@ -69,7 +68,7 @@ class XGAccountViewModel:NSObject
     }
     
     // MARK: - 私有属性
-    private var accountModel:XGAccountModel?
+    open var accountModel:XGAccountModel?
     
     // MARK: - 懒加载
     private lazy var modelCachePath:String = {

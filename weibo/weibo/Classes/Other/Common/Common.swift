@@ -16,11 +16,15 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
     #endif
 }
 
-
+// MARK: - 应用程序相关
 /// 屏幕宽度
 public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
 /// 屏幕高度
 public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
+
+// MARK: - 通知相关
+/// access_token过期通知
+public let kAccessTokenTimeOutNotification = "kAccessTokenTimeOutNotification"
 
 // MARK: - 网络相关
 /// 应用程序AppKey
@@ -34,9 +38,9 @@ public let kRedirectURLString:String = "https://api.weibo.com/oauth2/default.htm
 public let kBaseURLString:String = "https://api.weibo.com/"
 /// 广告数据接口
 public let kAdvertisementAPI:String = "http://mobads.baidu.com/cpro/ui/mads.php"
-/// 请求授权码码接口
+/// 请求用户授权码
 public let kAuthorizeCodeAPI:String = "oauth2/authorize"
-/// 请求授权令牌接口
+/// 获取用户授权的AccessToken
 public let kAccessTokenAPI:String = "oauth2/access_token"
 /// 获取当前登录用户及其所关注（授权）用户的最新微博接口
 public let kHomeTimelineAPI:String = "2/statuses/home_timeline.json"

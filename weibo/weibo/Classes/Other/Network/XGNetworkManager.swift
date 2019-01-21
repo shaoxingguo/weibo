@@ -37,18 +37,24 @@ class XGNetworkManager: AFHTTPSessionManager
     ///   - completion: 完成回调
     class func request(type:HttpMethodType,URLString:String,parameters:[String:Any]?,completion:@escaping (Any?, Error?) -> Void)  -> Void
     {
+        let successCompletion = { (dataTask:URLSessionDataTask?,responseObject:Any?) -> Void in
+            completion(responseObject,nil)
+        }
+        
+        let failureCompletion = { (dataTask:URLSessionDataTask?,error:Error?) ->Void in
+            let response = dataTask?.response as? HTTPURLResponse
+            if response?.statusCode == 403 {
+                // token过期
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil, userInfo: nil)
+            }
+            
+            completion(nil,error)
+        }
+        
         if type == HttpMethodType.Get {
-            sharedManager.get(URLString, parameters: parameters, progress: nil, success: { (dataTask, responseObject) in
-                completion(responseObject,nil)
-            }) { (dataTask, error) in
-                completion(nil,error)
-            }
+            sharedManager.get(URLString, parameters: parameters, progress: nil, success: successCompletion, failure: failureCompletion)
         } else if type == HttpMethodType.Post {
-            sharedManager.post(URLString, parameters: parameters, progress: nil, success: { (dataTask, responseObject) in
-                completion(responseObject,nil)
-            }) { (dataTask, error) in
-                completion(nil,error)
-            }
+           sharedManager.post(URLString, parameters: parameters, progress: nil, success: successCompletion, failure: failureCompletion)
         }
     }
 }

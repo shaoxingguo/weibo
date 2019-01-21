@@ -21,15 +21,29 @@ class XGHomeTableViewController: XGVisitorViewController {
             return
         }
         
-        XGDataManager.loadStatusList { (dataArray, error) in
-            if error != nil {
-                XGPrint("获取微博数据失败! \(error!)")
-                return
-            } else {
-                self.dataArray = dataArray
-                self.tableView.reloadData()
-            }
-        }
+        setUpTaleView()
+        
+        // 注册通知
+        NotificationCenter.default.addObserver(self, selector: #selector(accessTokenTimeOutAction(notification:)), name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil)
+        
+        tableView.refreshControl?.beginRefreshing()
+        loadData()
+    }
+    
+    deinit {
+        // 注销通知
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - 事件监听
+    @objc private func accessTokenTimeOutAction(notification:Notification) -> Void
+    {
+        let alert = UIAlertController(title: "用户授权超时", message: "请重新登录", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { (_) in
+            let nav = XGNavigationController(rootViewController: XGLoginViewController())
+            self.present(nav, animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -54,5 +68,34 @@ extension XGHomeTableViewController
         
         cell?.textLabel?.text = dataArray?[indexPath.row].text
         return cell!
+    }
+}
+
+// MARK: - tableView设置
+extension XGHomeTableViewController
+{
+    private func setUpTaleView() -> Void
+    {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+}
+
+// MARK: - 获取微博数据
+extension XGHomeTableViewController
+{
+    @objc private func loadData() -> Void
+    {
+        XGDataManager.loadStatusList { (dataArray, error) in
+            self.tableView.refreshControl?.endRefreshing()
+            if error != nil {
+                XGPrint("获取微博数据失败! \(error!)")
+                return
+            } else {
+                self.dataArray = dataArray
+                self.tableView.reloadData()
+            }
+        }
     }
 }

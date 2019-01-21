@@ -92,7 +92,6 @@ extension XGDataManager
         }
     }
     
-    
     /// access_token请求
     ///
     /// - Parameters:
