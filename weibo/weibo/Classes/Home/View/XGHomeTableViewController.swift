@@ -8,9 +8,10 @@
 
 import UIKit
 
-class XGHomeTableViewController: XGVisitorViewController {
-
+class XGHomeTableViewController: XGVisitorViewController
+{
     var dataArray:[XGStatusModel]?
+    
     // MARK: - 控制器生命周期方法
     override func viewDidLoad()
     {
@@ -45,6 +46,7 @@ class XGHomeTableViewController: XGVisitorViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
+    
 }
 
 extension XGHomeTableViewController
@@ -64,6 +66,7 @@ extension XGHomeTableViewController
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell?.backgroundColor = UIColor.purple
         }
         
         cell?.textLabel?.text = dataArray?[indexPath.row].text
@@ -76,9 +79,10 @@ extension XGHomeTableViewController
 {
     private func setUpTaleView() -> Void
     {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        tableView.rowHeight = 64
+        
+        // 设置cell分割线
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 

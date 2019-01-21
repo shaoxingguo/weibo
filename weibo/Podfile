@@ -13,5 +13,6 @@ pod 'MJExtension'
 pod 'SDWebImage'
 pod 'SVProgressHUD'
 pod 'MLeaksFinder'
+pod 'MJRefresh'
 
 end

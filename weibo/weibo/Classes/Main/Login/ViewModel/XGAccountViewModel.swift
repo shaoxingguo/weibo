@@ -68,7 +68,7 @@ class XGAccountViewModel:NSObject
     }
     
     // MARK: - 私有属性
-    open var accountModel:XGAccountModel?
+    private var accountModel:XGAccountModel?
     
     // MARK: - 懒加载
     private lazy var modelCachePath:String = {
