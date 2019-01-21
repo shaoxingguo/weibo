@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = XGTabBarController() //rootViewController()
+        window?.rootViewController = rootViewController()
         window?.makeKeyAndVisible()
         
         setUpAppearance()
@@ -50,18 +50,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - 其他方法
 extension AppDelegate
 {
+    /// 返回根控制器
     private func rootViewController() -> UIViewController
     {
-        if XGAdvertisementViewModel.sharedViewModel.isNeedShowAdvertisement {
+        if isNewVersion {
+            return XGNewFeatureViewController()
+        } else if XGAdvertisementViewModel.sharedViewModel.isNeedShowAdvertisement {
             return XGAdvertisementViewController()
         } else {
             return XGTabBarController()
         }
     }
     
+    /// 设置全局外观
     private func setUpAppearance() -> Void
     {
         SVProgressHUD.setBackgroundColor(UIColor(white: 0.9, alpha: 1))
         SVProgressHUD.setMinimumDismissTimeInterval(2)
+    }
+    
+    /// 是否是新版本
+    private var isNewVersion:Bool {
+        let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        let cacheVersion = UserDefaults.standard.string(forKey: kSandBoxVersionKey)
+        if currentVersion?.compare(cacheVersion ?? "") != ComparisonResult.orderedSame {
+            UserDefaults.standard.set(currentVersion, forKey: kSandBoxVersionKey)
+            UserDefaults.standard.synchronize()
+            return true
+        } else {
+           return false
+        }
     }
 }

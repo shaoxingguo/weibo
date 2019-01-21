@@ -21,6 +21,8 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
 /// 屏幕高度
 public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
+/// 沙盒缓存版本对应的key
+public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 
 // MARK: - 通知相关
 /// access_token过期通知
