@@ -35,7 +35,6 @@ class XGNewFeatureViewController: UIViewController
     /// 登录按钮
     private lazy var loginButton:UIButton = {
         let button = UIButton(title: "立即登录", backgroundImageName: "new_feature_finish_button",normalColor: UIColor.white, highlightedColor: UIColor.orange, target: nil, action: nil)
-        button.isHidden = true
         return button
     }()
     /// 最大图片数量
@@ -47,7 +46,6 @@ extension XGNewFeatureViewController:UIScrollViewDelegate
 {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
-        XGPrint(scrollView.contentOffset.x)
         loginButton.isHidden = true
     }
     

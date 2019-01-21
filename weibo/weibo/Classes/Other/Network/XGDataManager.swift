@@ -67,3 +67,49 @@ extension XGDataManager
         }
     }
 }
+
+// MARK: - 获取微博数据
+extension XGDataManager
+{
+    class func loadStatusList(completion:@escaping ([XGStatusModel]?,Error?) -> Void) -> Void
+    {
+        accessTokenRequest(type: .Get, URLString: kHomeTimelineAPI, parameters: nil) { (responseObject, error) in
+            if error != nil {
+                XGPrint(error?.localizedDescription ?? "")
+                completion(nil,error)
+                return
+            } else {
+                guard let dictionary = responseObject as? [String:Any],
+                    let dictionaryArray = dictionary["statuses"] as? [[String:Any]] else {
+                        completion(nil,error)
+                        return
+                }
+                
+                // 字典转模型
+               let modelArray =  XGStatusModel.mj_objectArray(withKeyValuesArray: dictionaryArray)?.copy()
+                completion(modelArray as? [XGStatusModel],nil)
+            }
+        }
+    }
+    
+    
+    /// access_token请求
+    ///
+    /// - Parameters:
+    ///   - type: 请求类型
+    ///   - URLString: 接口地址
+    ///   - parameters: 请求参数
+    ///   - completion: 完成回调
+    private class func accessTokenRequest(type:HttpMethodType, URLString:String,parameters:[String:Any]?,completion:@escaping (Any?,Error?) ->Void) -> Void
+    {
+        let accessToken = XGAccountViewModel.shared.accessToken ?? ""
+        var parameters = parameters
+        if parameters == nil {
+            parameters = ["access_token":accessToken]
+        } else {
+            parameters!["access_token"] = accessToken
+        }
+        
+        XGNetworkManager.request(type: type, URLString: URLString, parameters: parameters, completion: completion)
+    }
+}

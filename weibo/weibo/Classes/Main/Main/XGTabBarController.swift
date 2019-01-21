@@ -30,6 +30,10 @@ class XGTabBarController: UITabBarController
         tabBar.bringSubviewToFront(publishButton)
     }
     
+    deinit {
+        XGPrint("我去了")
+    }
+    
     // MARK: - 事件监听
     @objc private func publishAction() -> Void
     {

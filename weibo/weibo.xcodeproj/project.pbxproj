@@ -13,6 +13,7 @@
 		8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */; };
 		8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */; };
 		8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */; };
+		8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DB17521F58516007590CF /* XGStatusModel.swift */; };
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDiscoverTableViewController.swift; sourceTree = "<group>"; };
 		8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMessageTableViewController.swift; sourceTree = "<group>"; };
 		8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGHomeTableViewController.swift; sourceTree = "<group>"; };
+		8C3DB17521F58516007590CF /* XGStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusModel.swift; sourceTree = "<group>"; };
 		8C46F43F21EDC1460071281F /* XGNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNavigationController.swift; sourceTree = "<group>"; };
 		8C51F8A121EB74CA0015FC0C /* weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		8C11BF7121EC4D3900F2E958 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8C3DB17421F58507007590CF /* Model */,
 				8C11BF7E21EC4E7000F2E958 /* View */,
 			);
 			path = Home;
@@ -212,6 +215,14 @@
 				8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8C3DB17421F58507007590CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C3DB17521F58516007590CF /* XGStatusModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8C51F89821EB74C90015FC0C = {
@@ -478,6 +489,7 @@
 			files = (
 				8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */,
 				8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */,
+				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
 				8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,

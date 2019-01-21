@@ -38,3 +38,5 @@ public let kAdvertisementAPI:String = "http://mobads.baidu.com/cpro/ui/mads.php"
 public let kAuthorizeCodeAPI:String = "oauth2/authorize"
 /// 请求授权令牌接口
 public let kAccessTokenAPI:String = "oauth2/access_token"
+/// 获取当前登录用户及其所关注（授权）用户的最新微博接口
+public let kHomeTimelineAPI:String = "2/statuses/home_timeline.json"

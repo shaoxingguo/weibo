@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = XGNewFeatureViewController()//rootViewController()
+        window?.rootViewController = XGTabBarController() //rootViewController()
         window?.makeKeyAndVisible()
         
         setUpAppearance()
@@ -62,6 +62,6 @@ extension AppDelegate
     private func setUpAppearance() -> Void
     {
         SVProgressHUD.setBackgroundColor(UIColor(white: 0.9, alpha: 1))
-        SVProgressHUD.setMaximumDismissTimeInterval(3)
+        SVProgressHUD.setMinimumDismissTimeInterval(2)
     }
 }

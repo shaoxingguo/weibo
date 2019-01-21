@@ -48,9 +48,20 @@ class XGAccountViewModel:NSObject
         }
     }
     
+    /// 用户授权令牌
+    open var accessToken:String? {
+        return accountModel?.accessToken
+    }
+    
+    open var uid:String? {
+        return accountModel?.uid
+    }
+    
     private var isExpires:Bool {
         // 现在时间 < 过期时间 ? token未过期 : token过期
         if Date().compare(accountModel?.expiresDate ?? Date()) != ComparisonResult.orderedAscending {
+            // token过期 删除本地模型文件
+            try? FileManager.default.removeItem(at: URL(fileURLWithPath: modelCachePath))
             return true
         } else {
             return false
@@ -62,8 +73,7 @@ class XGAccountViewModel:NSObject
     
     // MARK: - 懒加载
     private lazy var modelCachePath:String = {
-       let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+       let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
          return (cachePath as NSString).appendingPathComponent("XGAccountModel.plist")
     }()
-    
 }

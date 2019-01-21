@@ -82,14 +82,17 @@ extension XGLoginViewController:WKNavigationDelegate
                 XGDataManager.loadAccessToken(code: code) { (accountModel, error) in
                     if error != nil {
                         XGPrint("加载accessToken失败 \(error!)")
+                         self.quitAction()
                         return
                     } else {
                         XGAccountViewModel.shared.setAccountModel(accountModel: accountModel)
-                        
+                        SVProgressHUD.dismiss()
+                        self.dismiss(animated: false, completion: {
+                            UIApplication.shared.keyWindow?.rootViewController = XGTabBarController()
+                        })
                     }
                 }
-                
-                quitAction()
+               
             } else {
                 // 拒绝授权
                 quitAction()
