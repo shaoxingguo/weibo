@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootViewController()
+        window?.rootViewController = XGTabBarController()//rootViewController()
         window?.makeKeyAndVisible()
         
-        setUpAppearance()
+        initializationSetting()
         return true
     }
 
@@ -79,6 +80,22 @@ extension AppDelegate
             return true
         } else {
            return false
+        }
+    }
+    
+    
+    /// 初始化设置
+    private func initializationSetting() -> Void
+    {
+        setUpAppearance()
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge,.sound,.alert]) { (isSuccess, error) in
+            if error != nil || !isSuccess {
+                XGPrint("通知授权失败!")
+                return
+            } else {
+                XGPrint("通知授权成功")
+            }
         }
     }
 }

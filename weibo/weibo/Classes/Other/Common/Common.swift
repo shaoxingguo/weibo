@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - 调试相关
 func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 {
     #if DEBUG
@@ -26,9 +27,9 @@ public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 
 // MARK: - 通知相关
 /// access_token过期通知
-public let kAccessTokenTimeOutNotification = "kAccessTokenTimeOutNotification"
+public let kAccessTokenTimeOutNotification:String = "kAccessTokenTimeOutNotification"
 
-// MARK: - 网络相关
+// MARK: - 微博接口相关
 /// 应用程序AppKey
 public let kAppKey:String = "2247988996"
 /// 应用程序AppSecret
@@ -40,9 +41,11 @@ public let kRedirectURLString:String = "https://api.weibo.com/oauth2/default.htm
 public let kBaseURLString:String = "https://api.weibo.com/"
 /// 广告数据接口
 public let kAdvertisementAPI:String = "http://mobads.baidu.com/cpro/ui/mads.php"
-/// 请求用户授权码
+/// 请求用户授权码接口
 public let kAuthorizeCodeAPI:String = "oauth2/authorize"
-/// 获取用户授权的AccessToken
+/// 获取用户授权的AccessToken接口
 public let kAccessTokenAPI:String = "oauth2/access_token"
 /// 获取当前登录用户及其所关注（授权）用户的最新微博接口
 public let kHomeTimelineAPI:String = "2/statuses/home_timeline.json"
+/// 获取某个用户的各种消息未读数接口
+public let kUnreadCountAPI:String = "https://rm.api.weibo.com/2/remind/unread_count.json"

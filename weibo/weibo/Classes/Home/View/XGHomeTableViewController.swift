@@ -27,7 +27,17 @@ class XGHomeTableViewController: XGVisitorViewController
         setUpTaleView()
         // 注册通知
         registerNotification()
+        // 刷新数据
         tableView.mj_header.beginRefreshing()
+        XGDataManager.loadUnreadCount { (count, error) in
+            if error != nil {
+                XGPrint("获取消息未读数失败 \(error!.localizedDescription)")
+                return
+            } else {
+                XGPrint("有 \(count)条新消息")
+                self.tabBarItem.badgeValue = "\(count)"
+            }
+        }
     }
     
     deinit {
@@ -104,7 +114,7 @@ extension XGHomeTableViewController
 // MARK: - 获取微博数据
 extension XGHomeTableViewController
 {
-    private func loadData(sinceId:Int64,maxId:Int64) -> Void
+    private func loadData(sinceId:Int64 = 0,maxId:Int64 = 0) -> Void
     {
         XGDataManager.loadStatusList(sinceId: sinceId, maxId: maxId) { (dataArray, error) in
             // 结束下拉刷新
@@ -141,7 +151,7 @@ extension XGHomeTableViewController
     /// 获取最新微博数据
     @objc private func loadNewData() -> Void
     {
-        loadData(sinceId: dataArray?.first?.id ?? 0, maxId: 0)
+        loadData(sinceId: dataArray?.first?.id ?? 0)
     }
     
     /// 获取更多微博数据
@@ -149,6 +159,6 @@ extension XGHomeTableViewController
     {
         var maxId = dataArray?.last?.id ?? 0
         maxId = maxId > 0 ? maxId - 1 : maxId
-        loadData(sinceId: 0, maxId: maxId)
+        loadData(maxId: maxId)
     }
 }
