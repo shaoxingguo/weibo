@@ -22,12 +22,18 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
 /// 屏幕高度
 public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
+/// 导航栏高度
+public let kNavigationBarHeight:CGFloat = 64
+/// tabBar高度
+public let kTabBarHeight:CGFloat = 49
 /// 沙盒缓存版本对应的key
 public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 
 // MARK: - 通知相关
 /// access_token过期通知
 public let kAccessTokenTimeOutNotification:String = "kAccessTokenTimeOutNotification"
+/// 点击首页bagdeValue通知
+public let kTapHomeTabBarBadgeValueNotification:String = "kTapHomeTabBarBadgeValueNotification"
 
 // MARK: - 微博接口相关
 /// 应用程序AppKey

@@ -29,15 +29,6 @@ class XGHomeTableViewController: XGVisitorViewController
         registerNotification()
         // 刷新数据
         tableView.mj_header.beginRefreshing()
-        XGDataManager.loadUnreadCount { (count, error) in
-            if error != nil {
-                XGPrint("获取消息未读数失败 \(error!.localizedDescription)")
-                return
-            } else {
-                XGPrint("有 \(count)条新消息")
-                self.tabBarItem.badgeValue = "\(count)"
-            }
-        }
     }
     
     deinit {
@@ -56,11 +47,25 @@ class XGHomeTableViewController: XGVisitorViewController
         present(alert, animated: true, completion: nil)
     }
     
+    @objc private func tapHomeTabBarBadgeValueAction(notification:Notification) -> Void
+    {
+        DispatchQueue.main.async {
+            // 滚动到顶部
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.none, animated: true)
+            
+            // 加载最新数据
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.tableView.mj_header.beginRefreshing()
+            }
+        }
+    }
+    
     // MARK: - 内部其他私有方法
     private func registerNotification() -> Void
     {
         // 注册通知
         NotificationCenter.default.addObserver(self, selector: #selector(accessTokenTimeOutAction(notification:)), name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(tapHomeTabBarBadgeValueAction(notification:)), name: NSNotification.Name(rawValue: kTapHomeTabBarBadgeValueNotification), object: nil)
     }
 }
 
@@ -100,6 +105,9 @@ extension XGHomeTableViewController
     {
         tableView.rowHeight = 64
         
+        // 取消默认64偏移
+        tableView.contentInsetAdjustmentBehavior = .never
+        
         // 设置cell分割线
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
@@ -108,6 +116,9 @@ extension XGHomeTableViewController
         
         // 设置上拉刷新
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
+        
+        // 设置内容边距
+        tableView.contentInset = UIEdgeInsets(top: kNavigationBarHeight, left: 0, bottom: kTabBarHeight, right: 0)
     }
 }
 
