@@ -32,6 +32,10 @@ import MJExtension
     open var uid:String?
     /// token过期时间
     open var expiresDate:Date?
+    /// 用户昵称
+    open var screenName:String?
+    /// 用户头像(大图)
+    open var avatarLarge:String?
     
     // MARK: - NSCoding
     /// 归档
@@ -40,6 +44,8 @@ import MJExtension
         aCoder.encode(accessToken, forKey: "accessToken")
         aCoder.encode(uid, forKey: "uid")
         aCoder.encode(expiresDate, forKey: "expiresDate")
+        aCoder.encode(screenName, forKey: "screenName")
+        aCoder.encode(avatarLarge, forKey: "avatarLarge")
     }
     
     /// 解档
@@ -49,5 +55,7 @@ import MJExtension
         accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String
         uid = aDecoder.decodeObject(forKey: "uid") as? String
         expiresDate = aDecoder.decodeObject(forKey: "expiresDate") as? Date
+        screenName = aDecoder.decodeObject(forKey: "screenName") as? String
+        avatarLarge = aDecoder.decodeObject(forKey: "avatarLarge") as? String
     }
 }

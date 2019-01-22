@@ -85,8 +85,10 @@ extension XGLoginViewController:WKNavigationDelegate
                          self.quitAction()
                         return
                     } else {
-                        XGAccountViewModel.shared.setAccountModel(accountModel: accountModel)
                         SVProgressHUD.dismiss()
+                        // 保存用户模型
+                        XGAccountViewModel.shared.setAccountModel(accountModel: accountModel)
+                        // 切换根控制器 跳转到主界面
                         self.dismiss(animated: false, completion: {
                             UIApplication.shared.keyWindow?.rootViewController = XGTabBarController()
                         })

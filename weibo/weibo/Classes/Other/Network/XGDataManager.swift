@@ -60,8 +60,30 @@ extension XGDataManager
                 return
             } else {
                 let accountModel = XGAccountModel.mj_object(withKeyValues: responseObject)
-                completion(accountModel,nil)
+                // 加载用户个人信息
+                loadUserInfo(userId: accountModel?.uid ?? "", accessToken: accountModel?.accessToken ?? "", completion: { (responseObject, error) in
+                    if error != nil {
+                        completion(nil,error)
+                        return
+                    } else {
+                        _ = accountModel?.mj_setKeyValues(responseObject)
+                        completion(accountModel,nil)
+                        return
+                    }
+                })
+            }
+        }
+    }
+    
+    private class func loadUserInfo(userId:String,accessToken:String, completion:@escaping ([String:Any]?,Error?) -> Void) -> Void
+    {
+        let parameters = ["uid":userId,"access_token":accessToken]
+        XGNetworkManager.request(type: .Get, URLString: kUserInfoAPI, parameters: parameters) { (responseObject, error) in
+            if error != nil {
+                completion(nil,error)
                 return
+            } else {
+                completion(responseObject as? [String : Any],nil)
             }
         }
     }

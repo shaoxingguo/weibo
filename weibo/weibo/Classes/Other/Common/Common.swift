@@ -37,9 +37,9 @@ public let kTapHomeTabBarBadgeValueNotification:String = "kTapHomeTabBarBadgeVal
 
 // MARK: - 微博接口相关
 /// 应用程序AppKey
-public let kAppKey:String = "2247988996"
+public let kAppKey:String = "2640984569"//"2247988996"
 /// 应用程序AppSecret
-public let kAppSecret:String = "ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
+public let kAppSecret:String = "f5e4360214e1f50079ebec28a58a57aa"//"ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
 /// 授权回调页
 public let kRedirectURLString:String = "https://api.weibo.com/oauth2/default.html"
 
@@ -55,3 +55,5 @@ public let kAccessTokenAPI:String = "oauth2/access_token"
 public let kHomeTimelineAPI:String = "2/statuses/home_timeline.json"
 /// 获取某个用户的各种消息未读数接口
 public let kUnreadCountAPI:String = "https://rm.api.weibo.com/2/remind/unread_count.json"
+/// 获取用户信息接口
+public let kUserInfoAPI:String = "2/users/show.json"
