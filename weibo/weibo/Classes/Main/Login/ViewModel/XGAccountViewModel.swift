@@ -58,6 +58,16 @@ class XGAccountViewModel:NSObject
         return accountModel?.uid
     }
     
+    /// 用户昵称
+    open var screenName:String? {
+        return accountModel?.screenName
+    }
+    
+    /// 用户头像(大图)
+    open var avatarLarge:String? {
+        return accountModel?.avatarLarge
+    }
+    
     private var isExpires:Bool {
         // 现在时间 < 过期时间 ? token未过期 : token过期
         if Date().compare(accountModel?.expiresDate ?? Date()) != ComparisonResult.orderedAscending {

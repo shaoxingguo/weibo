@@ -14,16 +14,16 @@ class XGTabBarController: UITabBarController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // 设置外观
-        setUpAppearance()
+     
         // 添加子控制器
         addAllChildViewControllers()
         // 添加发布按钮
         setUpPublishButton()
-        
+        // 设置外观
+        setUpAppearance()
         // 设置定时器
         if XGAccountViewModel.shared.isLogin {
-            timer = Timer.scheduledTimer(timeInterval:  5, target: self, selector: #selector(updateUnreadCountAction), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval:5 * 60, target: self, selector: #selector(updateUnreadCountAction), userInfo: nil, repeats: true)
         }
         
         // 设置代理
@@ -59,7 +59,8 @@ class XGTabBarController: UITabBarController
     
     @objc private func updateUnreadCountAction() -> Void
     {
-        XGDataManager.loadUnreadCount { (count, error) in            self.tabBar.items?.first?.badgeValue = count > 0 ? "\(count)" : nil
+        XGDataManager.loadUnreadCount { (count, error) in
+            self.tabBar.items?.first?.badgeValue = count > 0 ? "\(count)" : nil
         }
     }
     
@@ -73,6 +74,7 @@ class XGTabBarController: UITabBarController
 }
 
 // MARK: - UITabBarControllerDelegate
+
 extension XGTabBarController:UITabBarControllerDelegate
 {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool
@@ -82,6 +84,8 @@ extension XGTabBarController:UITabBarControllerDelegate
         } else {
             let nextIndex = (viewControllers! as NSArray).index(of: viewController)
             if tabBarController.selectedIndex == nextIndex && nextIndex == 0 {
+                // 清除角标
+                self.tabBar.items?.first?.badgeValue = nil
                 // 点击首页tabBar 发送通知
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kTapHomeTabBarBadgeValueNotification), object: nil, userInfo: nil)
             }
