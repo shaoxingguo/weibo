@@ -31,9 +31,9 @@ extension AppDelegate:UIApplicationDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = XGWelcomeViewController()//rootViewController()
+        window?.rootViewController = rootViewController()
         window?.makeKeyAndVisible()
-        
+        XGPrint(NSHomeDirectory())
         initializationSetting()
         return true
     }
@@ -68,10 +68,17 @@ extension AppDelegate
     private func rootViewController() -> UIViewController
     {
         if isNewVersion {
+            // 新版本
             return XGNewFeatureViewController()
-        } else if XGAdvertisementViewModel.sharedViewModel.isNeedShowAdvertisement {
+        } else if
+            // 广告
+            XGAdvertisementViewModel.sharedViewModel.isNeedShowAdvertisement {
             return XGAdvertisementViewController()
+        } else if XGAccountViewModel.shared.isLogin {
+            // 欢迎
+            return XGWelcomeViewController()
         } else {
+            // 主界面
             return XGTabBarController()
         }
     }

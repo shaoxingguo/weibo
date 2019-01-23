@@ -37,6 +37,10 @@ class XGWelcomeViewController: UIViewController
         showAnimation()
     }
     
+    deinit {
+        XGPrint("我去了")
+    }
+    
     // MARK: - 懒加载
     
     /// 背景图片
@@ -63,6 +67,7 @@ extension XGWelcomeViewController
         backgroundImageView.addSubview(iconImageView)
         backgroundImageView.addSubview(titleLabel)
         
+        // 设置自动布局
         iconImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(backgroundImageView)
             make.centerY.equalTo(backgroundImageView.height * 0.7)
@@ -73,12 +78,16 @@ extension XGWelcomeViewController
             make.centerX.equalTo(iconImageView)
         }
         
+        // 更新约束否则 无法正常显示动画
         view.layoutIfNeeded()
     }
     
+    /// 展示欢迎动画
     private func showAnimation() -> Void
     {
         titleLabel.alpha = 0
+        
+        // 开始动画
         iconImageView.snp.updateConstraints { (make) in
             make.centerY.equalTo(backgroundImageView.height * 0.3)
         }
