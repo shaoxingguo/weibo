@@ -40,7 +40,7 @@ class XGLoginViewController: UIViewController
     
     @objc private func autoFillAction() -> Void
     {
-        let code = "document.getElementById('userId').value = '541145534@qq.com';document.getElementById('passwd').value = '2015xg000@';"
+        let code = "document.getElementById('userId').value = '15919850899';document.getElementById('passwd').value = 'aa123456';"
         webView.evaluateJavaScript(code, completionHandler: nil)
     }
     
@@ -48,6 +48,8 @@ class XGLoginViewController: UIViewController
     private lazy var webView:WKWebView = { [weak self] in
         let webView = WKWebView(frame: CGRect.zero)
         webView.navigationDelegate = self
+        // 禁止webView滚动
+        webView.scrollView.bounces = false
         return webView
     }()
 }
@@ -88,9 +90,10 @@ extension XGLoginViewController:WKNavigationDelegate
                         SVProgressHUD.dismiss()
                         // 保存用户模型
                         XGAccountViewModel.shared.setAccountModel(accountModel: accountModel)
-                        // 切换根控制器 跳转到主界面
+                        // 退出登录页面
                         self.dismiss(animated: false, completion: {
-                            UIApplication.shared.keyWindow?.rootViewController = XGTabBarController()
+                            // 发送通知 从登录页切换到主页面
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kSwitchApplicationRootViewControllerNotification), object: kFromLoginToMain, userInfo: nil)
                         })
                     }
                 }

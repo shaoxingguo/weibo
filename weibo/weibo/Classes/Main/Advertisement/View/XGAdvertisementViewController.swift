@@ -47,6 +47,7 @@ class XGAdvertisementViewController: UIViewController
     @objc private func updateSkipButton() -> Void
     {
         if second == -1 {
+            // 切换页面
             skipAction()
             return
         } else {
@@ -58,7 +59,8 @@ class XGAdvertisementViewController: UIViewController
     // 跳过
     @objc private func skipAction() -> Void
     {
-        UIApplication.shared.keyWindow?.rootViewController = XGTabBarController()
+        // 发送通知 从广告页切换到主界面
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kSwitchApplicationRootViewControllerNotification), object: kFromAdvertisementToMain, userInfo: nil)
     }
     
     // 点击广告
@@ -84,7 +86,7 @@ class XGAdvertisementViewController: UIViewController
     /// 跳过按钮
     private lazy var skipButton:UIButton = {
         let button = UIButton(title: "测试文本", normalColor: UIColor.white, highlightedColor: UIColor.white, target: self, action: #selector(skipAction))
-        button.backgroundColor = UIColor.lightGray
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return button
     }()
     /// 定时器

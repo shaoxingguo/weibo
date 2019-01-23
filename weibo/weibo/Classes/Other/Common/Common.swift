@@ -34,12 +34,22 @@ public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 public let kAccessTokenTimeOutNotification:String = "kAccessTokenTimeOutNotification"
 /// 点击首页bagdeValue通知
 public let kTapHomeTabBarBadgeValueNotification:String = "kTapHomeTabBarBadgeValueNotification"
+/// 切换应用程序根控制器通知
+public let kSwitchApplicationRootViewControllerNotification:String = "kSwitchApplicationRootViewControllerNotification"
+/// 从广告页切换到主界面
+public let kFromAdvertisementToMain:String = "kFromAdvertisementToMain"
+/// 从新特性切换到主界面
+public let kFromNewFeatureToToMain:String = "kFromNewFeatureToToMain"
+/// 从欢迎页面切换到主界面
+public let kFromWelcomeToMain:String = "kFromWelcomeToToMain"
+/// 从登录页面切换到主界面
+public let kFromLoginToMain:String = "kFromLoginToMain"
 
 // MARK: - 微博接口相关
 /// 应用程序AppKey
-public let kAppKey:String = "2640984569"//"2247988996"
+public let kAppKey:String = "2247988996"
 /// 应用程序AppSecret
-public let kAppSecret:String = "f5e4360214e1f50079ebec28a58a57aa"//"ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
+public let kAppSecret:String = "ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
 /// 授权回调页
 public let kRedirectURLString:String = "https://api.weibo.com/oauth2/default.html"
 

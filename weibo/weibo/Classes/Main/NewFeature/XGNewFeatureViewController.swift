@@ -14,18 +14,20 @@ class XGNewFeatureViewController: UIViewController
     // MARK: - 控制器生命周期方法
     override func loadView()
     {
+        super.loadView()
         setUpUI()
     }
-    
-    override func viewDidLoad()
+
+    // MARK: - 事件监听
+    @objc private func enterButtonClickAction() -> Void
     {
-        super.viewDidLoad()
-        
+        // 发送通知 从新特性切换到主界面
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kSwitchApplicationRootViewControllerNotification), object: kFromNewFeatureToToMain, userInfo: nil)
     }
     
     // MARK: - 懒加载
     private lazy var contentScrollView:UIScrollView = { [weak self] in
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -33,9 +35,18 @@ class XGNewFeatureViewController: UIViewController
         return scrollView
     }()
     /// 登录按钮
-    private lazy var loginButton:UIButton = {
-        let button = UIButton(title: "立即登录", backgroundImageName: "new_feature_finish_button",normalColor: UIColor.white, highlightedColor: UIColor.orange, target: nil, action: nil)
+    private lazy var enterButton:UIButton = {
+        let button = UIButton(title: "立即进入", backgroundImageName: "new_feature_finish_button",normalColor: UIColor.white, highlightedColor: UIColor.orange, target: self, action: #selector(enterButtonClickAction))
         return button
+    }()
+    /// 分页指示器
+    private lazy var pageControl:UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = kMaxCount
+        pageControl.currentPageIndicatorTintColor = UIColor.orange
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.sizeToFit()
+        return pageControl
     }()
     /// 最大图片数量
     private let kMaxCount:Int = 4
@@ -46,7 +57,9 @@ extension XGNewFeatureViewController:UIScrollViewDelegate
 {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
-        loginButton.isHidden = true
+        enterButton.isHidden = true
+        let page:Int = Int(scrollView.contentOffset.x / scrollView.width + 0.5)
+        pageControl.currentPage = page
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
@@ -61,21 +74,34 @@ extension XGNewFeatureViewController:UIScrollViewDelegate
 // MARK: - 设置界面
 extension XGNewFeatureViewController
 {
+    // 隐藏状态栏
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     private func setUpUI() -> Void
     {
-        view = contentScrollView
+        // 添加子控件
+        view.addSubview(contentScrollView)
+        view.addSubview(enterButton)
+        view.addSubview(pageControl)
         
-        // 添加背景图片
+        // 设置位置
+        contentScrollView.frame = view.bounds
+        
+        enterButton.centerX = view.centerX
+        enterButton.centerY = view.height * 0.7
+        enterButton.isHidden = true
+        
+        pageControl.centerX = view.centerX
+        pageControl.y = view.height - pageControl.height - 10
+        
+        // 添加新特性背景图片
         for i in 0..<kMaxCount {
             let imageName = "new_feature_" + String(i + 1)
             let imageView = UIImageView(image: UIImage(named: imageName))
             contentScrollView.addSubview(imageView)
             imageView.frame = CGRect(x: CGFloat(i) * contentScrollView.width, y: 0, width: contentScrollView.width, height: contentScrollView.height)
-            if i == kMaxCount - 1 {
-                contentScrollView.addSubview(loginButton)
-                loginButton.centerX = imageView.centerX
-                loginButton.y = contentScrollView.height * 0.7
-            }
         }
         
         // 设置scrollView滚动范围
@@ -85,13 +111,13 @@ extension XGNewFeatureViewController
     /// 展示登录按钮
     private func showLoginButton() -> Void
     {
-        loginButton.isUserInteractionEnabled = false
-        loginButton.transform = CGAffineTransform(scaleX: 0, y: 0)
+        enterButton.isUserInteractionEnabled = false
+        enterButton.transform = CGAffineTransform(scaleX: 0, y: 0)
         UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: [], animations: {
-            self.loginButton.isHidden = false
-            self.loginButton.transform = CGAffineTransform.identity
+            self.enterButton.isHidden = false
+            self.enterButton.transform = CGAffineTransform.identity
         }) { (_) in
-            self.loginButton.isUserInteractionEnabled = true
+            self.enterButton.isUserInteractionEnabled = true
         }
     }
 }
