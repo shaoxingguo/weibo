@@ -8,7 +8,7 @@
 
 import UIKit
 import SVProgressHUD
-import UserNotifications
+import AFNetworking
 
 @UIApplicationMain
 class AppDelegate: UIResponder
@@ -19,6 +19,8 @@ class AppDelegate: UIResponder
     deinit {
         // 注销通知
         NotificationCenter.default.removeObserver(self)
+        // 停在监测网络状态
+        AFNetworkReachabilityManager.shared().stopMonitoring()
     }
 }
 
@@ -29,7 +31,7 @@ extension AppDelegate:UIApplicationDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootViewController()
+        window?.rootViewController = XGWelcomeViewController()//rootViewController()
         window?.makeKeyAndVisible()
         
         initializationSetting()
@@ -104,13 +106,21 @@ extension AppDelegate
         
         // 注册通知
         NotificationCenter.default.addObserver(self, selector: #selector(switchApplicationRootViewController(notification:)), name: NSNotification.Name(rawValue: kSwitchApplicationRootViewControllerNotification), object: nil)
+        
+        
+        // 开始监测网络状态
+        AFNetworkReachabilityManager.shared().startMonitoring()
     }
     
     /// 设置全局外观
     private func setUpAppearance() -> Void
     {
+        // 设置 SVProguressHUD 最小解除时间
         SVProgressHUD.setBackgroundColor(UIColor(white: 0.9, alpha: 1))
         SVProgressHUD.setMinimumDismissTimeInterval(2)
+        
+        // 设置网络指示器
+        AFNetworkActivityIndicatorManager.shared().isEnabled = true
     }
     
     /// 是否是新版本

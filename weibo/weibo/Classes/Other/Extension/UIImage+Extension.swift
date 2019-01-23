@@ -24,3 +24,4 @@ extension UIImage
         return UIImage(named: imageName)?.stretchableImage()
     }
 }
+
