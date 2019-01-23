@@ -15,15 +15,27 @@ class XGAccountViewModel:NSObject
     /// 单例
     public static let shared:XGAccountViewModel = XGAccountViewModel()
     
-    /// 设置模型数据
+    // MARK: - 开放方法
+    
+    /// 获取用户授权令牌
     ///
-    /// - Parameter accountModel: 数据模型
-    open func setAccountModel(accountModel:XGAccountModel?) -> Void
+    /// - Parameters:
+    ///   - code: 授权码
+    ///   - completion: 完成回调
+    open func loadAccessToken(code:String,completion:@escaping (Bool,Error?) -> Void) -> Void
     {
-        self.accountModel = accountModel
-        // 将用户账号模型保存到文件中
-        if accountModel != nil {
-            NSKeyedArchiver.archiveRootObject(accountModel!, toFile: modelCachePath)
+        XGDataManager.loadAccessToken(code: code) { (accountModel, error) in
+            if error != nil || accountModel == nil {
+                completion(false,error)
+                return
+            } else {
+                // 记录模型
+                self.accountModel = accountModel
+                // 保存模型
+                NSKeyedArchiver.archiveRootObject(accountModel!, toFile: self.modelCachePath)
+                // 完成回调
+                completion(true,nil)
+            }
         }
     }
     

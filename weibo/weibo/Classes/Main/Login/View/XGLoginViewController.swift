@@ -67,47 +67,47 @@ extension XGLoginViewController
 }
 
 // MARK: - WKNavigationDelegate
+
 extension XGLoginViewController:WKNavigationDelegate
 {
     // 拦截请求
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
     {
+        // 非授权页
+        if webView.url?.absoluteString.hasPrefix(kRedirectURLString) != true {
+            decisionHandler(.allow)
+            return
+        }
+        
+        // 授权页
         /*
          成功 https://api.weibo.com/oauth2/default.html?code=135784de730f5970e68b12e5644276f9
-         失败 https://api.weibo.com/oauth2/default.html?error_uri=%2Foauth2%2Fauthorize&error=access_denied&error_description=user%20denied%20your%20request.&error_code=21330*/
-        if webView.url?.absoluteString.hasPrefix(kRedirectURLString) == true {
-            let query = webView.url?.query
-            if query?.hasPrefix("code=") == true {
-                // 同意授权 获取授权码
-                let code = String(query?["code=".endIndex...] ?? "")
-                // 根据授权码 加载用户授权令牌
-                XGDataManager.loadAccessToken(code: code) { (accountModel, error) in
-                    if error != nil {
-                        XGPrint("加载accessToken失败 \(error!)")
-                         self.quitAction()
-                        return
-                    } else {
-                        SVProgressHUD.dismiss()
-                        // 保存用户模型
-                        XGAccountViewModel.shared.setAccountModel(accountModel: accountModel)
-                        // 退出登录页面
-                        self.dismiss(animated: false, completion: {
-                            // 发送通知 从登录页切换到主页面
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kSwitchApplicationRootViewControllerNotification), object: kFromLoginToMain, userInfo: nil)
-                        })
-                    }
-                }
-               
-            } else {
-                // 拒绝授权
-                quitAction()
-            }
-            // 授权页
+         失败 https://api.weibo.com/oauth2/default.html?error_uri=%2Foauth2%2Fauthorize&error=access_denied&error_description=user%20denied%20your%20request.&error_code=21330 */
+        let query = webView.url?.query // 获取请求参数
+        if query?.hasPrefix("code=") != true {
+            // 拒绝授权
+            quitAction()
             decisionHandler(.cancel)
-        } else {
-            // 非授权页
-            decisionHandler(.allow)
+            return
         }
+        
+         // 同意授权
+        let code = String(query?["code=".endIndex...] ?? "") // 获取授权码
+        // 根据授权码 加载用户授权令牌
+        XGAccountViewModel.shared.loadAccessToken(code: code) { (isSuccess, error) in
+            if error != nil {
+                XGPrint("加载accessToken失败 \(error!)")
+                self.quitAction()
+                return
+            } else {
+                // 退出登录页面
+                self.dismiss(animated: false, completion: {
+                    // 发送通知 从登录页切换到主页面
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kSwitchApplicationRootViewControllerNotification), object: kFromLoginToMain, userInfo: nil)
+                })
+            }
+        }
+        decisionHandler(.cancel)
     }
     
     // 开始加载

@@ -49,6 +49,7 @@ class XGNewFeatureViewController: UIViewController
         pageControl.numberOfPages = kMaxCount
         pageControl.currentPageIndicatorTintColor = UIColor.orange
         pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.isUserInteractionEnabled = false
         pageControl.sizeToFit()
         return pageControl
     }()
