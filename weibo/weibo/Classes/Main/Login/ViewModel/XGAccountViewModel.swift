@@ -10,12 +10,10 @@ import UIKit
 
 class XGAccountViewModel:NSObject
 {
-    // MARK: - 单例相关
+    // MARK: - 开放方法
     
     /// 单例
     public static let shared:XGAccountViewModel = XGAccountViewModel()
-    
-    // MARK: - 开放方法
     
     /// 获取用户授权令牌
     ///
@@ -38,18 +36,6 @@ class XGAccountViewModel:NSObject
             }
         }
     }
-    
-    private override init()
-    {
-        super.init()
-        
-        // 从文件读取用户账号模型
-        if FileManager.default.fileExists(atPath: modelCachePath) {
-            accountModel = NSKeyedUnarchiver.unarchiveObject(withFile: modelCachePath) as? XGAccountModel
-        }
-    }
-    
-    // MARK: - 开放方法
     
     /// 用户是否登录
     open var isLogin:Bool {
@@ -80,6 +66,19 @@ class XGAccountViewModel:NSObject
         return accountModel?.avatarLarge
     }
     
+    
+    // MARK: - 私有属性和方法
+    
+    private override init()
+    {
+        super.init()
+        
+        // 从文件读取用户账号模型
+        if FileManager.default.fileExists(atPath: modelCachePath) {
+            accountModel = NSKeyedUnarchiver.unarchiveObject(withFile: modelCachePath) as? XGAccountModel
+        }
+    }
+    
     private var isExpires:Bool {
         // 现在时间 < 过期时间 ? token未过期 : token过期
         if Date().compare(accountModel?.expiresDate ?? Date()) != ComparisonResult.orderedAscending {
@@ -88,8 +87,8 @@ class XGAccountViewModel:NSObject
             return false
         }        
     }
-    
-    // MARK: - 私有属性
+   
+    /// 用户账号数据模型
     private var accountModel:XGAccountModel?
     
     // MARK: - 懒加载

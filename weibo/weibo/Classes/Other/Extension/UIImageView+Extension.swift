@@ -21,6 +21,7 @@ extension UIImageView
     open func xg_setImage(URLString:String?,placeholderImage:UIImage?) -> Void
     {
         guard let URLString = URLString else {
+            image = placeholderImage
             return
         }
         
