@@ -20,7 +20,11 @@ class XGStatusViewModel
         return statusModel.user?.screenName
     }
     /// 头像图片
-    open var  profileImage:UIImage?
+    open var profileImage:UIImage?
+    /// 头像图片地址
+    open var profileImageUrl:String? {
+        return statusModel.user?.profileImageUrl
+    }
     
     /// 微博id
     open var id:Int64 {

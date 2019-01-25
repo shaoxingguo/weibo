@@ -29,7 +29,7 @@ public let kTabBarHeight:CGFloat = 49
 /// 沙盒缓存版本对应的key
 public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 /// 占位图片
-public let kplaceholderImage:UIImage? = UIImage(named: "avatar_default_big")
+public let kPlaceholderImage:UIImage? = UIImage(named: "avatar_default_big")
 /// 微博配图外部间距
 public let kStatusCellPictureOuterMargin:CGFloat = 12
 

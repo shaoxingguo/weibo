@@ -39,7 +39,7 @@ class XGNormalStatusTableViewCell: UITableViewCell
         return view
     }()
     /// 文本
-    private lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: 13, textColor: UIColor.lightGray, textAlignment: .left)
+    private lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
     
 }
 

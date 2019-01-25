@@ -14,6 +14,16 @@ class XGStatusTopView: UIView
     // MARK: - 数据模型
     open var statusViewModel:XGStatusViewModel? {
         didSet {
+            if statusViewModel?.profileImage != nil {
+                iconImageView.image = statusViewModel?.profileImage
+            } else {
+                iconImageView.xg_setImage(URLString: statusViewModel?.profileImageUrl, placeholderImage: kPlaceholderImage) { [weak self] (image) in
+                    if image != nil {
+                        let circleImage = image?.circleIconImage(imageSize: CGSize(width: 60, height: 60), backgroundColor: self?.backgroundColor ?? UIColor.white)
+                        self?.iconImageView.image = circleImage
+                    }
+                }
+            }
             nameLabel.text = statusViewModel?.screenName
             vipImageView.image = statusViewModel?.vipImage
             verifiedImageView.image = statusViewModel?.verifiedImage
@@ -42,15 +52,15 @@ class XGStatusTopView: UIView
     /// 头像
     private lazy var iconImageView:UIImageView = UIImageView()
     /// 昵称
-    private lazy var nameLabel:UILabel = UILabel(text: "菠萝吹雪", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#F33E00"), textAlignment: .left)
+    private lazy var nameLabel:UILabel = UILabel(text: "菠萝吹雪", fontSize: 15, textColor: UIColor.colorWithHexString(hexadecimal: "#F33E00"), textAlignment: .left)
     /// VIP
     private lazy var vipImageView:UIImageView = UIImageView()
     /// 认证图片
     private lazy var verifiedImageView:UIImageView = UIImageView()
     /// 发布时间
-    private lazy var createTimeLabel:UILabel = UILabel(text: "刚刚", fontSize: 10, textColor: UIColor.colorWithHexString(hexadecimal: "#FF6C00"))
+    private lazy var createTimeLabel:UILabel = UILabel(text: "刚刚", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#FF6C00"))
     /// 来源
-    private lazy var soureLabel:UILabel = UILabel(text: "微博", fontSize: 10, textColor: UIColor.colorWithHexString(hexadecimal: "#828282"))
+    private lazy var soureLabel:UILabel = UILabel(text: "微博", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#828282"))
     
 }
 // MARK: - 设置界面
@@ -78,7 +88,7 @@ extension XGStatusTopView
         iconImageView.snp.makeConstraints { (make) in
             make.top.equalTo(separatorView.snp.bottom).offset(kStatusCellPictureOuterMargin)
             make.left.equalTo(self).offset(kStatusCellPictureOuterMargin)
-            make.size.equalTo(CGSize(width: 34, height: 34))
+            make.size.equalTo(CGSize(width: 60, height: 60))
             make.bottom.equalTo(self).offset((-kStatusCellPictureOuterMargin))
         }
         
