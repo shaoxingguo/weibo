@@ -13,10 +13,13 @@ import UIKit
     // MARK: - 模型属性
     
     /// 缩略图
-    open var thumbnailPic:String? 
-    
-    // MARK: - 设置模型key
-    
+    open var thumbnailPic:String?
+}
+
+// MARK: - 设置模型key
+
+extension XGPictureModel
+{
     override static func mj_replacedKey(fromPropertyName121 propertyName: String!) -> Any! {
         return (propertyName as NSString).mj_underlineFromCamel()
     }

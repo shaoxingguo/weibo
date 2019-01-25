@@ -14,7 +14,8 @@ private let kReuseIdentifier = "XGNormalStatusTableViewCell"
 
 class XGHomeTableViewController: XGVisitorViewController
 {
-    var dataArray:[XGStatusModel]?
+    /// 数据模型
+    var dataArray:[XGStatusViewModel] = [XGStatusViewModel]()
     
     // MARK: - 控制器生命周期方法
     override func viewDidLoad()
@@ -87,15 +88,16 @@ extension XGHomeTableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let count = dataArray?.count ?? 0
+        let count = dataArray.count
         tableView.mj_footer.isHidden = count == 0
         return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier)!
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? XGNormalStatusTableViewCell
+        cell?.statusViewModel = dataArray[indexPath.row]
+        return cell!
     }
 }
 
@@ -110,25 +112,20 @@ extension XGHomeTableViewController
             self.tableView.mj_header.isRefreshing ?
                 self.tableView.mj_header.endRefreshing() : ()
             
-            if error != nil {
+            if error != nil || dataArray == nil {
                 XGPrint("获取微博数据失败! \(error!.localizedDescription)")
                 self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
                 return
             } else {
-                guard let dataArray = dataArray else {
-                    self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
-                    return
-                }
+                let viewModlArray = XGStatusViewModel.viewModelArrayWithModelArray(statusModelArray: dataArray!)
                 
-                if dataArray.count == 0 {
+                if viewModlArray.count == 0 {
                     self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshingWithNoMoreData() : ()
                     return
                 } else if sinceId > 0 {
-                    self.dataArray = dataArray + self.dataArray!
-                } else if maxId > 0 {
-                    self.dataArray = self.dataArray! + dataArray
-                } else  {
-                    self.dataArray = dataArray
+                    self.dataArray = viewModlArray + self.dataArray
+                } else {
+                    self.dataArray += viewModlArray
                 }
                 
                 self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
@@ -140,13 +137,13 @@ extension XGHomeTableViewController
     /// 获取最新微博数据
     @objc private func loadNewData() -> Void
     {
-        loadData(sinceId: dataArray?.first?.id ?? 0)
+        loadData(sinceId: dataArray.first?.id ?? 0)
     }
     
     /// 获取更多微博数据
     @objc private func loadMoreData() -> Void
     {
-        var maxId = dataArray?.last?.id ?? 0
+        var maxId = dataArray.last?.id ?? 0
         maxId = maxId > 0 ? maxId - 1 : maxId
         loadData(maxId: maxId)
     }

@@ -18,7 +18,7 @@ extension UIImageView
     /// - Parameters:
     ///   - URLString: 图片URL
     ///   - placeholderImage: 占位图片
-    open func xg_setImage(URLString:String?,placeholderImage:UIImage?) -> Void
+    open func xg_setImage(URLString:String?,placeholderImage:UIImage?,isprofileImage:Bool = false,completion:((UIImage?) -> Void)? = nil) -> Void
     {
         guard let URLString = URLString else {
             image = placeholderImage

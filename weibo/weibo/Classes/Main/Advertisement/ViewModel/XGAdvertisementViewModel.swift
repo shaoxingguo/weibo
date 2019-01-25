@@ -18,8 +18,7 @@ class XGAdvertisementViewModel
     /// 广告图片
     open var advertisementImage:UIImage? {
         if advertisementModel != nil {
-            let data = try! Data(contentsOf: URL(fileURLWithPath: imageCachePath))
-            return UIImage(data: data)
+            return SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: advertisementModel?.pictureImageURL)
         } else {
             return nil
         }
@@ -48,11 +47,6 @@ class XGAdvertisementViewModel
     // MARK: - 私有属性
     /// 广告模型数据
     private var advertisementModel:XGAdvertisementModel?
-    /// 图片缓存路径
-    private lazy var imageCachePath:String = {
-        let cachePath =  NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
-        return (cachePath as NSString).appendingPathComponent("Advertisement.png")
-    }()
     /// 模型缓存路径
     private lazy var modelCachePath:String = {
         let cachePath =  NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
@@ -100,13 +94,6 @@ extension XGAdvertisementViewModel
                 XGPrint("广告图片下载失败")
                 return
             }
-            
-            // 广告图片下载成功 保存广告图片到沙盒中 如果已经存在旧图片 先删除旧图片 然后保存新图片
-            if FileManager.default.fileExists(atPath: self.imageCachePath) {
-                try? FileManager.default.removeItem(atPath: self.imageCachePath)
-            }
-            
-            try? data!.write(to: URL(fileURLWithPath: self.imageCachePath))
         }
     }
 }

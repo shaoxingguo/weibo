@@ -25,7 +25,7 @@ class AppDelegate: UIResponder
 }
 
 // MARK: - UIApplicationDelegate
-
+import SDWebImage
 extension AppDelegate:UIApplicationDelegate
 {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
@@ -35,6 +35,7 @@ extension AppDelegate:UIApplicationDelegate
         window?.makeKeyAndVisible()
         XGPrint(NSHomeDirectory())
         initializationSetting()
+       
         return true
     }
     

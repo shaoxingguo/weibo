@@ -11,6 +11,14 @@ import SnapKit
 
 class XGStatusTopView: UIView
 {
+    // MARK: - 数据模型
+    open var statusViewModel:XGStatusViewModel? {
+        didSet {
+            nameLabel.text = statusViewModel?.screenName
+            vipImageView.image = statusViewModel?.vipImage
+            verifiedImageView.image = statusViewModel?.verifiedImage
+        }
+    }
     // MARK: - 构造方法
     
     override init(frame: CGRect)
@@ -37,6 +45,8 @@ class XGStatusTopView: UIView
     private lazy var nameLabel:UILabel = UILabel(text: "菠萝吹雪", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#F33E00"), textAlignment: .left)
     /// VIP
     private lazy var vipImageView:UIImageView = UIImageView()
+    /// 认证图片
+    private lazy var verifiedImageView:UIImageView = UIImageView()
     /// 发布时间
     private lazy var createTimeLabel:UILabel = UILabel(text: "刚刚", fontSize: 10, textColor: UIColor.colorWithHexString(hexadecimal: "#FF6C00"))
     /// 来源
@@ -55,6 +65,7 @@ extension XGStatusTopView
         addSubview(iconImageView)
         addSubview(nameLabel)
         addSubview(vipImageView)
+        addSubview(verifiedImageView)
         addSubview(createTimeLabel)
         addSubview(soureLabel)
         
@@ -79,6 +90,11 @@ extension XGStatusTopView
         vipImageView.snp.makeConstraints { (make) in
             make.centerY.equalTo(nameLabel)
             make.left.equalTo(nameLabel.snp.right).offset((3))
+        }
+        
+        verifiedImageView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(iconImageView.snp.right)
+            make.centerY.equalTo(iconImageView.snp.bottom)
         }
         
         createTimeLabel.snp.makeConstraints { (make) in

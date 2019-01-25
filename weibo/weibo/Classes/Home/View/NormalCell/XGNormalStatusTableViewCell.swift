@@ -10,13 +10,20 @@ import UIKit
 
 class XGNormalStatusTableViewCell: UITableViewCell
 {
-
+    // MARK: - 数据模型
+    open var statusViewModel:XGStatusViewModel? {
+        didSet {
+            topView.statusViewModel = statusViewModel
+            contentLabel.text = statusViewModel?.text
+        }
+    }
+    
     // MARK: - 构造方法
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        selectionStyle = .none
         setUpUI()
     }
     
