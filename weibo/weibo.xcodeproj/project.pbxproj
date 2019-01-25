@@ -13,6 +13,9 @@
 		8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */; };
 		8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */; };
 		8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */; };
+		8C14346221FB39EF007ED7E9 /* XGPictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346121FB39EF007ED7E9 /* XGPictureModel.swift */; };
+		8C14346421FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346321FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift */; };
+		8C14346721FB3C95007ED7E9 /* XGStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */; };
 		8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DB17521F58516007590CF /* XGStatusModel.swift */; };
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
@@ -46,6 +49,9 @@
 		8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDiscoverTableViewController.swift; sourceTree = "<group>"; };
 		8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMessageTableViewController.swift; sourceTree = "<group>"; };
 		8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGHomeTableViewController.swift; sourceTree = "<group>"; };
+		8C14346121FB39EF007ED7E9 /* XGPictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGPictureModel.swift; sourceTree = "<group>"; };
+		8C14346321FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNormalStatusTableViewCell.swift; sourceTree = "<group>"; };
+		8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusTopView.swift; sourceTree = "<group>"; };
 		8C3DB17521F58516007590CF /* XGStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusModel.swift; sourceTree = "<group>"; };
 		8C46F43F21EDC1460071281F /* XGNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNavigationController.swift; sourceTree = "<group>"; };
 		8C51F8A121EB74CA0015FC0C /* weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,15 +229,26 @@
 		8C11BF7E21EC4E7000F2E958 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C14346521FB3C56007ED7E9 /* NormalCell */,
 				8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8C14346521FB3C56007ED7E9 /* NormalCell */ = {
+			isa = PBXGroup;
+			children = (
+				8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */,
+				8C14346321FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift */,
+			);
+			path = NormalCell;
 			sourceTree = "<group>";
 		};
 		8C3DB17421F58507007590CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8C3DB17521F58516007590CF /* XGStatusModel.swift */,
+				8C14346121FB39EF007ED7E9 /* XGPictureModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -513,10 +530,13 @@
 				8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */,
 				8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */,
 				8C6FA4DA21F843C000D3DD4F /* UIImageView+Extension.swift in Sources */,
+				8C14346421FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift in Sources */,
 				8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */,
 				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
+				8C14346721FB3C95007ED7E9 /* XGStatusTopView.swift in Sources */,
 				8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */,
+				8C14346221FB39EF007ED7E9 /* XGPictureModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
 				8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */,
 				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,

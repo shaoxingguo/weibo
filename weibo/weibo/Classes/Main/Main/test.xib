@@ -17,31 +17,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6e-Ha-191">
-                    <rect key="frame" x="30" y="301" width="315" height="65"/>
+                    <rect key="frame" x="37.5" y="271.5" width="300" height="124"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nB3-eI-Wnz">
-                            <rect key="frame" x="12" y="2" width="295" height="61"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="F6Q-8M-knO">
+                            <rect key="frame" x="12" y="12" width="100" height="100"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.90778824979999995" blue="0.7187426334" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="nB3-eI-Wnz" firstAttribute="top" secondItem="F6e-Ha-191" secondAttribute="top" constant="2" id="apm-1W-puf"/>
-                        <constraint firstItem="nB3-eI-Wnz" firstAttribute="centerY" secondItem="F6e-Ha-191" secondAttribute="centerY" id="ctd-zU-Etj"/>
-                        <constraint firstItem="nB3-eI-Wnz" firstAttribute="leading" secondItem="F6e-Ha-191" secondAttribute="leading" constant="12" id="nhN-Nd-fGc"/>
-                        <constraint firstAttribute="trailing" secondItem="nB3-eI-Wnz" secondAttribute="trailing" constant="8" id="tkq-j6-ktq"/>
+                        <constraint firstAttribute="bottom" secondItem="F6Q-8M-knO" secondAttribute="bottom" constant="12" id="0P2-pk-9EC"/>
+                        <constraint firstItem="F6Q-8M-knO" firstAttribute="leading" secondItem="F6e-Ha-191" secondAttribute="leading" constant="12" id="JVZ-nI-McZ"/>
+                        <constraint firstItem="F6Q-8M-knO" firstAttribute="top" secondItem="F6e-Ha-191" secondAttribute="top" constant="12" id="lcu-w8-35l"/>
+                        <constraint firstAttribute="width" constant="300" id="wqk-aC-MEP"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.93487501009999996" green="1" blue="0.99414004769999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="F6e-Ha-191" secondAttribute="trailing" constant="30" id="ONp-3C-FZr"/>
-                <constraint firstItem="F6e-Ha-191" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="T8H-CA-Ntr"/>
-                <constraint firstItem="F6e-Ha-191" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="sw9-Bu-8NZ"/>
+                <constraint firstItem="F6e-Ha-191" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LlN-hd-HFv"/>
+                <constraint firstItem="F6e-Ha-191" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="RKv-Nw-Sg7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="130.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon" width="100" height="100"/>
+    </resources>
 </document>

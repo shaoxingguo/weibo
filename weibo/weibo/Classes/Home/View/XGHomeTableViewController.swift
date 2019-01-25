@@ -9,6 +9,9 @@
 import UIKit
 import MJRefresh
 
+/// 重用标识符
+private let kReuseIdentifier = "XGNormalStatusTableViewCell"
+
 class XGHomeTableViewController: XGVisitorViewController
 {
     var dataArray:[XGStatusModel]?
@@ -91,15 +94,8 @@ extension XGHomeTableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-            cell?.backgroundColor = UIColor.purple
-            cell?.selectionStyle = .none
-        }
-        
-        cell?.textLabel?.text = dataArray?[indexPath.row].text
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier)!
+        return cell
     }
 }
 
@@ -175,13 +171,18 @@ extension XGHomeTableViewController
     /// 设置tableView
     private func setUpTaleView() -> Void
     {
-        tableView.rowHeight = 64
+        // 注册cell
+        tableView.register(XGNormalStatusTableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
+        
+        // 设置行高
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200
         
         // 取消默认64偏移
         tableView.contentInsetAdjustmentBehavior = .never
         
-        // 设置cell分割线
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        // 取消默认分割线
+        tableView.separatorStyle = .none
         
         // 设置下拉刷新
         tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNewData))
