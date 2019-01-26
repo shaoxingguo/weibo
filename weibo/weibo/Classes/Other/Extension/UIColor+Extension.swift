@@ -47,4 +47,9 @@ extension UIColor
         Scanner.init(string: bStr).scanHexInt32(&b)
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1)
     }
+    
+    open class func corlorWith(red:CGFloat,green:CGFloat,blue:CGFloat) -> UIColor
+    {
+        return UIColor(red: red / 255.0, green: green / 255.0, blue: blue  / 255.0, alpha: 1)
+    }
 }

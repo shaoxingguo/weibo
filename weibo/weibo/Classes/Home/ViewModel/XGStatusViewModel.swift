@@ -63,20 +63,50 @@ class XGStatusViewModel
         }
     }()
     /// 转发数
-    var repostsCount:Int {
-        return statusModel.repostsCount
+    var repostsCountString:String? {
+        return countString(count: statusModel.repostsCount, defaultString: "转发")
     }
     /// 评论数
-    var commentsCount:Int {
-        return statusModel.commentsCount
+    var commentsCountString:String? {
+         return countString(count: statusModel.commentsCount, defaultString: "评论")
     }
     /// 点赞数
-    var attitudesCount:Int {
-        return statusModel.attitudesCount
+    var attitudesCountString:String? {
+         return countString(count: statusModel.attitudesCount, defaultString: "点赞")
     }
     /// 微博配图模型数组
     var picUrls: [XGPictureModel]? {
         return statusModel.picUrls
+    }
+    
+    /// 根据数字返回字符串
+    ///
+    /// - Parameters:
+    ///   - count: 数字
+    ///   - defaultString: 默认字符串
+    /// - Returns: String?
+    private func countString(count:Int,defaultString:String?)  -> String?
+    {
+        if count == 0 {
+            return defaultString
+        } else if count < 10000 {
+            return String(count)
+        } else {
+            // 大于1万
+            var format = String(format: "%.2f", CGFloat(count) / 10000.0)
+            if format.hasSuffix(".00") {
+                // 整数如2.00万 切割成2万
+                let location = (format as NSString).range(of: ".00").location
+                let toIndex = format.index(format.startIndex, offsetBy: location)
+                format = String(format[..<toIndex])
+            }  else if format.hasSuffix("0") {
+                // 末尾为0 如2.70万 切割成2.7万
+                let toIndex = format.index(format.endIndex, offsetBy: -1)
+                format = String(format[..<toIndex])
+            }
+            
+            return format + "万"
+        }
     }
     
     // MARK: - 构造方法

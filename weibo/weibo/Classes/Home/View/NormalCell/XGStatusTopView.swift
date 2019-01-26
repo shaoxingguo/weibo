@@ -16,6 +16,7 @@ private let kIconWidth:CGFloat = 50
 class XGStatusTopView: UIView
 {
     // MARK: - 数据模型
+    
     open var statusViewModel:XGStatusViewModel? {
         didSet {
             // 设置头像
