@@ -63,21 +63,33 @@ class XGStatusViewModel
         }
     }()
     /// 转发数
-    var repostsCountString:String? {
+    open var repostsCountString:String? {
         return countString(count: statusModel.repostsCount, defaultString: "转发")
     }
     /// 评论数
-    var commentsCountString:String? {
+    open var commentsCountString:String? {
          return countString(count: statusModel.commentsCount, defaultString: "评论")
     }
     /// 点赞数
-    var attitudesCountString:String? {
+    open var attitudesCountString:String? {
          return countString(count: statusModel.attitudesCount, defaultString: "点赞")
     }
     /// 微博配图模型数组
-    var picUrls: [XGPictureModel]? {
+    open var picUrls: [XGPictureModel]? {
         return statusModel.picUrls
     }
+    
+    /// 配图视图高度
+    open lazy var picturesViewHeight:CGFloat = {
+        if picUrls == nil || picUrls?.count == 0 {
+            // 没有配图
+            return 0
+        } else {
+            // 多少行
+            let rows = (picUrls!.count - 1) / kStatusPicturesViewColumns + 1
+            return CGFloat(rows) * kStatusPicturesViewItemWidth + CGFloat(rows - 1) * kStatusCellPictureInnerMargin + kStatusCellPictureOuterMargin
+        }
+    }()
     
     /// 根据数字返回字符串
     ///

@@ -32,6 +32,12 @@ public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 public let kPlaceholderImage:UIImage? = UIImage(named: "avatar_default_big")
 /// 微博配图外部间距
 public let kStatusCellPictureOuterMargin:CGFloat = 12
+/// 微博配图内部间距
+public let kStatusCellPictureInnerMargin:CGFloat = 3
+/// 微博配图视图列数
+public let kStatusPicturesViewColumns:Int = 3
+/// 配图视图单个图片宽高
+public let kStatusPicturesViewItemWidth = ((kScreenWidth - 2 * kStatusCellPictureOuterMargin) - CGFloat(kStatusPicturesViewColumns - 1) * kStatusCellPictureInnerMargin) / CGFloat(kStatusPicturesViewColumns)
 
 // MARK: - 通知相关
 /// access_token过期通知

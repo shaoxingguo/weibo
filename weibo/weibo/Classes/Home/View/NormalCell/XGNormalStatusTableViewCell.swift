@@ -16,6 +16,11 @@ class XGNormalStatusTableViewCell: UITableViewCell
             topView.statusViewModel = statusViewModel
             contentLabel.text = statusViewModel?.text
             bottomView.statusViewModel = statusViewModel
+            
+            // 更新高度
+            picturesView.snp.updateConstraints { (make) in
+                make.height.equalTo(statusViewModel?.picturesViewHeight ?? 0).priority(.high)
+            }
         }
     }
     
@@ -41,6 +46,12 @@ class XGNormalStatusTableViewCell: UITableViewCell
     }()
     /// 文本
     private lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
+    /// 配图视图
+    private lazy var picturesView:XGStatusPicturesView = {
+        let view = XGStatusPicturesView()
+        view.backgroundColor =  UIColor.purple
+        return view
+    }()
     /// 底部视图
     private lazy var bottomView:XGStatusBottomView = {
         let view = XGStatusBottomView()
@@ -60,6 +71,7 @@ extension XGNormalStatusTableViewCell
         // 添加子控件
         contentView.addSubview(topView)
         contentView.addSubview(contentLabel)
+        contentView.addSubview(picturesView)
         contentView.addSubview(bottomView)
         
         // 自动布局
@@ -73,8 +85,14 @@ extension XGNormalStatusTableViewCell
             make.right.equalTo(contentView).offset(-kStatusCellPictureOuterMargin)
         }
         
+        picturesView.snp.makeConstraints { (make) in
+            make.top.equalTo(contentLabel.snp.bottom)
+            make.left.right.equalTo(contentLabel)
+            make.height.equalTo(200).priority(.high)
+        }
+        
         bottomView.snp.makeConstraints { (make) in
-            make.top.equalTo(contentLabel.snp.bottom).offset(kStatusCellPictureOuterMargin)
+            make.top.equalTo(picturesView.snp.bottom).offset(kStatusCellPictureOuterMargin)
             make.left.right.bottom.equalTo(contentView)
             make.height.equalTo(44)
         }
