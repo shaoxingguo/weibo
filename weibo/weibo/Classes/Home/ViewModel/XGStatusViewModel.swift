@@ -10,7 +10,7 @@ import SDWebImage
 
 class XGStatusViewModel
 {
-    // MARK: - 开放方法
+    // MARK: - 微博属性 不需要计算
     
     /// 文本
     open var text:String? {
@@ -20,7 +20,7 @@ class XGStatusViewModel
     open var screenName:String? {
         return statusModel.user?.screenName
     }
-
+    
     /// 头像图片地址
     open var profileImageUrl:String? {
         return statusModel.user?.profileImageUrl
@@ -35,6 +35,35 @@ class XGStatusViewModel
     open var profileImage:UIImage? {
         return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: profileImageUrl)
     }
+    
+    /// 微博配图模型数组
+    open var picUrls: [XGPictureModel]? {
+        //         测试四张图
+        //        if statusModel.picUrls != nil && statusModel.picUrls!.count > 4 {
+        //            let startIndex = statusModel.picUrls!.startIndex + 4
+        //            let endIndex = statusModel.picUrls!.endIndex
+        //            statusModel.picUrls!.removeSubrange(startIndex..<endIndex)
+        //            return  statusModel.picUrls
+        //        }
+        return statusModel.picUrls
+    }
+    
+    /// 微博配图图片数组
+    open var pictures:[UIImage]? {
+        if picUrls == nil || picUrls?.count == 0 {
+            return nil
+        }
+        
+        var images = [UIImage]()
+        for pictureModel in picUrls! {
+            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: pictureModel.thumbnailPic)
+            image != nil ? images.append(image!) : ()
+        }
+        
+        return (images.count > 0 ? images : nil)
+    }
+    
+     // MARK: - 微博属性 需要计算
     
     /// VIP图片
     open lazy var vipImage:UIImage? = {
@@ -62,22 +91,22 @@ class XGStatusViewModel
             return nil
         }
     }()
+    
     /// 转发数
-    open var repostsCountString:String? {
+    open lazy var repostsCountString:String? = {
         return countString(count: statusModel.repostsCount, defaultString: "转发")
-    }
+    }()
+    
     /// 评论数
-    open var commentsCountString:String? {
+    open lazy var commentsCountString:String? = {
          return countString(count: statusModel.commentsCount, defaultString: "评论")
-    }
+    }()
+    
     /// 点赞数
-    open var attitudesCountString:String? {
+    open lazy var attitudesCountString:String? = {
          return countString(count: statusModel.attitudesCount, defaultString: "点赞")
-    }
-    /// 微博配图模型数组
-    open var picUrls: [XGPictureModel]? {
-        return statusModel.picUrls
-    }
+    }()
+
     
     /// 配图视图高度
     open lazy var picturesViewHeight:CGFloat = {

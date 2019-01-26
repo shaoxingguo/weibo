@@ -92,7 +92,7 @@ extension XGWelcomeViewController
             make.centerY.equalTo(backgroundImageView.height * 0.3)
         }
         
-        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5, options: [], animations: {
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 10, options: [], animations: {
             self.backgroundImageView.layoutIfNeeded()
         }) { (_) in
             UIView.animate(withDuration: 1, animations: {

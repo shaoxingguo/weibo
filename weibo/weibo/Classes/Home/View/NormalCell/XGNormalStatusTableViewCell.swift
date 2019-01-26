@@ -16,7 +16,7 @@ class XGNormalStatusTableViewCell: UITableViewCell
             topView.statusViewModel = statusViewModel
             contentLabel.text = statusViewModel?.text
             bottomView.statusViewModel = statusViewModel
-            
+            picturesView.statusViewModel = statusViewModel
             // 更新高度
             picturesView.snp.updateConstraints { (make) in
                 make.height.equalTo(statusViewModel?.picturesViewHeight ?? 0).priority(.high)
@@ -49,7 +49,7 @@ class XGNormalStatusTableViewCell: UITableViewCell
     /// 配图视图
     private lazy var picturesView:XGStatusPicturesView = {
         let view = XGStatusPicturesView()
-        view.backgroundColor =  UIColor.purple
+        view.backgroundColor =  UIColor.white
         return view
     }()
     /// 底部视图
