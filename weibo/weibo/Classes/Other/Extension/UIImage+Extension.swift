@@ -48,6 +48,11 @@ extension UIImage
         // 4.绘制图片
         draw(in: rect)
         
+        // 绘制圆形
+        UIColor.lightGray.setStroke()
+        path.lineWidth = 2
+        path.stroke()
+        
         // 5.取出图片
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         

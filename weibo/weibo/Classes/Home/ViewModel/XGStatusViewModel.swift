@@ -6,6 +6,7 @@
 //  Copyright © 2019 itcast. All rights reserved.
 //
 import UIKit
+import SDWebImage
 
 class XGStatusViewModel
 {
@@ -19,8 +20,7 @@ class XGStatusViewModel
     open var screenName:String? {
         return statusModel.user?.screenName
     }
-    /// 头像图片
-    open var profileImage:UIImage?
+
     /// 头像图片地址
     open var profileImageUrl:String? {
         return statusModel.user?.profileImageUrl
@@ -29,6 +29,11 @@ class XGStatusViewModel
     /// 微博id
     open var id:Int64 {
         return statusModel.id
+    }
+    
+    /// 头像图片
+    open var profileImage:UIImage? {
+        return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: profileImageUrl)
     }
     
     /// VIP图片

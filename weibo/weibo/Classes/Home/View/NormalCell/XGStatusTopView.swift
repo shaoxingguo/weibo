@@ -8,24 +8,36 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
+
+/// 头像宽高
+private let kIconWidth:CGFloat = 50
 
 class XGStatusTopView: UIView
 {
     // MARK: - 数据模型
     open var statusViewModel:XGStatusViewModel? {
         didSet {
+            // 设置头像
             if statusViewModel?.profileImage != nil {
                 iconImageView.image = statusViewModel?.profileImage
             } else {
                 iconImageView.xg_setImage(URLString: statusViewModel?.profileImageUrl, placeholderImage: kPlaceholderImage) { [weak self] (image) in
                     if image != nil {
-                        let circleImage = image?.circleIconImage(imageSize: CGSize(width: 60, height: 60), backgroundColor: self?.backgroundColor ?? UIColor.white)
+                        // 设置圆形图片
+                        let circleImage = image?.circleIconImage(imageSize: CGSize(width: kIconWidth, height: kIconWidth), backgroundColor: self?.backgroundColor ?? UIColor.white)
                         self?.iconImageView.image = circleImage
+                        
+                        // 重新保存图片
+                        SDWebImageManager.shared().imageCache?.store(circleImage, forKey: self?.statusViewModel?.profileImageUrl)
                     }
                 }
             }
+            // 设置昵称
             nameLabel.text = statusViewModel?.screenName
+            // 设置VIP
             vipImageView.image = statusViewModel?.vipImage
+            // 设置认证
             verifiedImageView.image = statusViewModel?.verifiedImage
         }
     }
@@ -88,7 +100,7 @@ extension XGStatusTopView
         iconImageView.snp.makeConstraints { (make) in
             make.top.equalTo(separatorView.snp.bottom).offset(kStatusCellPictureOuterMargin)
             make.left.equalTo(self).offset(kStatusCellPictureOuterMargin)
-            make.size.equalTo(CGSize(width: 60, height: 60))
+            make.size.equalTo(CGSize(width: kIconWidth, height: kIconWidth))
             make.bottom.equalTo(self).offset((-kStatusCellPictureOuterMargin))
         }
         
@@ -103,8 +115,8 @@ extension XGStatusTopView
         }
         
         verifiedImageView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(iconImageView.snp.right)
-            make.centerY.equalTo(iconImageView.snp.bottom)
+            make.centerX.equalTo(iconImageView.snp.right).offset(-6)
+            make.centerY.equalTo(iconImageView.snp.bottom).offset(-6)
         }
         
         createTimeLabel.snp.makeConstraints { (make) in
