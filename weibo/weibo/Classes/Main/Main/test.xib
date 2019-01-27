@@ -15,48 +15,7 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OP-sq-R1U">
-                    <rect key="frame" x="0.0" y="311.5" width="375" height="44"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1L-cw-5E4" userLabel="green">
-                            <rect key="frame" x="125" y="0.0" width="125" height="44"/>
-                            <color key="backgroundColor" red="0.82092860030000003" green="1" blue="0.74189293290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s15-yG-k0x" userLabel="orange">
-                            <rect key="frame" x="250" y="0.0" width="125" height="44"/>
-                            <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3e-yw-YvQ" userLabel="blue">
-                            <rect key="frame" x="0.0" y="0.0" width="125" height="44"/>
-                            <color key="backgroundColor" red="0.40626050670123315" green="0.99451433503408904" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="0.90778824979999995" blue="0.7187426334" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="s15-yG-k0x" firstAttribute="width" secondItem="H3e-yw-YvQ" secondAttribute="width" id="3DG-He-jHg"/>
-                        <constraint firstAttribute="trailing" secondItem="s15-yG-k0x" secondAttribute="trailing" id="Af1-sd-akv"/>
-                        <constraint firstItem="r1L-cw-5E4" firstAttribute="width" secondItem="H3e-yw-YvQ" secondAttribute="width" id="HjF-P0-0iF"/>
-                        <constraint firstItem="H3e-yw-YvQ" firstAttribute="leading" secondItem="3OP-sq-R1U" secondAttribute="leading" id="R14-Ng-gQW"/>
-                        <constraint firstItem="r1L-cw-5E4" firstAttribute="leading" secondItem="H3e-yw-YvQ" secondAttribute="trailing" id="YXr-5S-7Og"/>
-                        <constraint firstAttribute="height" constant="44" id="ZU2-pb-XYn"/>
-                        <constraint firstItem="s15-yG-k0x" firstAttribute="leading" secondItem="r1L-cw-5E4" secondAttribute="trailing" id="Zkr-xO-lgo"/>
-                        <constraint firstItem="H3e-yw-YvQ" firstAttribute="top" secondItem="3OP-sq-R1U" secondAttribute="top" id="aZd-Ql-XaO"/>
-                        <constraint firstItem="r1L-cw-5E4" firstAttribute="centerY" secondItem="H3e-yw-YvQ" secondAttribute="centerY" id="gsR-DZ-phU"/>
-                        <constraint firstItem="r1L-cw-5E4" firstAttribute="height" secondItem="H3e-yw-YvQ" secondAttribute="height" id="mNF-HP-Jkn"/>
-                        <constraint firstAttribute="bottom" secondItem="H3e-yw-YvQ" secondAttribute="bottom" id="scA-pt-k2Q"/>
-                        <constraint firstItem="s15-yG-k0x" firstAttribute="height" secondItem="H3e-yw-YvQ" secondAttribute="height" id="tDc-eL-Let"/>
-                        <constraint firstItem="s15-yG-k0x" firstAttribute="centerY" secondItem="H3e-yw-YvQ" secondAttribute="centerY" id="xpS-fM-LV3"/>
-                    </constraints>
-                </view>
-            </subviews>
             <color key="backgroundColor" red="0.93487501009999996" green="1" blue="0.99414004769999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="3OP-sq-R1U" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1UC-v3-o6B"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3OP-sq-R1U" secondAttribute="trailing" id="ebf-p5-BT3"/>
-                <constraint firstItem="3OP-sq-R1U" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="otQ-yY-J6a"/>
-                <constraint firstItem="3OP-sq-R1U" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zh9-Ib-2eA"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="130.40000000000001" y="152.47376311844079"/>
         </view>

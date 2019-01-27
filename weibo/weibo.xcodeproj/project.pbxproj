@@ -41,6 +41,8 @@
 		8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */; };
 		8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */; };
 		8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */; };
+		8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8486E21FD8BEC00EC027E /* XGStatusTableViewCell.swift */; };
+		8CD8487221FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8487121FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift */; };
 		8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */; };
 		8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */; };
 		8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC321EC9ECE0008B868 /* Common.swift */; };
@@ -83,6 +85,8 @@
 		8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDataManager.swift; sourceTree = "<group>"; };
 		8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementModel.swift; sourceTree = "<group>"; };
 		8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementViewModel.swift; sourceTree = "<group>"; };
+		8CD8486E21FD8BEC00EC027E /* XGStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusTableViewCell.swift; sourceTree = "<group>"; };
+		8CD8487121FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGRetweetStatusTableViewCell.swift; sourceTree = "<group>"; };
 		8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC321EC9ECE0008B868 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -238,7 +242,9 @@
 		8C11BF7E21EC4E7000F2E958 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CD8486D21FD8BC400EC027E /* StatusCell */,
 				8C14346521FB3C56007ED7E9 /* NormalCell */,
+				8CD8487021FD8FAE00EC027E /* Retweet */,
 				8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */,
 			);
 			path = View;
@@ -247,9 +253,6 @@
 		8C14346521FB3C56007ED7E9 /* NormalCell */ = {
 			isa = PBXGroup;
 			children = (
-				8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */,
-				8C9686F721FC26E2005E7289 /* XGStatusPicturesView.swift */,
-				8C9686E221FC11EF005E7289 /* XGStatusBottomView.swift */,
 				8C14346321FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift */,
 			);
 			path = NormalCell;
@@ -413,6 +416,25 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		8CD8486D21FD8BC400EC027E /* StatusCell */ = {
+			isa = PBXGroup;
+			children = (
+				8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */,
+				8C9686F721FC26E2005E7289 /* XGStatusPicturesView.swift */,
+				8C9686E221FC11EF005E7289 /* XGStatusBottomView.swift */,
+				8CD8486E21FD8BEC00EC027E /* XGStatusTableViewCell.swift */,
+			);
+			path = StatusCell;
+			sourceTree = "<group>";
+		};
+		8CD8487021FD8FAE00EC027E /* Retweet */ = {
+			isa = PBXGroup;
+			children = (
+				8CD8487121FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift */,
+			);
+			path = Retweet;
+			sourceTree = "<group>";
+		};
 		8CF43FC221EC9EC50008B868 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,6 +575,7 @@
 				8C14346421FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift in Sources */,
 				8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */,
 				8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */,
+				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
 				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
@@ -569,6 +592,7 @@
 				8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */,
 				8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */,
 				8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */,
+				8CD8487221FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift in Sources */,
 				8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */,
 				8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */,
 				8C6FA4D821F8407400D3DD4F /* XGWelcomeViewController.swift in Sources */,

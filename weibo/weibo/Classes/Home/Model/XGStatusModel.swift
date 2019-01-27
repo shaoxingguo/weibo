@@ -27,6 +27,8 @@ import MJExtension
     var attitudesCount:Int = 0
     /// 微博配图模型数组
     var picUrls: [XGPictureModel]?
+    /// 被转发微博
+    var retweetedStatus:XGStatusModel?
 }
 
 // MARK: - 设置模型key

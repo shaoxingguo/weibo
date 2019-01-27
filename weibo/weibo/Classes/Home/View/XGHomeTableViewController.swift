@@ -9,8 +9,10 @@
 import UIKit
 import MJRefresh
 
-/// 重用标识符
-private let kReuseIdentifier = "XGNormalStatusTableViewCell"
+/// 原创微博cell重用标识符
+private let kNormalStatusTableViewCellReuseIdentifier = "XGNormalStatusTableViewCell"
+/// 转发微博cell重用标识符
+private let kRetweetStatusTableViewCellReuseIdentifier = "XGRetweetStatusTableViewCell"
 
 class XGHomeTableViewController: XGVisitorViewController
 {
@@ -34,7 +36,7 @@ class XGHomeTableViewController: XGVisitorViewController
         // 注册通知
         registerNotification()
         // 刷新数据
-        tableView.mj_header.beginRefreshing()
+        loadData()
     }
     
     deinit {
@@ -95,7 +97,7 @@ extension XGHomeTableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? XGNormalStatusTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: kNormalStatusTableViewCellReuseIdentifier) as? XGNormalStatusTableViewCell
         cell?.statusViewModel = dataArray[indexPath.row]
         return cell!
     }
@@ -137,15 +139,23 @@ extension XGHomeTableViewController
     /// 获取最新微博数据
     @objc private func loadNewData() -> Void
     {
-        loadData(sinceId: dataArray.first?.id ?? 0)
+        if tableView.mj_header.isRefreshing {
+            return
+        } else {
+            loadData(sinceId: dataArray.first?.id ?? 0)
+        }
     }
     
     /// 获取更多微博数据
     @objc private func loadMoreData() -> Void
     {
-        var maxId = dataArray.last?.id ?? 0
-        maxId = maxId > 0 ? maxId - 1 : maxId
-        loadData(maxId: maxId)
+        if tableView.mj_footer.isRefreshing {
+            return
+        } else {
+            var maxId = dataArray.last?.id ?? 0
+            maxId = maxId > 0 ? maxId - 1 : maxId
+            loadData(maxId: maxId)
+        }
     }
 }
 
@@ -169,7 +179,8 @@ extension XGHomeTableViewController
     private func setUpTaleView() -> Void
     {
         // 注册cell
-        tableView.register(XGNormalStatusTableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
+        tableView.register(XGNormalStatusTableViewCell.self, forCellReuseIdentifier: kNormalStatusTableViewCellReuseIdentifier)
+         tableView.register(XGRetweetStatusTableViewCell.self, forCellReuseIdentifier: kRetweetStatusTableViewCellReuseIdentifier)
         
         // 设置行高
         tableView.rowHeight = UITableView.automaticDimension

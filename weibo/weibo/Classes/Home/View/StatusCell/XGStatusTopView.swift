@@ -42,6 +42,7 @@ class XGStatusTopView: UIView
             verifiedImageView.image = statusViewModel?.verifiedImage
         }
     }
+    
     // MARK: - 构造方法
     
     override init(frame: CGRect)
