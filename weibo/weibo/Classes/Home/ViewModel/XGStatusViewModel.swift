@@ -16,6 +16,7 @@ class XGStatusViewModel
     open var text:String? {
         return statusModel.text
     }
+    
     /// 昵称
     open var screenName:String? {
         return statusModel.user?.screenName
@@ -45,7 +46,9 @@ class XGStatusViewModel
         //            statusModel.picUrls!.removeSubrange(startIndex..<endIndex)
         //            return  statusModel.picUrls
         //        }
-        return statusModel.picUrls
+        
+        // 如果是转发微博 返回转发微博图片 否则返回原创微博图片
+        return (statusModel.retweetedStatus != nil ? statusModel.retweetedStatus?.picUrls : statusModel.picUrls)
     }
     
     /// 微博配图图片数组
@@ -63,14 +66,20 @@ class XGStatusViewModel
         return (images.count > 0 ? images : nil)
     }
     
+    /// 是否是转发微博
+    open var isRetweetedStatus:Bool {
+        return statusModel.retweetedStatus != nil
+    }
+    
      // MARK: - 微博属性 需要计算
     
     /// VIP图片
     open lazy var vipImage:UIImage? = {
-        let mbrank = statusModel.user?.mbrank ?? -1
-        if mbrank <= 0 || mbrank > 6 {
+        var mbrank = statusModel.user?.mbrank ?? -1
+        if mbrank <= 0 {
             return nil
         } else {
+            mbrank = mbrank > 6 ? 6 : mbrank
             let imageName = "common_icon_membership_level" + String(mbrank)
             return UIImage(named: imageName)
         }
@@ -117,6 +126,17 @@ class XGStatusViewModel
             // 多少行
             let rows = (picUrls!.count - 1) / kStatusPicturesViewColumns + 1
             return CGFloat(rows) * kStatusPicturesViewItemWidth + CGFloat(rows - 1) * kStatusCellPictureInnerMargin + kStatusCellPictureOuterMargin
+        }
+    }()
+    
+    /// 转发微博上的文字
+    open lazy var retweetedStatusText:String? = {
+        if statusModel.retweetedStatus == nil {
+            return nil
+        } else {
+            var str = "@" + (statusModel.retweetedStatus?.user?.screenName ?? "") + ":"
+            str += "  " + (statusModel.retweetedStatus?.text ?? "")
+            return str
         }
     }()
     

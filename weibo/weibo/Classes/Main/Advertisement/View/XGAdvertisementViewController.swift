@@ -43,6 +43,7 @@ class XGAdvertisementViewController: UIViewController
     }
     
     // MARK: - 事件监听
+    
     /// 跟新跳过按钮文字
     @objc private func updateSkipButton() -> Void
     {
@@ -96,6 +97,7 @@ class XGAdvertisementViewController: UIViewController
 }
 
 // MARK: - 设置界面
+
 extension XGAdvertisementViewController
 {
     /// 展示广告

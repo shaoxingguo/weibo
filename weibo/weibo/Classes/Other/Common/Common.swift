@@ -9,6 +9,7 @@
 import UIKit
 
 // MARK: - 调试相关
+
 func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 {
     #if DEBUG
@@ -18,6 +19,7 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 }
 
 // MARK: - 应用程序相关
+
 /// 屏幕宽度
 public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
 /// 屏幕高度
@@ -40,6 +42,7 @@ public let kStatusPicturesViewColumns:Int = 3
 public let kStatusPicturesViewItemWidth = ((kScreenWidth - 2 * kStatusCellPictureOuterMargin) - CGFloat(kStatusPicturesViewColumns - 1) * kStatusCellPictureInnerMargin) / CGFloat(kStatusPicturesViewColumns)
 
 // MARK: - 通知相关
+
 /// access_token过期通知
 public let kAccessTokenTimeOutNotification:String = "kAccessTokenTimeOutNotification"
 /// 点击首页bagdeValue通知
@@ -56,6 +59,7 @@ public let kFromWelcomeToMain:String = "kFromWelcomeToToMain"
 public let kFromLoginToMain:String = "kFromLoginToMain"
 
 // MARK: - 微博接口相关
+
 /// 应用程序AppKey
 public let kAppKey:String = "2247988996"
 /// 应用程序AppSecret

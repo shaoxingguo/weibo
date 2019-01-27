@@ -11,6 +11,7 @@ import UIKit
 class XGTabBarController: UITabBarController
 {
     // MARK: - 控制器生命周期方法
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class XGTabBarController: UITabBarController
     }
     
     // MARK: - 事件监听
+    
     @objc private func publishAction() -> Void
     {
         XGPrint("发布微博")
@@ -65,6 +67,7 @@ class XGTabBarController: UITabBarController
     }
     
     // MARK: - 懒加载
+    
     private lazy var publishButton:UIButton = { [weak self] in
         let button = UIButton(backgroundImageName: "tabbar_compose_button", imageName: "tabbar_compose_icon_add", target:self, action: #selector(publishAction))
         return button
@@ -95,6 +98,7 @@ extension XGTabBarController:UITabBarControllerDelegate
 }
 
 // MARK: - 设置界面
+
 extension XGTabBarController
 {
     /// 设置外观

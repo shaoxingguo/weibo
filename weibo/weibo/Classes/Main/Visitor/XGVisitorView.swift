@@ -32,6 +32,7 @@ class XGVisitorView: UIView
         }
     }
     // MARK: - 构造方法
+    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -44,6 +45,7 @@ class XGVisitorView: UIView
     }
     
     // MARK: - 懒加载
+    
     /// 小房子
     private lazy var houseImageView:UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_house"))
     /// 圆圈
@@ -59,6 +61,7 @@ class XGVisitorView: UIView
 }
 
 // MARK: - 设置界面
+
 extension XGVisitorView
 {
     /// 开始动画

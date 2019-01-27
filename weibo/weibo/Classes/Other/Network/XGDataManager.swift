@@ -12,6 +12,7 @@ class XGDataManager
 }
 
 // MARK: - 加载广告
+
 extension XGDataManager
 {
     /// 加载广告数据
@@ -40,6 +41,7 @@ extension XGDataManager
 }
 
 // MARK: - 登录相关
+
 extension XGDataManager
 {
     /// 加载用户授权令牌
@@ -90,6 +92,7 @@ extension XGDataManager
 }
 
 // MARK: - 获取微博数据
+
 extension XGDataManager
 {
     /// 获取微博数据

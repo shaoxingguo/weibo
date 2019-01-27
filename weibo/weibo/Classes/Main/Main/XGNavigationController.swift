@@ -12,6 +12,7 @@ class XGNavigationController: UINavigationController
 {
 
     // MARK: - 控制器生命周期方法
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class XGNavigationController: UINavigationController
     }
     
     // MARK: - 重写父类方法
+    
     override func pushViewController(_ viewController: UIViewController, animated: Bool)
     {
         // 如果不是根控制器 跳转时隐藏底部tabbar 
@@ -32,6 +34,7 @@ class XGNavigationController: UINavigationController
     
     
     // MARK: - 内部私有方法
+    
     /// 添加滑动退出页面手势
     private func addPanGestureRecognizer() -> Void
     {

@@ -8,17 +8,61 @@
 
 import UIKit
 
-class XGRetweetStatusTableViewCell: XGStatusTableViewCell {
+class XGRetweetStatusTableViewCell: XGStatusTableViewCell
+{
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // MARK: - 数据模型
+    override var statusViewModel: XGStatusViewModel? {
+        didSet {
+            retweetTextLabel.text = statusViewModel?.retweetedStatusText
+        }
     }
+    
+    // MARK: - 设置界面
+    
+    override func setUpUI()
+    {
+        super.setUpUI()
+        
+        picturesView.backgroundColor = backgroundButton.backgroundColor
+        
+        // 添加子控件
+        contentView.insertSubview(backgroundButton, at: 0)
+        contentView.addSubview(retweetTextLabel)
+        
+        // 设置自动布局
+        backgroundButton.snp.makeConstraints { (make) in
+            make.top.equalTo(contentLabel.snp.bottom).offset(kStatusCellPictureOuterMargin)
+            make.left.right.equalTo(contentView)
+            make.bottom.equalTo(picturesView)
+        }
+        
+        retweetTextLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(backgroundButton).offset(kStatusCellPictureInnerMargin)
+            make.left.right.equalTo(contentLabel)
+        }
+        
+        picturesView.snp.makeConstraints { (make) in
+            make.top.equalTo(retweetTextLabel.snp.bottom)
+            make.left.right.equalTo(retweetTextLabel)
+            make.height.equalTo(200).priority(.high)
+        }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        bottomView.snp.makeConstraints { (make) in
+            make.top.equalTo(backgroundButton.snp.bottom).offset(kStatusCellPictureOuterMargin)
+        }
     }
+    
+    // MARK: - 懒加载
+    
+    /// 背景按钮
+    private lazy var backgroundButton:UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        return button
+    }()
+    
+    /// 转发微博文字
+    private lazy var retweetTextLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
 
 }

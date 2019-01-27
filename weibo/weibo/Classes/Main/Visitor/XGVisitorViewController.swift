@@ -18,12 +18,14 @@ class XGVisitorViewController: UITableViewController
     }
     
     // MARK: - 控制器生命周期方法
+    
     override func loadView()
     {
         XGAccountViewModel.shared.isLogin ? super.loadView() : setUpUI()
     }
     
     // MARK: - 事件监听
+    
     @objc private func LoginAction() -> Void
     {
         let viewController = XGLoginViewController()
@@ -37,6 +39,7 @@ class XGVisitorViewController: UITableViewController
     }
     
     // MARK: - 懒加载
+    
     private lazy var visitorView:XGVisitorView = {
         let visitorView = XGVisitorView()
         visitorView.backgroundColor = UIColor(white: 0.93, alpha: 1)
@@ -45,6 +48,7 @@ class XGVisitorViewController: UITableViewController
 }
 
  // MARK: - 设置界面
+
 extension XGVisitorViewController
 {
     private func setUpUI() -> Void

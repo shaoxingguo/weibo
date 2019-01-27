@@ -58,6 +58,7 @@ class XGWelcomeViewController: UIViewController
 }
 
 // MARK: - 设置界面
+
 extension XGWelcomeViewController
 {
     private func setUpUI() -> Void

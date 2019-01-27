@@ -12,6 +12,7 @@ import SDWebImage
 class XGAdvertisementViewModel
 {
     // MARK: - 公开方法和属性
+    
     /// 单例
     public static let sharedViewModel:XGAdvertisementViewModel = XGAdvertisementViewModel()
     
@@ -45,6 +46,7 @@ class XGAdvertisementViewModel
     }
     
     // MARK: - 私有属性
+    
     /// 广告模型数据
     private var advertisementModel:XGAdvertisementModel?
     /// 模型缓存路径
@@ -54,6 +56,7 @@ class XGAdvertisementViewModel
     }()
     
     // MARK: - 构造方法
+    
     private init()
     {
         advertisementModel = NSKeyedUnarchiver.unarchiveObject(withFile: modelCachePath) as? XGAdvertisementModel
@@ -61,6 +64,7 @@ class XGAdvertisementViewModel
 }
 
 // MARK: - 下载图片
+
 extension XGAdvertisementViewModel
 {
     /// 加载广告页数据

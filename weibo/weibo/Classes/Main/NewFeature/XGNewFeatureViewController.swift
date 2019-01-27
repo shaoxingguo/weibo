@@ -12,6 +12,7 @@ class XGNewFeatureViewController: UIViewController
 {
 
     // MARK: - 控制器生命周期方法
+    
     override func loadView()
     {
         super.loadView()
@@ -23,6 +24,7 @@ class XGNewFeatureViewController: UIViewController
     }
 
     // MARK: - 事件监听
+    
     @objc private func enterButtonClickAction() -> Void
     {
         // 发送通知 从新特性切换到主界面
@@ -30,6 +32,7 @@ class XGNewFeatureViewController: UIViewController
     }
     
     // MARK: - 懒加载
+    
     private lazy var contentScrollView:UIScrollView = { [weak self] in
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -58,6 +61,7 @@ class XGNewFeatureViewController: UIViewController
 }
 
 // MARK: - UIScrollViewDelegate
+
 extension XGNewFeatureViewController:UIScrollViewDelegate
 {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -77,6 +81,7 @@ extension XGNewFeatureViewController:UIScrollViewDelegate
 }
 
 // MARK: - 设置界面
+
 extension XGNewFeatureViewController
 {
     // 隐藏状态栏

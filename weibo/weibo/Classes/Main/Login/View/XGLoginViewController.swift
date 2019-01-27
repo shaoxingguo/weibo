@@ -13,6 +13,7 @@ import SVProgressHUD
 class XGLoginViewController: UIViewController
 {
     // MARK: - 控制器生命周期方法
+    
     override func loadView()
     {
         setUpUI()
@@ -32,6 +33,7 @@ class XGLoginViewController: UIViewController
     }
     
     // MARK: - 事件监听
+    
     @objc private func quitAction() -> Void
     {
         SVProgressHUD.dismiss()
@@ -45,6 +47,7 @@ class XGLoginViewController: UIViewController
     }
     
     // MARK: - 懒加载
+    
     private lazy var webView:WKWebView = { [weak self] in
         let webView = WKWebView(frame: CGRect.zero)
         webView.navigationDelegate = self
@@ -55,6 +58,7 @@ class XGLoginViewController: UIViewController
 }
 
 // MARK: - 网络请求
+
 extension XGLoginViewController
 {
     private func loadRequest() -> Void
@@ -124,6 +128,7 @@ extension XGLoginViewController:WKNavigationDelegate
 }
 
 // MARK: - 设置界面
+
 extension XGLoginViewController
 {
     private func setUpNavigationItem() -> Void

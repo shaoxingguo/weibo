@@ -11,12 +11,8 @@ import MJExtension
 
 @objcMembers class XGAccountModel: NSObject,NSCoding
 {
-    override static func mj_replacedKey(fromPropertyName121 propertyName: String!) -> Any!
-    {
-        return (propertyName as NSString).mj_underlineFromCamel()
-    }
-    
     // MARK: - 模型属性
+    
     /// 授权令牌
     open var accessToken:String?
     /// 有效时长 单位秒
@@ -38,6 +34,7 @@ import MJExtension
     open var avatarLarge:String?
     
     // MARK: - NSCoding
+    
     /// 归档
     func encode(with aCoder: NSCoder) -> Void
     {
@@ -57,5 +54,15 @@ import MJExtension
         expiresDate = aDecoder.decodeObject(forKey: "expiresDate") as? Date
         screenName = aDecoder.decodeObject(forKey: "screenName") as? String
         avatarLarge = aDecoder.decodeObject(forKey: "avatarLarge") as? String
+    }
+}
+
+// MARK: - 设置模型key
+
+extension XGAccountModel
+{
+    override static func mj_replacedKey(fromPropertyName121 propertyName: String!) -> Any!
+    {
+        return (propertyName as NSString).mj_underlineFromCamel()
     }
 }

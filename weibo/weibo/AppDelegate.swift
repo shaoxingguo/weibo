@@ -25,7 +25,7 @@ class AppDelegate: UIResponder
 }
 
 // MARK: - UIApplicationDelegate
-import SDWebImage
+
 extension AppDelegate:UIApplicationDelegate
 {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
@@ -63,6 +63,7 @@ extension AppDelegate:UIApplicationDelegate
 }
 
 // MARK: - 其他方法
+
 extension AppDelegate
 {
     /// 返回根控制器

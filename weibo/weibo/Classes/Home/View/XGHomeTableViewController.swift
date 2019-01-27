@@ -20,6 +20,7 @@ class XGHomeTableViewController: XGVisitorViewController
     var dataArray:[XGStatusViewModel] = [XGStatusViewModel]()
     
     // MARK: - 控制器生命周期方法
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -97,7 +98,9 @@ extension XGHomeTableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kNormalStatusTableViewCellReuseIdentifier) as? XGNormalStatusTableViewCell
+        let viewModel = dataArray[indexPath.row]
+        let reuseIdentifier = viewModel.isRetweetedStatus ? kRetweetStatusTableViewCellReuseIdentifier : kNormalStatusTableViewCellReuseIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? XGStatusTableViewCell
         cell?.statusViewModel = dataArray[indexPath.row]
         return cell!
     }

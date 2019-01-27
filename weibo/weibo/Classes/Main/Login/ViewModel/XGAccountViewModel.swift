@@ -92,6 +92,7 @@ class XGAccountViewModel:NSObject
     private var accountModel:XGAccountModel?
     
     // MARK: - 懒加载
+    
     private lazy var modelCachePath:String = {
        let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
          return (cachePath as NSString).appendingPathComponent("XGAccountModel.plist")

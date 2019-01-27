@@ -12,17 +12,12 @@ import MJExtension
 @objcMembers class XGAdvertisementModel: NSObject,NSCoding
 {
     // MARK: - 模型属性
+    
     open var pictureImageURL:String?
     open var webURL:String?
     
-    // MARK: - 其他方法
-    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]!
-    {
-        return ["pictureImageURL": "w_picurl",
-         "webURL": "ori_curl"]
-    }
-    
     // MARK: - NSCoding
+    
     /// 归档
     func encode(with aCoder: NSCoder) -> Void
     {
@@ -39,3 +34,13 @@ import MJExtension
     }
 }
 
+// MARK: - 设置模型key
+
+extension XGAdvertisementModel
+{
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]!
+    {
+        return ["pictureImageURL": "w_picurl",
+                "webURL": "ori_curl"]
+    }
+}
