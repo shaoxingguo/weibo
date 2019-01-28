@@ -205,7 +205,7 @@ extension XGStatusViewModel
     {
         let iconWidth:CGFloat = 50 // 顶部视图头像宽高 如果修改了 行高这里也要改
         // 原创 = 分割线(12) + 12间距 + 头像(50) + 12间距 + 正文高度 + 配图高度 + 12间距 + 底部工具栏(44)
-        // 转发 = 分割线(12) + 12间距 + 头像(50) + 12间距 + 正文高度 + 12间距 + 3间距 + 转发文字高度 + 配图高度 + 12间距 + 底部工具栏(44)
+        // 转发 = 分割线(12) + 12间距 + 头像(50) + 12间距 + 正文高度 + (12间距 + 3间距 + 转发文字高度) + 配图高度 + 12间距 + 底部工具栏(44)
         
         // 分割线 + 顶部视图高度
         var rowHeight = kStatusCellPictureOuterMargin + kStatusCellPictureOuterMargin + iconWidth + kStatusCellPictureOuterMargin
@@ -227,7 +227,7 @@ extension XGStatusViewModel
         rowHeight += picturesViewSize.height
         
         // 底部工具栏
-        rowHeight += kStatusCellPictureOuterMargin + 44
+        rowHeight += kStatusCellPictureOuterMargin + kToolBarHeight
         
         return rowHeight
     }

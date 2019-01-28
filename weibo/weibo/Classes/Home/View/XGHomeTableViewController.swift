@@ -34,8 +34,12 @@ class XGHomeTableViewController: XGVisitorViewController
         setUpNavigationItem()
         // tableView设置
         setUpTaleView()
+        // 刷新数量label设置
+        setUpRefreshCountLabel()
         // 注册通知
         registerNotification()
+        // 刷新数据
+        tableView.mj_header.beginRefreshing()
     }
     
     deinit {
@@ -75,6 +79,13 @@ class XGHomeTableViewController: XGVisitorViewController
     {
         button.isSelected = !button.isSelected
     }
+    
+    // MARK: - 懒加载
+    private lazy var refreshCountLabel:UILabel = {
+        let label = UILabel(text: "刷新到10条新微博", fontSize: 15, textColor: UIColor.white, textAlignment: .center)
+        label.backgroundColor = UIColor.orange
+        return label
+    }()
 
 }
 
@@ -127,6 +138,8 @@ extension XGHomeTableViewController
             
             // 刷新表格
             count > 0 ? self.tableView.reloadData() : ()
+            // 展示刷新数量
+            self.showRefreshCountLabel(count: count)
         }
     }
     
@@ -204,6 +217,39 @@ extension XGHomeTableViewController
         // 注册通知
         NotificationCenter.default.addObserver(self, selector: #selector(accessTokenTimeOutAction(notification:)), name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(tapHomeTabBarBadgeValueAction(notification:)), name: NSNotification.Name(rawValue: kTapHomeTabBarBadgeValueNotification), object: nil)
+    }
+    
+    // 设置刷新数量label
+    private func setUpRefreshCountLabel() -> Void
+    {
+        for view in navigationController?.navigationBar.subviews ?? [] {
+            if let UIBarBackgroundClass = NSClassFromString("_UIBarBackground") {
+                if view.isKind(of: UIBarBackgroundClass) {
+                    XGPrint("我是背景")
+                    view.addSubview(refreshCountLabel)
+                    refreshCountLabel.frame = CGRect(x: 0, y: kNavigationBarHeight - kToolBarHeight, width: view.width, height: kToolBarHeight)
+                    refreshCountLabel.isHidden = true
+                }
+            }
+        }
+    }
+    
+    /// 展示刷新数量
+    private func showRefreshCountLabel(count:Int) -> Void
+    {
+        refreshCountLabel.isHidden = false
+        refreshCountLabel.text = "刷新到\(count)条微博"
+        UIView.animate(withDuration: 1, animations: {
+            self.refreshCountLabel.transform = CGAffineTransform(translationX: 0, y: self.refreshCountLabel.height)
+        }) { (_) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                UIView.animate(withDuration: 1, animations: {
+                    self.refreshCountLabel.transform = CGAffineTransform.identity
+                }, completion: { (_) in
+                    self.refreshCountLabel.isHidden = true
+                })
+            })
+        }
     }
 }
 

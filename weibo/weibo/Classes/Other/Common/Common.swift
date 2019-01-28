@@ -28,6 +28,8 @@ public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
 public let kNavigationBarHeight:CGFloat = 64
 /// tabBar高度
 public let kTabBarHeight:CGFloat = 49
+/// 工具栏高度
+public let kToolBarHeight:CGFloat = 44
 /// 沙盒缓存版本对应的key
 public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 /// 占位图片

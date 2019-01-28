@@ -86,7 +86,7 @@ class XGStatusTableViewCell: UITableViewCell
 
         bottomView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(contentView)
-            make.height.equalTo(44)
+            make.height.equalTo(kToolBarHeight)
         }
     }
 }
