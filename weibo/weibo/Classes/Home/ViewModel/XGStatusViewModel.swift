@@ -71,10 +71,10 @@ class XGStatusViewModel
         return statusModel.retweetedStatus != nil
     }
     
-     // MARK: - 微博属性 需要计算
+    // MARK: - 微博属性 需要计算
     
     /// VIP图片
-    open lazy var vipImage:UIImage? = {
+    private(set) open lazy var vipImage:UIImage? = {
         var mbrank = statusModel.user?.mbrank ?? -1
         if mbrank <= 0 {
             return nil
@@ -86,7 +86,7 @@ class XGStatusViewModel
     }()
     
     /// 认证图片
-    open lazy var verifiedImage:UIImage? = {
+    private(set) open lazy var verifiedImage:UIImage? = {
         let verifiedType = statusModel.user?.verifiedType ?? -1
         // 认证类型，-1：没有认证，0，认证用户，2,3,5: 企业认证，220: 达人
         switch verifiedType {
@@ -102,23 +102,23 @@ class XGStatusViewModel
     }()
     
     /// 转发数
-    open lazy var repostsCountString:String? = {
+    private(set) open lazy var repostsCountString:String? = {
         return countString(count: statusModel.repostsCount, defaultString: "转发")
     }()
     
     /// 评论数
-    open lazy var commentsCountString:String? = {
+    private(set) open lazy var commentsCountString:String? = {
          return countString(count: statusModel.commentsCount, defaultString: "评论")
     }()
     
     /// 点赞数
-    open lazy var attitudesCountString:String? = {
+    private(set) open lazy var attitudesCountString:String? = {
          return countString(count: statusModel.attitudesCount, defaultString: "点赞")
     }()
 
     
     /// 配图视图高度
-    open lazy var picturesViewHeight:CGFloat = {
+    private(set) open lazy var picturesViewHeight:CGFloat = {
         if picUrls == nil || picUrls?.count == 0 {
             // 没有配图
             return 0
@@ -130,7 +130,7 @@ class XGStatusViewModel
     }()
     
     /// 转发微博上的文字
-    open lazy var retweetedStatusText:String? = {
+    private(set) open lazy var retweetedStatusText:String? = {
         if statusModel.retweetedStatus == nil {
             return nil
         } else {

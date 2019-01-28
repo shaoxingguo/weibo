@@ -16,8 +16,8 @@ private let kRetweetStatusTableViewCellReuseIdentifier = "XGRetweetStatusTableVi
 
 class XGHomeTableViewController: XGVisitorViewController
 {
-    /// 数据模型
-    var dataArray:[XGStatusViewModel] = [XGStatusViewModel]()
+    /// 数据列表视图模型
+    private lazy var statusListViewModel:XGStatusListViewModel = XGStatusListViewModel()
     
     // MARK: - 控制器生命周期方法
     
@@ -36,8 +36,6 @@ class XGHomeTableViewController: XGVisitorViewController
         setUpTaleView()
         // 注册通知
         registerNotification()
-        // 刷新数据
-        loadData()
     }
     
     deinit {
@@ -91,17 +89,17 @@ extension XGHomeTableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let count = dataArray.count
+        let count = statusListViewModel.statusList.count
         tableView.mj_footer.isHidden = count == 0
         return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let viewModel = dataArray[indexPath.row]
+        let viewModel = statusListViewModel.statusList[indexPath.row]
         let reuseIdentifier = viewModel.isRetweetedStatus ? kRetweetStatusTableViewCellReuseIdentifier : kNormalStatusTableViewCellReuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? XGStatusTableViewCell
-        cell?.statusViewModel = dataArray[indexPath.row]
+        cell?.statusViewModel = viewModel
         return cell!
     }
 }
@@ -110,54 +108,42 @@ extension XGHomeTableViewController
 
 extension XGHomeTableViewController
 {
-    private func loadData(sinceId:Int64 = 0,maxId:Int64 = 0) -> Void
-    {
-        XGDataManager.loadStatusList(sinceId: sinceId, maxId: maxId) { (dataArray, error) in
-            // 结束下拉刷新
-            self.tableView.mj_header.isRefreshing ?
-                self.tableView.mj_header.endRefreshing() : ()
-            
-            if error != nil || dataArray == nil {
-                XGPrint("获取微博数据失败! \(error!.localizedDescription)")
-                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
-                return
-            } else {
-                let viewModlArray = XGStatusViewModel.viewModelArrayWithModelArray(statusModelArray: dataArray!)
-                
-                if viewModlArray.count == 0 {
-                    self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshingWithNoMoreData() : ()
-                    return
-                } else if sinceId > 0 {
-                    self.dataArray = viewModlArray + self.dataArray
-                } else {
-                    self.dataArray += viewModlArray
-                }
-                
-                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     /// 获取最新微博数据
     @objc private func loadNewData() -> Void
     {
-        if tableView.mj_header.isRefreshing {
-            return
-        } else {
-            loadData(sinceId: dataArray.first?.id ?? 0)
+        statusListViewModel.loadNewStatusList { (isSuccess, count) in
+            // 结束下拉刷新
+            self.tableView.mj_header.isRefreshing ? self.tableView.mj_header.endRefreshing() : ()
+            
+            if !isSuccess {
+                XGPrint("加载最新微博数据失败")
+                return
+            }
+            
+            // 刷新表格
+            count > 0 ? self.tableView.reloadData() : ()
         }
     }
     
     /// 获取更多微博数据
     @objc private func loadMoreData() -> Void
     {
-        if tableView.mj_footer.isRefreshing {
-            return
-        } else {
-            var maxId = dataArray.last?.id ?? 0
-            maxId = maxId > 0 ? maxId - 1 : maxId
-            loadData(maxId: maxId)
+        statusListViewModel.loadMoreStatuslist { (isSuccess, count) in
+            if !isSuccess {
+                XGPrint("加载更多微博数据失败")
+                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
+                return
+            }
+            
+            if count == 0 {
+                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshingWithNoMoreData() : ()
+                return
+            } else {
+                // 结束刷新
+                self.tableView.mj_footer.isRefreshing ? self.tableView.mj_footer.endRefreshing() : ()
+                // 刷新表格
+                self.tableView.reloadData()
+            }
         }
     }
 }

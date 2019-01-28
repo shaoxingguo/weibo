@@ -47,15 +47,15 @@ class XGStatusTableViewCell: UITableViewCell
         return view
     }()
     /// 文本
-    open lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
+    private(set) open lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
     /// 配图视图
-    open lazy var picturesView:XGStatusPicturesView = {
+    private(set) open lazy var picturesView:XGStatusPicturesView = {
         let view = XGStatusPicturesView()
         view.backgroundColor =  UIColor.white
         return view
     }()
     /// 底部视图
-    open lazy var bottomView:XGStatusBottomView = {
+    private(set) open lazy var bottomView:XGStatusBottomView = {
         let view = XGStatusBottomView()
         view.backgroundColor = UIColor.corlorWith(red: 243, green: 243, blue: 243)
         return view

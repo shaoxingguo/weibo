@@ -46,6 +46,7 @@
 		8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */; };
 		8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */; };
 		8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC321EC9ECE0008B868 /* Common.swift */; };
+		8CFAE97D21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC321EC9ECE0008B868 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusListViewModel.swift; sourceTree = "<group>"; };
 		BAFD46C9B95B61530AFD5263 /* Pods-weibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-weibo/Pods-weibo.release.xcconfig"; sourceTree = "<group>"; };
 		E6792319D52B5BD0A4081F28 /* Pods_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -244,7 +246,7 @@
 			children = (
 				8CD8486D21FD8BC400EC027E /* StatusCell */,
 				8C14346521FB3C56007ED7E9 /* NormalCell */,
-				8CD8487021FD8FAE00EC027E /* Retweet */,
+				8CD8487021FD8FAE00EC027E /* RetweetCell */,
 				8C11BF7F21EC4E7700F2E958 /* XGHomeTableViewController.swift */,
 			);
 			path = View;
@@ -261,6 +263,7 @@
 		8C14346821FB4585007ED7E9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */,
 				8C14346921FB459A007ED7E9 /* XGStatusViewModel.swift */,
 			);
 			path = ViewModel;
@@ -427,12 +430,12 @@
 			path = StatusCell;
 			sourceTree = "<group>";
 		};
-		8CD8487021FD8FAE00EC027E /* Retweet */ = {
+		8CD8487021FD8FAE00EC027E /* RetweetCell */ = {
 			isa = PBXGroup;
 			children = (
 				8CD8487121FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift */,
 			);
-			path = Retweet;
+			path = RetweetCell;
 			sourceTree = "<group>";
 		};
 		8CF43FC221EC9EC50008B868 /* Common */ = {
@@ -573,6 +576,7 @@
 				8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */,
 				8C6FA4DA21F843C000D3DD4F /* UIImageView+Extension.swift in Sources */,
 				8C14346421FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift in Sources */,
+				8CFAE97D21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift in Sources */,
 				8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */,
 				8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */,
 				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
