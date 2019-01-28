@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import SDWebImage
 
 class XGStatusListViewModel
 {
-//     MARK: - 微博属性 需要计算
     /// 视图模型数组
     private(set) open var statusList:[XGStatusViewModel] = [XGStatusViewModel]()
 }
@@ -29,7 +29,7 @@ extension XGStatusListViewModel
                 completion(false,0)
                 return
             } else {
-                self.statusList += (statusList ?? [])
+                self.statusList = (statusList ?? []) + self.statusList
                 completion(true,statusList?.count ?? 0)
             }
         }
@@ -47,7 +47,7 @@ extension XGStatusListViewModel
                 completion(false,0)
                 return
             } else {
-                self.statusList = (statusList ?? []) + self.statusList
+                self.statusList += (statusList ?? [])
                 completion(true,statusList?.count ?? 0)
             }
         }
@@ -67,10 +67,40 @@ extension XGStatusListViewModel
                 return
             } else {
                 let viewModlArray = XGStatusViewModel.viewModelArrayWithModelArray(statusModelArray: dataArray!)
-                completion(viewModlArray,nil)
+                // 缓存单图
+                self.cacheSinglePicture(statusList: viewModlArray, completion: completion)
             }
         }
     }
     
-//    private
+    private func cacheSinglePicture(statusList:[XGStatusViewModel]?,completion:@escaping ([XGStatusViewModel]?,Error?) -> Void) -> Void
+    {
+        // 调度组
+        let group = DispatchGroup()
+        for viewModel in (statusList ?? []) {
+            if viewModel.picUrls?.count != 1 {
+                continue
+            }
+            
+            // 缓存单图
+            group.enter()
+            let URLString = viewModel.picUrls?.first?.thumbnailPic ?? ""
+            SDWebImageManager.shared().loadImage(with: URL(string: URLString), options: [.retryFailed,.refreshCached], progress: nil) { (image, data, error, _, _, _) in
+                group.leave()
+                if error != nil {
+                    XGPrint("单图缓存失败!")
+                    return
+                }
+
+                // 重新计算配图视图大小
+                viewModel.updatePictureViewSize(imageSize: image!.size)
+                XGPrint(image?.size)
+            }
+        }
+        
+        // 单图下载完毕监听
+        group.notify(queue: DispatchQueue.main) {
+            completion(statusList,nil)
+        }
+    }
 }

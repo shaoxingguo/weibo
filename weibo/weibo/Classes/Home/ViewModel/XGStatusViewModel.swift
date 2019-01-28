@@ -47,15 +47,15 @@ class XGStatusViewModel
     }
     
     /// 微博配图图片数组
-    open var pictures:[UIImage]? {
+    open var pictures:[UIImage?]? {
         if picUrls == nil || picUrls?.count == 0 {
             return nil
         }
         
-        var images = [UIImage]()
+        var images = [UIImage?]()
         for pictureModel in picUrls! {
             let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: pictureModel.thumbnailPic)
-            image != nil ? images.append(image!) : ()
+            images.append(image)
         }
         
         return (images.count > 0 ? images : nil)
@@ -170,6 +170,37 @@ extension XGStatusViewModel
         return viewModelArray
     }
     
+    // 更新配图视图大小
+    open func updatePictureViewSize(imageSize:CGSize) -> Void
+    {
+        var size = imageSize
+        
+        let maxWidth:CGFloat = 300
+        let minWidth:CGFloat = 40
+        let maxHeight:CGFloat = 200
+        
+        if imageSize.width > maxWidth {
+            // 图片过宽处理
+            size.height = maxWidth / imageSize.width * imageSize.height
+            size.width = maxWidth
+        } else if imageSize.width < minWidth {
+            // 图片过窄处理
+            size.height = minWidth / imageSize.width * imageSize.height
+            size.width = minWidth
+        }
+        
+        if size.height > maxHeight {
+            // 图片过高处理
+            size.height = maxHeight
+        }
+        
+        size.height += kStatusCellPictureOuterMargin
+        // 赋值
+        picturesViewSize = size
+        // 重新计算行高
+        rowHeight = calcRowHeight()
+    }
+    
     /// 根据数字返回字符串
     ///
     /// - Parameters:
@@ -228,7 +259,8 @@ extension XGStatusViewModel
         
         // 底部工具栏
         rowHeight += kStatusCellPictureOuterMargin + kToolBarHeight
-        
+        // 解决像素不对齐 行高带小数 转换为整数
+        rowHeight = ceil(rowHeight)
         return rowHeight
     }
 }

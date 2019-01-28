@@ -25,14 +25,35 @@ class XGStatusPicturesView: UIView
                 view.isHidden = true
             }
             
-            // 设置图片数据并显示
-            var index:Int = 0
-            for i in 0..<(statusViewModel?.picUrls?.count ?? 0) {
-                let imageView = subviews[index] as! UIImageView
+            if statusViewModel?.picUrls?.count == 1 {
+                // 单图
+                
+                // 重设第一个imageView尺寸
+                let width = statusViewModel!.picturesViewSize.width
+                let height = (statusViewModel!.picturesViewSize.height - kStatusCellPictureOuterMargin)
+                let imageView = subviews[0] as! UIImageView
                 imageView.isHidden = false
-                setImage(imageView: imageView, image: statusViewModel?.pictures?[i], URLString: statusViewModel?.picUrls?[i].thumbnailPic)
-                index += 1
-                statusViewModel?.picUrls?.count == 4 && index == 2 ? index += 1 : ()
+                imageView.frame = CGRect(x: 0, y: kStatusCellPictureOuterMargin, width: width, height: height)
+                
+                // 设置图片
+                setImage(imageView: imageView, image: statusViewModel?.pictures?[0], URLString: statusViewModel?.picUrls?.first?.thumbnailPic, imageSize: imageView.size)
+                return
+            } else {
+                // 多图
+                
+                // 恢复第一个imageView尺寸
+                let imageView = subviews[0] as! UIImageView
+                imageView.frame = CGRect(x: 0, y: kStatusCellPictureOuterMargin, width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)
+                
+                // 设置图片
+                var index:Int = 0
+                for i in 0..<(statusViewModel?.picUrls?.count ?? 0) {
+                    let imageView = subviews[index] as! UIImageView
+                    imageView.isHidden = false
+                    setImage(imageView: imageView, image: statusViewModel?.pictures?[i], URLString: statusViewModel?.picUrls?[i].thumbnailPic)
+                    index += 1
+                    statusViewModel?.picUrls?.count == 4 && index == 2 ? index += 1 : ()
+                }
             }
         }
     }
@@ -43,7 +64,8 @@ class XGStatusPicturesView: UIView
     ///   - imageView: UIImageView
     ///   - image: image
     ///   - URLString: URLString
-    private func setImage(imageView:UIImageView,image:UIImage? = nil,URLString:String? = nil) -> Void
+    ///   - imageSize: 图片尺寸
+    private func setImage(imageView:UIImageView,image:UIImage? = nil,URLString:String? = nil,imageSize:CGSize = CGSize(width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)) -> Void
     {
         if image != nil {
             imageView.image = image
@@ -51,7 +73,7 @@ class XGStatusPicturesView: UIView
             imageView.xg_setImage(URLString: URLString, placeholderImage: kPlaceholderImage) { [weak self](image) in
                 if image != nil {
                     // 缩放图片
-                    let newImage = image?.scaleToSize(imageSize: CGSize(width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth), backgroundColor: self?.backgroundColor ?? UIColor.white)
+                    let newImage = image?.scaleToSize(imageSize: imageSize, backgroundColor: self?.backgroundColor ?? UIColor.white)
                     imageView.image = newImage
                     
                     // 重新保存图片

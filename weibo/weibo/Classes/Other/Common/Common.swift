@@ -24,6 +24,7 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
 /// 屏幕高度
 public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
+public let kScreenScale:CGFloat = UIScreen.main.scale
 /// 导航栏高度
 public let kNavigationBarHeight:CGFloat = 64
 /// tabBar高度
@@ -65,9 +66,9 @@ public let kFromLoginToMain:String = "kFromLoginToMain"
 // MARK: - 微博接口相关
 
 /// 应用程序AppKey
-public let kAppKey:String = "2247988996"
+public let kAppKey:String = "4222298338"//"2247988996"
 /// 应用程序AppSecret
-public let kAppSecret:String = "ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
+public let kAppSecret:String = "c8afe57650c618374945b33fccf066b3"//"ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
 /// 授权回调页
 public let kRedirectURLString:String = "https://api.weibo.com/oauth2/default.html"
 

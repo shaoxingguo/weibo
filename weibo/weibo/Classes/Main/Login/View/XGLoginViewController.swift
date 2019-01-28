@@ -42,7 +42,7 @@ class XGLoginViewController: UIViewController
     
     @objc private func autoFillAction() -> Void
     {
-        let code = "document.getElementById('userId').value = '15919850899';document.getElementById('passwd').value = 'aa123456';"
+        let code = "document.getElementById('userId').value = '17300520041';document.getElementById('passwd').value = '2015xg000@';"
         webView.evaluateJavaScript(code, completionHandler: nil)
     }
     

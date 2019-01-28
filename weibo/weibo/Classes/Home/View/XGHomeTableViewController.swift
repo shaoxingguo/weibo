@@ -185,6 +185,13 @@ extension XGHomeTableViewController
     /// 设置tableView
     private func setUpTaleView() -> Void
     {
+        // 异步绘制
+        tableView.layer.drawsAsynchronously = true
+        
+        // 栅格化
+        tableView.layer.shouldRasterize = true
+        tableView.layer.rasterizationScale = kScreenScale
+        
         // 注册cell
         tableView.register(XGNormalStatusTableViewCell.self, forCellReuseIdentifier: kNormalStatusTableViewCellReuseIdentifier)
          tableView.register(XGRetweetStatusTableViewCell.self, forCellReuseIdentifier: kRetweetStatusTableViewCellReuseIdentifier)
