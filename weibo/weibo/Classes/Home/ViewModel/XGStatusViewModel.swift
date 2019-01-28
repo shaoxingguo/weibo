@@ -10,45 +10,40 @@ import SDWebImage
 
 class XGStatusViewModel
 {
-    // MARK: - 微博属性 不需要计算
+    // MARK: - 微博属性
     
     /// 文本
-    open var text:String? {
-        return statusModel.text
-    }
-    
+    private(set) open var text:String?
     /// 昵称
-    open var screenName:String? {
-        return statusModel.user?.screenName
-    }
-    
+    private(set) open var screenName:String?
     /// 头像图片地址
-    open var profileImageUrl:String? {
-        return statusModel.user?.profileImageUrl
-    }
-    
+    private(set) open var profileImageUrl:String?
     /// 微博id
-    open var id:Int64 {
-        return statusModel.id
-    }
+    private(set) open var id:Int64 = 0
+    /// 微博配图模型数组
+    private(set) open var picUrls: [XGPictureModel]?
+    /// 是否是转发微博
+    private(set) open var isRetweetedStatus:Bool
+    /// VIP图片
+    private(set) open var vipImage:UIImage?
+    /// 认证图片
+    private(set) open var verifiedImage:UIImage?
+    /// 转发数
+    private(set) open var repostsCountString:String?
+    /// 评论数
+    private(set) open var commentsCountString:String?
+    /// 点赞数
+    private(set) open var attitudesCountString:String?
+    /// 配图视图大小
+    private(set) open var picturesViewSize:CGSize = CGSize.zero
+    /// 转发微博上的文字
+    private(set) open var retweetedStatusText:String?
+    /// 行高
+    private(set) open var rowHeight:CGFloat = 0
     
     /// 头像图片
     open var profileImage:UIImage? {
         return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: profileImageUrl)
-    }
-    
-    /// 微博配图模型数组
-    open var picUrls: [XGPictureModel]? {
-        //         测试四张图
-        //        if statusModel.picUrls != nil && statusModel.picUrls!.count > 4 {
-        //            let startIndex = statusModel.picUrls!.startIndex + 4
-        //            let endIndex = statusModel.picUrls!.endIndex
-        //            statusModel.picUrls!.removeSubrange(startIndex..<endIndex)
-        //            return  statusModel.picUrls
-        //        }
-        
-        // 如果是转发微博 返回转发微博图片 否则返回原创微博图片
-        return (statusModel.retweetedStatus != nil ? statusModel.retweetedStatus?.picUrls : statusModel.picUrls)
     }
     
     /// 微博配图图片数组
@@ -66,79 +61,114 @@ class XGStatusViewModel
         return (images.count > 0 ? images : nil)
     }
     
-    /// 是否是转发微博
-    open var isRetweetedStatus:Bool {
-        return statusModel.retweetedStatus != nil
-    }
+    // MARK: - 构造方法
     
-    // MARK: - 微博属性 需要计算
-    
-    /// VIP图片
-    private(set) open lazy var vipImage:UIImage? = {
+    init(model:XGStatusModel)
+    {
+        // 模型赋值
+        statusModel = model
+        
+        // 文本
+        text = statusModel.text
+        
+        // 昵称
+        screenName = statusModel.user?.screenName
+        
+        // 头像
+        profileImageUrl = statusModel.user?.profileImageUrl
+        
+        // 微博id
+        id = statusModel.id
+        
+        // 配图
+        //  测试四张图
+        //  if statusModel.picUrls != nil && statusModel.picUrls!.count > 4 {
+        //      let startIndex = statusModel.picUrls!.startIndex + 4
+        //      let endIndex = statusModel.picUrls!.endIndex
+        //      statusModel.picUrls!.removeSubrange(startIndex..<endIndex)
+        //      return  statusModel.picUrls
+        //}
+        
+        // 如果是转发微博 返回转发微博图片 否则返回原创微博图片
+        picUrls = (statusModel.retweetedStatus != nil ? statusModel.retweetedStatus?.picUrls : statusModel.picUrls)
+        
+        // 是否是转发微博
+        isRetweetedStatus = statusModel.retweetedStatus != nil
+        
+        // VIP图片
         var mbrank = statusModel.user?.mbrank ?? -1
-        if mbrank <= 0 {
-            return nil
-        } else {
+        if mbrank > 0 {
             mbrank = mbrank > 6 ? 6 : mbrank
             let imageName = "common_icon_membership_level" + String(mbrank)
-            return UIImage(named: imageName)
+            vipImage = UIImage(named: imageName)
         }
-    }()
-    
-    /// 认证图片
-    private(set) open lazy var verifiedImage:UIImage? = {
+        
+        // 认证图片
         let verifiedType = statusModel.user?.verifiedType ?? -1
         // 认证类型，-1：没有认证，0，认证用户，2,3,5: 企业认证，220: 达人
         switch verifiedType {
         case 0:
-            return UIImage(named: "avatar_vip")
+            verifiedImage = UIImage(named: "avatar_vip")
         case 2,3,5:
-            return UIImage(named: "avatar_enterprise_vip")
+            verifiedImage = UIImage(named: "avatar_enterprise_vip")
         case 220:
-            return UIImage(named: "avatar_grassroot")
+            verifiedImage = UIImage(named: "avatar_grassroot")
         default:
-            return nil
+            verifiedImage = nil
         }
-    }()
-    
-    /// 转发数
-    private(set) open lazy var repostsCountString:String? = {
-        return countString(count: statusModel.repostsCount, defaultString: "转发")
-    }()
-    
-    /// 评论数
-    private(set) open lazy var commentsCountString:String? = {
-         return countString(count: statusModel.commentsCount, defaultString: "评论")
-    }()
-    
-    /// 点赞数
-    private(set) open lazy var attitudesCountString:String? = {
-         return countString(count: statusModel.attitudesCount, defaultString: "点赞")
-    }()
-
-    
-    /// 配图视图高度
-    private(set) open lazy var picturesViewHeight:CGFloat = {
+        
+        // 转发数量
+        repostsCountString = countString(count: statusModel.repostsCount, defaultString: "转发")
+        
+        // 评论数量
+        commentsCountString = countString(count: statusModel.commentsCount, defaultString: "评论")
+        
+        // 点赞数量
+        attitudesCountString = countString(count: statusModel.attitudesCount, defaultString: "点赞")
+        
+        // 配图视图大小
         if picUrls == nil || picUrls?.count == 0 {
             // 没有配图
-            return 0
+            picturesViewSize = CGSize.zero
         } else {
             // 多少行
             let rows = (picUrls!.count - 1) / kStatusPicturesViewColumns + 1
-            return CGFloat(rows) * kStatusPicturesViewItemWidth + CGFloat(rows - 1) * kStatusCellPictureInnerMargin + kStatusCellPictureOuterMargin
+            let height = CGFloat(rows) * kStatusPicturesViewItemWidth + CGFloat(rows - 1) * kStatusCellPictureInnerMargin + kStatusCellPictureOuterMargin
+            picturesViewSize = CGSize(width: kPicturesViewMaxWidth, height: height)
         }
-    }()
-    
-    /// 转发微博上的文字
-    private(set) open lazy var retweetedStatusText:String? = {
-        if statusModel.retweetedStatus == nil {
-            return nil
-        } else {
+        
+        // 转发微博文字
+        if statusModel.retweetedStatus != nil {
             var str = "@" + (statusModel.retweetedStatus?.user?.screenName ?? "") + ":"
             str += "  " + (statusModel.retweetedStatus?.text ?? "")
-            return str
+            retweetedStatusText = str
         }
-    }()
+        
+        // 行高
+        rowHeight = calcRowHeight()
+    }
+    
+    // MARK: - 私有属性
+    
+    private var statusModel:XGStatusModel
+}
+// MARK: - 其他方法
+
+extension XGStatusViewModel
+{
+    /// 根据模型数组返回视图模型数组
+    ///
+    /// - Parameter statusModelArray: [XGStatusModel]
+    /// - Returns: [XGStatusViewModel]
+    open class func viewModelArrayWithModelArray(statusModelArray:[XGStatusModel]) -> [XGStatusViewModel]
+    {
+        var viewModelArray = [XGStatusViewModel]()
+        for statusModel in statusModelArray {
+            viewModelArray.append(XGStatusViewModel(model: statusModel))
+        }
+        
+        return viewModelArray
+    }
     
     /// 根据数字返回字符串
     ///
@@ -170,28 +200,35 @@ class XGStatusViewModel
         }
     }
     
-    // MARK: - 构造方法
-    
-    init(model:XGStatusModel)
+    /// 计算行高
+    private func calcRowHeight() -> CGFloat
     {
-        statusModel = model
-    }
-    
-    /// 根据模型数组返回视图模型数组
-    ///
-    /// - Parameter statusModelArray: [XGStatusModel]
-    /// - Returns: [XGStatusViewModel]
-    open class func viewModelArrayWithModelArray(statusModelArray:[XGStatusModel]) -> [XGStatusViewModel]
-    {
-        var viewModelArray = [XGStatusViewModel]()
-        for statusModel in statusModelArray {
-            viewModelArray.append(XGStatusViewModel(model: statusModel))
+        let iconWidth:CGFloat = 50 // 顶部视图头像宽高 如果修改了 行高这里也要改
+        // 原创 = 分割线(12) + 12间距 + 头像(50) + 12间距 + 正文高度 + 配图高度 + 12间距 + 底部工具栏(44)
+        // 转发 = 分割线(12) + 12间距 + 头像(50) + 12间距 + 正文高度 + 12间距 + 3间距 + 转发文字高度 + 配图高度 + 12间距 + 底部工具栏(44)
+        
+        // 分割线 + 顶部视图高度
+        var rowHeight = kStatusCellPictureOuterMargin + kStatusCellPictureOuterMargin + iconWidth + kStatusCellPictureOuterMargin
+        
+        // 正文高度
+        if let text = text {
+            rowHeight += (text as NSString).boundingRect(with: CGSize(width: kPicturesViewMaxWidth, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], context: nil).size.height
         }
         
-        return viewModelArray
+        // 转发微博
+        if statusModel.retweetedStatus != nil {
+            rowHeight += kStatusCellPictureOuterMargin + kStatusCellPictureInnerMargin
+            if let retweetedStatusText = retweetedStatusText {
+                rowHeight += (retweetedStatusText as NSString).boundingRect(with: CGSize(width: kPicturesViewMaxWidth, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], context: nil).size.height
+            }
+        }
+        
+        // 配图
+        rowHeight += picturesViewSize.height
+        
+        // 底部工具栏
+        rowHeight += kStatusCellPictureOuterMargin + 44
+        
+        return rowHeight
     }
-    
-    // MARK: - 私有属性
-    
-    private var statusModel:XGStatusModel
 }

@@ -96,7 +96,7 @@ extension XGStatusTopView
         // 设置自动布局
         separatorView.snp.makeConstraints { (make) in
             make.top.left.right.equalTo(self)
-            make.height.equalTo(8)
+            make.height.equalTo(kStatusCellPictureOuterMargin)
         }
         
         iconImageView.snp.makeConstraints { (make) in

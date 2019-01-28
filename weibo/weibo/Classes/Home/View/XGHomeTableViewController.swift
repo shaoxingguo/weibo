@@ -102,6 +102,11 @@ extension XGHomeTableViewController
         cell?.statusViewModel = viewModel
         return cell!
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return statusListViewModel.statusList[indexPath.row].rowHeight
+    }
 }
 
 // MARK: - 获取微博数据
@@ -172,7 +177,6 @@ extension XGHomeTableViewController
          tableView.register(XGRetweetStatusTableViewCell.self, forCellReuseIdentifier: kRetweetStatusTableViewCellReuseIdentifier)
         
         // 设置行高
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         
         // 取消默认64偏移

@@ -47,10 +47,6 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
             make.left.right.equalTo(retweetTextLabel)
             make.height.equalTo(200).priority(.high)
         }
-
-        bottomView.snp.makeConstraints { (make) in
-            make.top.equalTo(backgroundButton.snp.bottom).offset(kStatusCellPictureOuterMargin)
-        }
     }
     
     // MARK: - 懒加载

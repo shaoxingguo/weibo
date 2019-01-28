@@ -39,7 +39,9 @@ public let kStatusCellPictureInnerMargin:CGFloat = 3
 /// 微博配图视图列数
 public let kStatusPicturesViewColumns:Int = 3
 /// 配图视图单个图片宽高
-public let kStatusPicturesViewItemWidth = ((kScreenWidth - 2 * kStatusCellPictureOuterMargin) - CGFloat(kStatusPicturesViewColumns - 1) * kStatusCellPictureInnerMargin) / CGFloat(kStatusPicturesViewColumns)
+public let kStatusPicturesViewItemWidth:CGFloat = ((kScreenWidth - 2 * kStatusCellPictureOuterMargin) - CGFloat(kStatusPicturesViewColumns - 1) * kStatusCellPictureInnerMargin) / CGFloat(kStatusPicturesViewColumns)
+/// 配图视图最大宽度
+public let kPicturesViewMaxWidth:CGFloat = kScreenWidth - 2 * kStatusCellPictureOuterMargin
 
 // MARK: - 通知相关
 

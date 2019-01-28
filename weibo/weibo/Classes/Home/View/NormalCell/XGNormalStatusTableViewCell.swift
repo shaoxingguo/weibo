@@ -22,9 +22,5 @@ class XGNormalStatusTableViewCell: XGStatusTableViewCell
             make.left.right.equalTo(contentLabel)
             make.height.equalTo(200).priority(.high)
         }
-        
-        bottomView.snp.makeConstraints { (make) in
-            make.top.equalTo(picturesView.snp.bottom).offset(kStatusCellPictureOuterMargin)
-        }
     }
 }

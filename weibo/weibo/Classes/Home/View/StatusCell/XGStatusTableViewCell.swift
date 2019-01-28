@@ -20,7 +20,7 @@ class XGStatusTableViewCell: UITableViewCell
             picturesView.statusViewModel = statusViewModel
             // 更新高度
             picturesView.snp.updateConstraints { (make) in
-                make.height.equalTo(statusViewModel?.picturesViewHeight ?? 0).priority(.high)
+                make.height.equalTo(statusViewModel?.picturesViewSize.height ?? 0).priority(.high)
             }
         }
     }
@@ -55,7 +55,7 @@ class XGStatusTableViewCell: UITableViewCell
         return view
     }()
     /// 底部视图
-    private(set) open lazy var bottomView:XGStatusBottomView = {
+   private lazy var bottomView:XGStatusBottomView = {
         let view = XGStatusBottomView()
         view.backgroundColor = UIColor.corlorWith(red: 243, green: 243, blue: 243)
         return view
