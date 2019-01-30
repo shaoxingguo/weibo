@@ -185,13 +185,6 @@ extension XGHomeTableViewController
     /// 设置tableView
     private func setUpTaleView() -> Void
     {
-        // 异步绘制
-        tableView.layer.drawsAsynchronously = true
-        
-        // 栅格化
-        tableView.layer.shouldRasterize = true
-        tableView.layer.rasterizationScale = kScreenScale
-        
         // 注册cell
         tableView.register(XGNormalStatusTableViewCell.self, forCellReuseIdentifier: kNormalStatusTableViewCellReuseIdentifier)
          tableView.register(XGRetweetStatusTableViewCell.self, forCellReuseIdentifier: kRetweetStatusTableViewCellReuseIdentifier)
@@ -206,7 +199,7 @@ extension XGHomeTableViewController
         tableView.separatorStyle = .none
         
         // 设置下拉刷新
-        tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNewData))
+        tableView.mj_header = XGRefreshHeader(refreshingTarget: self, refreshingAction: #selector(loadNewData))
         
         // 设置上拉刷新
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
@@ -232,7 +225,6 @@ extension XGHomeTableViewController
         for view in navigationController?.navigationBar.subviews ?? [] {
             if let UIBarBackgroundClass = NSClassFromString("_UIBarBackground") {
                 if view.isKind(of: UIBarBackgroundClass) {
-                    XGPrint("我是背景")
                     view.addSubview(refreshCountLabel)
                     refreshCountLabel.frame = CGRect(x: 0, y: kNavigationBarHeight - kToolBarHeight, width: view.width, height: kToolBarHeight)
                     refreshCountLabel.isHidden = true

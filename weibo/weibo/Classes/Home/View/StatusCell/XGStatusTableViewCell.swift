@@ -30,8 +30,19 @@ class XGStatusTableViewCell: UITableViewCell
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
+        
+        // 设置界面
         setUpUI()
+        
+        // 选中样式
+        selectionStyle = .none
+        
+        // 异步绘制
+        layer.drawsAsynchronously = true
+        
+        // 栅格化
+        layer.shouldRasterize = true
+        layer.rasterizationScale = kScreenScale
     }
     
     required init?(coder aDecoder: NSCoder) {

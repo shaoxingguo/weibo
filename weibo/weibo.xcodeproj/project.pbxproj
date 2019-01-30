@@ -32,6 +32,7 @@
 		8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9686E221FC11EF005E7289 /* XGStatusBottomView.swift */; };
 		8C9686F821FC26E2005E7289 /* XGStatusPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9686F721FC26E2005E7289 /* XGStatusPicturesView.swift */; };
 		8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */; };
+		8CA1B7CD2201707B008BFAB1 /* XGRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1B7CC2201707B008BFAB1 /* XGRefreshHeader.swift */; };
 		8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */; };
 		8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */; };
 		8CC26CA521EF669000A9E074 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA421EF669000A9E074 /* UILabel+Extension.swift */; };
@@ -77,6 +78,7 @@
 		8C9686E221FC11EF005E7289 /* XGStatusBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusBottomView.swift; sourceTree = "<group>"; };
 		8C9686F721FC26E2005E7289 /* XGStatusPicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusPicturesView.swift; sourceTree = "<group>"; };
 		8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNetworkManager.swift; sourceTree = "<group>"; };
+		8CA1B7CC2201707B008BFAB1 /* XGRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XGRefreshHeader.swift; sourceTree = "<group>"; };
 		8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorViewController.swift; sourceTree = "<group>"; };
 		8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorView.swift; sourceTree = "<group>"; };
 		8CC26CA421EF669000A9E074 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		8C11BF7E21EC4E7000F2E958 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CA1B7CB2201707B008BFAB1 /* Refresh */,
 				8CD8486D21FD8BC400EC027E /* StatusCell */,
 				8C14346521FB3C56007ED7E9 /* NormalCell */,
 				8CD8487021FD8FAE00EC027E /* RetweetCell */,
@@ -354,6 +357,14 @@
 				8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		8CA1B7CB2201707B008BFAB1 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				8CA1B7CC2201707B008BFAB1 /* XGRefreshHeader.swift */,
+			);
+			path = Refresh;
 			sourceTree = "<group>";
 		};
 		8CCAB9C921F3131A00A7FC70 /* Visitor */ = {
@@ -603,6 +614,7 @@
 				8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */,
 				8C8E832921F4B9ED004F5CD8 /* XGNewFeatureViewController.swift in Sources */,
 				8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */,
+				8CA1B7CD2201707B008BFAB1 /* XGRefreshHeader.swift in Sources */,
 				8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */,
 				8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */,
 				8CCAB9CD21F3134300A7FC70 /* XGLoginViewController.swift in Sources */,
