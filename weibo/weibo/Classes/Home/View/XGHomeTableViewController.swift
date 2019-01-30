@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import SDWebImage
 
 /// 原创微博cell重用标识符
 private let kNormalStatusTableViewCellReuseIdentifier = "XGNormalStatusTableViewCell"
@@ -117,6 +118,18 @@ extension XGHomeTableViewController
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return statusListViewModel.statusList[indexPath.row].rowHeight
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        if !decelerate {
+            SDWebImageManager.shared().imageCache?.clearMemory()
+        }
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        SDWebImageManager.shared().imageCache?.clearMemory()
     }
 }
 

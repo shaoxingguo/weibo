@@ -94,9 +94,6 @@ extension XGStatusListViewModel
 
                 // 重新计算配图视图大小
                 viewModel.updatePictureViewSize(imageSize: image!.size)
-                let newImage = image?.scaleToSize(imageSize: image!.size, backgroundColor: UIColor.white)
-                // 重新保存图片 会根据屏幕像素比例保存 例如图片50 * 50 当前屏幕比例2 新保存的图片大小为100 * 100
-                SDWebImageManager.shared().imageCache?.store(newImage, forKey: URLString)
             }
         }
         
