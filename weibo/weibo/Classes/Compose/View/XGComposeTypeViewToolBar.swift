@@ -11,6 +11,7 @@ import UIKit
 class XGComposeTypeViewToolBar: UIView
 {
     // MARK: - 构造方法
+    
     /// 代理
     open weak var delegate:XGComposeTypeViewToolBarDelegate?
     
@@ -29,6 +30,45 @@ class XGComposeTypeViewToolBar: UIView
         XGPrint("我去了")
     }
     
+    // MARK: - 其他方法
+    
+    /// 展示工具栏上所有的功能按钮
+    open func showAllItems() -> Void
+    {
+        goBackButton.isHidden = false
+        
+        closeButton.snp.updateConstraints { (make) in
+            make.centerX.equalTo(self).offset(self.width / 6)
+        }
+        
+        goBackButton.snp.updateConstraints { (make) in
+            make.centerX.equalTo(self).offset(-self.width / 6)
+
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.layoutIfNeeded()
+        }
+    }
+    
+    /// 隐藏工具栏上的功能按钮
+    private func dismissItems() -> Void
+    {
+        closeButton.snp.updateConstraints { (make) in
+            make.centerX.equalTo(self)
+        }
+        
+        goBackButton.snp.updateConstraints { (make) in
+            make.centerX.equalTo(self)
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.layoutIfNeeded()
+        }) { (_) in
+            self.goBackButton.isHidden = true
+        }
+    }
+    
     // MARK: - 事件监听
     
     // 点击取消按钮
@@ -40,6 +80,7 @@ class XGComposeTypeViewToolBar: UIView
     // 点击返回按钮
     @objc private func goBackAction() -> Void
     {
+        dismissItems()
         delegate?.composeTypeViewToolBarGoBackButtonDidClick?()
     }
     
@@ -81,11 +122,11 @@ extension XGComposeTypeViewToolBar
         }
     }
 }
+
 // MARK: - XGComposeTypeViewToolBarDelegate
 
 @objc public protocol XGComposeTypeViewToolBarDelegate
 {
-
     /// 关闭按钮点击事件
     @objc optional func composeTypeViewToolBarCloseButtonDidClick() -> Void
     /// 返回按钮点事件

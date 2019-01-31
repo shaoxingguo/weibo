@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import pop
 
 class XGComposeTypeView: UIView
 {
@@ -29,31 +30,50 @@ class XGComposeTypeView: UIView
         XGPrint("我去了")
     }
     
-    // MARK: - 公开方法
-    
-    /// 展示
-    open func show() -> Void
-    {
-        alpha = 0
-        UIView.animate(withDuration: 1, animations: {
-            self.alpha = 1
-        }) { (_) in
-            
-        }
-    }
-    
     // MARK: - 事件监听
     
     /// 更多按钮点击事件
     @objc private func clickMoreAction() -> Void
     {
-        
+        scrollView.setContentOffset(CGPoint(x: scrollView.width, y: 0), animated: true)
+        toolBar.showAllItems()
     }
     
     // 其他撰写类型按钮点击事件
-    @objc private func clickComposeTypeAction() -> Void
+    @objc private func clickComposeTypeAction(selectedButton:XGComposeTypeButton) -> Void
     {
-        
+        guard let nameSpace = Bundle.main.nameSpace,
+              let className = buttonsInfo[selectedButton.tag]["viewController"],
+              let classType = NSClassFromString(nameSpace + className) as? UIViewController.Type else {
+            return
+        }
+
+        // FIXME: 控制器跳转
+         let viewController = classType.init()
+        let page:Int = Int(scrollView.contentOffset.x / scrollView.width)    // 页码
+        let contentView = scrollView.subviews[page] // 内容视图
+        for (index,button) in contentView.subviews.enumerated() {
+            // 缩放动画
+            let scaleAnimation:POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewScaleXY)
+            let scale:CGFloat = (button == selectedButton) ? 2 : 0.2
+            scaleAnimation.toValue = CGPoint(x: scale, y: scale)
+            scaleAnimation.duration = 0.5
+            button.pop_add(scaleAnimation, forKey: nil)
+            
+            // 透明度渐变动画
+            let alphaAnimation:POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+            alphaAnimation.toValue = 0.2
+            alphaAnimation.duration = 0.5
+            button.pop_add(alphaAnimation, forKey: nil)
+            
+            if index == 0 {
+                alphaAnimation.completionBlock = { _,_ -> Void in
+                    UIApplication.shared.keyWindow?.rootViewController?.present(viewController, animated: true, completion: {
+                        self.removeFromSuperview()
+                    })
+                }
+            }
+        }
     }
     
     // MARK: - 懒加载
@@ -68,8 +88,10 @@ class XGComposeTypeView: UIView
         let scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.white
         scrollView.bounces = false
-        scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isScrollEnabled = false
+        scrollView.clipsToBounds = false
+        scrollView.isPagingEnabled = true
         return scrollView
     }()
     /// 底部工具栏
@@ -80,7 +102,7 @@ class XGComposeTypeView: UIView
         return toolBar
     }()
     /// 按钮数据数组
-    private let buttonsInfo:[[String:String]] = [["imageName": "tabbar_compose_idea", "title": "文字", "clsName": "WBComposeViewController"],
+    private let buttonsInfo:[[String:String]] = [["imageName": "tabbar_compose_idea", "title": "文字", "viewController": "XGComposeViewController"],
                                ["imageName": "tabbar_compose_photo", "title": "照片/视频"],
                                ["imageName": "tabbar_compose_weibo", "title": "长微博"],
                                ["imageName": "tabbar_compose_lbs", "title": "签到"],
@@ -97,9 +119,67 @@ class XGComposeTypeView: UIView
 
 extension XGComposeTypeView : XGComposeTypeViewToolBarDelegate
 {
-    func composeTypeViewToolBarCloseButtonDidClick()
+    func composeTypeViewToolBarCloseButtonDidClick() -> Void
     {
-        removeFromSuperview()
+        dismissComposeTypeButtons()
+    }
+    
+    func composeTypeViewToolBarGoBackButtonDidClick() -> Void
+    {
+        scrollView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
+// MARK: - 动画相关
+
+extension XGComposeTypeView
+{
+    /// 展示
+    open func show() -> Void
+    {
+        alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            self.alpha = 1
+             self.showComposeTypeButtons()
+        })
+    }
+    
+    /// 选项按钮展示动画
+    private func showComposeTypeButtons() -> Void
+    {
+        for (index,button) in (scrollView.subviews[0].subviews).enumerated() {
+            // 按钮升序上升
+            let animation:POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+            animation.fromValue = button.centerY + 400
+            animation.toValue = button.centerY
+            animation.beginTime = CACurrentMediaTime() + CFTimeInterval(index) * 0.025
+            animation.springSpeed = 8
+            animation.springBounciness = 8
+            button.layer.pop_add(animation, forKey: nil)
+        }
+    }
+    
+    /// 取消选项按钮动画
+    private func dismissComposeTypeButtons() -> Void
+    {
+        let page:Int = Int(scrollView.contentOffset.x / scrollView.width)    // 页码
+        let contentView = scrollView.subviews[page] // 内容视图
+        for (index,button) in (contentView.subviews.enumerated()) {
+            // 按钮倒序下落
+            let animation:POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+            animation.fromValue = button.centerY
+            animation.toValue = button.centerY + 400
+            animation.beginTime = CACurrentMediaTime() + CFTimeInterval((contentView.subviews.count - 1 - index)) * 0.025
+            animation.springSpeed = 8
+            animation.springBounciness = 8
+            button.layer.pop_add(animation, forKey: nil)
+            
+            // 最后一个按钮动画结束 删除视图
+            if index == contentView.subviews.count - 1 {
+                animation.completionBlock = { _,_ -> Void in
+                    self.removeFromSuperview()
+                }
+            }
+        }
     }
 }
 
@@ -163,11 +243,12 @@ extension XGComposeTypeView
                 
                 // 创建按钮
                 let button = XGComposeTypeButton(title: buttonsInfo[index]["title"], imageName: buttonsInfo[index]["imageName"])
+                button.tag = index
                 button.backgroundColor = contentView.backgroundColor
                 if let actionName = buttonsInfo[index]["actionName"] {
                     button.addTarget(self, action: NSSelectorFromString(actionName), for: .touchUpInside)
                 } else {
-                    button.addTarget(self, action: #selector(clickComposeTypeAction), for: .touchUpInside)
+                    button.addTarget(self, action: #selector(clickComposeTypeAction(selectedButton:)), for: .touchUpInside)
                 }
                 
                 // 按钮九宫格布局

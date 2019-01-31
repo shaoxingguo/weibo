@@ -149,16 +149,12 @@ extension XGTabBarController
     ///   - visitorInfo: 访客视图信息
     private func addChildViewController(className:String,imageName:String, title:String,visitorInfo:[String:String]) -> Void
     {
-        guard  let appName = (Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String) else {
+        guard let nameSpace = Bundle.main.nameSpace,
+              let classType = NSClassFromString(nameSpace + className) as? XGVisitorViewController.Type else {
             return
         }
         
-        let className = appName + "." + className
-        let classType = NSClassFromString(className) as? XGVisitorViewController.Type
-        guard let viewControler = classType?.init() else {
-            return
-        }
-        
+        let viewControler = classType.init()
         viewControler.visitorInfo = visitorInfo
         let nav = XGNavigationController(rootViewController: viewControler)
         viewControler.navigationItem.title = title

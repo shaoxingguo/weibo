@@ -21,6 +21,8 @@
 		8C32A9CF2202AFD3008A1ECE /* XGComposeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */; };
 		8C32A9D12202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */; };
 		8C32A9D32202E763008A1ECE /* XGComposeTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */; };
+		8C32A9D52202F4CA008A1ECE /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */; };
+		8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D622032248008A1ECE /* XGComposeViewController.swift */; };
 		8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DB17521F58516007590CF /* XGStatusModel.swift */; };
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
@@ -68,6 +70,8 @@
 		8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeView.swift; sourceTree = "<group>"; };
 		8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeViewToolBar.swift; sourceTree = "<group>"; };
 		8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeButton.swift; sourceTree = "<group>"; };
+		8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		8C32A9D622032248008A1ECE /* XGComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeViewController.swift; sourceTree = "<group>"; };
 		8C3DB17521F58516007590CF /* XGStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusModel.swift; sourceTree = "<group>"; };
 		8C46F43F21EDC1460071281F /* XGNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNavigationController.swift; sourceTree = "<group>"; };
 		8C51F8A121EB74CA0015FC0C /* weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +192,7 @@
 				8CC26CA621EF712800A9E074 /* UIImage+Extension.swift */,
 				8C6FA4D921F843C000D3DD4F /* UIImageView+Extension.swift */,
 				8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */,
+				8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */,
 				8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */,
 				8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */,
+				8C32A9D622032248008A1ECE /* XGComposeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */,
+				8C32A9D52202F4CA008A1ECE /* Bundle+Extension.swift in Sources */,
 				8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */,
 				8C32A9CF2202AFD3008A1ECE /* XGComposeTypeView.swift in Sources */,
 				8C6FA4DA21F843C000D3DD4F /* UIImageView+Extension.swift in Sources */,
@@ -620,6 +627,7 @@
 				8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */,
 				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
+				8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */,
 				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
 				8C14346721FB3C95007ED7E9 /* XGStatusTopView.swift in Sources */,
