@@ -11,11 +11,8 @@ import SnapKit
 
 class XGVisitorViewController: UITableViewController
 {
-    var visitorInfo:[String:String]? {
-        didSet {
-            visitorView.visitorInfo = visitorInfo
-        }
-    }
+    /// 访客视图配置信息
+    var visitorInfo:[String:String]?
     
     // MARK: - 控制器生命周期方法
     
@@ -38,13 +35,9 @@ class XGVisitorViewController: UITableViewController
         XGPrint("注册")
     }
     
-    // MARK: - 懒加载
+    // MARK: - 私有属性
     
-    private lazy var visitorView:XGVisitorView = {
-        let visitorView = XGVisitorView()
-        visitorView.backgroundColor = UIColor(white: 0.93, alpha: 1)
-        return visitorView
-    }()
+    private var visitorView:XGVisitorView?
 }
 
  // MARK: - 设置界面
@@ -53,6 +46,9 @@ extension XGVisitorViewController
 {
     private func setUpUI() -> Void
     {
+        visitorView = XGVisitorView()
+        visitorView?.visitorInfo = visitorInfo
+        visitorView?.backgroundColor = UIColor(white: 0.93, alpha: 1)
         view = visitorView
         
         // 设置导航栏
@@ -60,7 +56,7 @@ extension XGVisitorViewController
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: .plain, target: self, action: #selector(LoginAction))
         
         // 设置按钮监听事件
-        visitorView.loginButton.addTarget(self, action: #selector(LoginAction), for: .touchUpInside)
-        visitorView.registerButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
+        visitorView?.loginButton.addTarget(self, action: #selector(LoginAction), for: .touchUpInside)
+        visitorView?.registerButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
     }
 }

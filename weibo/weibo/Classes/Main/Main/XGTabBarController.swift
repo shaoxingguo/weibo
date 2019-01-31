@@ -54,11 +54,15 @@ class XGTabBarController: UITabBarController
     
     // MARK: - 事件监听
     
+    // 撰写按钮点击事件
     @objc private func publishAction() -> Void
     {
-        XGPrint("发布微博")
+        let composeTypeView = XGComposeTypeView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        view.addSubview(composeTypeView)
+        composeTypeView.show()
     }
     
+    // 更新未读数事件
     @objc private func updateUnreadCountAction() -> Void
     {
         XGDataManager.loadUnreadCount { (count, error) in
@@ -68,6 +72,7 @@ class XGTabBarController: UITabBarController
     
     // MARK: - 懒加载
     
+    /// 撰写按钮
     private lazy var publishButton:UIButton = { [weak self] in
         let button = UIButton(backgroundImageName: "tabbar_compose_button", imageName: "tabbar_compose_icon_add", target:self, action: #selector(publishAction))
         return button

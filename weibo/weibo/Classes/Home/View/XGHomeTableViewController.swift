@@ -40,7 +40,7 @@ class XGHomeTableViewController: XGVisitorViewController
         // 注册通知
         registerNotification()
         // 刷新数据
-        tableView.mj_header.beginRefreshing()
+//        tableView.mj_header.beginRefreshing()
     }
     
     deinit {
