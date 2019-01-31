@@ -29,6 +29,8 @@ import MJExtension
     var picUrls: [XGPictureModel]?
     /// 被转发微博
     var retweetedStatus:XGStatusModel?
+    /// 微博来源
+    var source:String?
 }
 
 // MARK: - 设置模型key

@@ -40,6 +40,8 @@ class XGStatusViewModel
     private(set) open var retweetedStatusText:String?
     /// 行高
     private(set) open var rowHeight:CGFloat = 0
+    /// 微博来源字符串
+    private(set) open var sourceString:String?
     
     /// 头像图片
     open var profileImage:UIImage? {
@@ -146,6 +148,9 @@ class XGStatusViewModel
         
         // 行高
         rowHeight = calcRowHeight()
+        
+        // 微博来源字符串
+        sourceString = sourceStr(str: statusModel.source)
     }
     
     // MARK: - 私有属性
@@ -262,5 +267,25 @@ extension XGStatusViewModel
         // 解决像素不对齐 行高带小数 转换为整数
         rowHeight = ceil(rowHeight)
         return rowHeight
+    }
+    
+    /// 根据源字符串截取出微博来源
+    ///
+    /// - Parameter str: 源字符串
+    /// - Returns: 微博来源字符串
+    private func sourceStr(str:String?) -> String?
+    {
+        // 正则表达式
+        let pattern = "<a href=.*?>(.*?)</a>"
+        // 匹配
+        guard let str = str,
+            let regularExpress = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),
+            let result = regularExpress.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.count)) else {
+                return nil
+        }
+        
+        let range = result.range(at: 1)
+        let subStr = (str as NSString).substring(with: range)
+        return "来自 " + subStr
     }
 }

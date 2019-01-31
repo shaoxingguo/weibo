@@ -8,7 +8,7 @@
 
 import AFNetworking
 
-enum HttpMethodType:String
+public enum HttpMethodType:String
 {
     case Get = "Get"
     case Post = "Post"
@@ -36,7 +36,7 @@ class XGNetworkManager: AFHTTPSessionManager
     ///   - URLString: 请求地址
     ///   - parameters: 请求参数
     ///   - completion: 完成回调
-    class func request(type:HttpMethodType,URLString:String,parameters:[String:Any]?,completion:@escaping (Any?, Error?) -> Void)  -> Void
+    open class func request(type:HttpMethodType,URLString:String,parameters:[String:Any]?,completion:@escaping (Any?, Error?) -> Void)  -> Void
     {
         let successCompletion = { (dataTask:URLSessionDataTask?,responseObject:Any?) -> Void in
             completion(responseObject,nil)

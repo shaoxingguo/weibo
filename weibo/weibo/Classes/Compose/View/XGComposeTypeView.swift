@@ -30,6 +30,13 @@ class XGComposeTypeView: UIView
         XGPrint("我去了")
     }
     
+    override func didMoveToSuperview()
+    {
+        if superview != nil {
+            show()
+        }
+    }
+    
     // MARK: - 事件监听
     
     /// 更多按钮点击事件
@@ -48,7 +55,7 @@ class XGComposeTypeView: UIView
             return
         }
 
-        // FIXME: 控制器跳转
+        // 控制器跳转
          let viewController = classType.init()
         let page:Int = Int(scrollView.contentOffset.x / scrollView.width)    // 页码
         let contentView = scrollView.subviews[page] // 内容视图
@@ -86,7 +93,7 @@ class XGComposeTypeView: UIView
     /// scrollView
     private lazy var scrollView:UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.white
+        scrollView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         scrollView.bounces = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isScrollEnabled = false
@@ -134,13 +141,14 @@ extension XGComposeTypeView : XGComposeTypeViewToolBarDelegate
 extension XGComposeTypeView
 {
     /// 展示
-    open func show() -> Void
+    private func show() -> Void
     {
         alpha = 0
         UIView.animate(withDuration: 1, animations: {
             self.alpha = 1
-             self.showComposeTypeButtons()
         })
+        
+        self.showComposeTypeButtons()
     }
     
     /// 选项按钮展示动画

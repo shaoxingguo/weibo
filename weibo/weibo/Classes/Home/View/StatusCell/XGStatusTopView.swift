@@ -40,6 +40,8 @@ class XGStatusTopView: UIView
             vipImageView.image = statusViewModel?.vipImage
             // 设置认证
             verifiedImageView.image = statusViewModel?.verifiedImage
+            // 设置微博来源
+            soureLabel.text = statusViewModel?.sourceString
         }
     }
     

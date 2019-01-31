@@ -59,7 +59,6 @@ class XGTabBarController: UITabBarController
     {
         let composeTypeView = XGComposeTypeView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
         view.addSubview(composeTypeView)
-        composeTypeView.show()
     }
     
     // 更新未读数事件
