@@ -19,6 +19,7 @@ PODS:
   - MJRefresh (3.1.15.7)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
+  - pop (1.0.12)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - MLeaksFinder
+  - pop
   - SDWebImage
   - SnapKit
   - SVProgressHUD
@@ -41,6 +43,7 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - MLeaksFinder
+    - pop
     - SDWebImage
     - SnapKit
     - SVProgressHUD
@@ -51,10 +54,11 @@ SPEC CHECKSUMS:
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 4aaa9a9f5579e8e7bb1387ecaf3153b6b75af1b3
+PODFILE CHECKSUM: 18a3ada34a574457bda3c231e2b16ed233154fa1
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.rc.1

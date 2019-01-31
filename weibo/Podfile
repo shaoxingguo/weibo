@@ -14,5 +14,6 @@ pod 'SDWebImage'
 pod 'SVProgressHUD'
 pod 'MLeaksFinder'
 pod 'MJRefresh'
+pod 'pop'
 
 end
