@@ -38,6 +38,9 @@
 		8C9686F821FC26E2005E7289 /* XGStatusPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9686F721FC26E2005E7289 /* XGStatusPicturesView.swift */; };
 		8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */; };
 		8CA1B7CD2201707B008BFAB1 /* XGRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1B7CC2201707B008BFAB1 /* XGRefreshHeader.swift */; };
+		8CA6E6972204008C00A29513 /* XGEmotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6E6962204008C00A29513 /* XGEmotionModel.swift */; };
+		8CA6E699220402F900A29513 /* XGEmotionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6E698220402F900A29513 /* XGEmotionsListViewModel.swift */; };
+		8CA6E69D2204111B00A29513 /* XGEmotionGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6E69C2204111B00A29513 /* XGEmotionGroupModel.swift */; };
 		8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */; };
 		8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */; };
 		8CC26CA521EF669000A9E074 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA421EF669000A9E074 /* UILabel+Extension.swift */; };
@@ -89,6 +92,9 @@
 		8C9686F721FC26E2005E7289 /* XGStatusPicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusPicturesView.swift; sourceTree = "<group>"; };
 		8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNetworkManager.swift; sourceTree = "<group>"; };
 		8CA1B7CC2201707B008BFAB1 /* XGRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XGRefreshHeader.swift; sourceTree = "<group>"; };
+		8CA6E6962204008C00A29513 /* XGEmotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionModel.swift; sourceTree = "<group>"; };
+		8CA6E698220402F900A29513 /* XGEmotionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionsListViewModel.swift; sourceTree = "<group>"; };
+		8CA6E69C2204111B00A29513 /* XGEmotionGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionGroupModel.swift; sourceTree = "<group>"; };
 		8CC26CA021EF65AA00A9E074 /* XGVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorViewController.swift; sourceTree = "<group>"; };
 		8CC26CA221EF65C000A9E074 /* XGVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGVisitorView.swift; sourceTree = "<group>"; };
 		8CC26CA421EF669000A9E074 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -287,6 +293,8 @@
 		8C32A9CC2202AD1D008A1ECE /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				8CA6E69A220404E500A29513 /* ViewModel */,
+				8CA6E6952204006C00A29513 /* Model */,
 				8C32A9CD2202AF7C008A1ECE /* View */,
 			);
 			path = Compose;
@@ -396,6 +404,23 @@
 				8CA1B7CC2201707B008BFAB1 /* XGRefreshHeader.swift */,
 			);
 			path = Refresh;
+			sourceTree = "<group>";
+		};
+		8CA6E6952204006C00A29513 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CA6E6962204008C00A29513 /* XGEmotionModel.swift */,
+				8CA6E69C2204111B00A29513 /* XGEmotionGroupModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8CA6E69A220404E500A29513 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8CA6E698220402F900A29513 /* XGEmotionsListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8CCAB9C921F3131A00A7FC70 /* Visitor */ = {
@@ -618,8 +643,10 @@
 			files = (
 				8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */,
 				8C32A9D52202F4CA008A1ECE /* Bundle+Extension.swift in Sources */,
+				8CA6E6972204008C00A29513 /* XGEmotionModel.swift in Sources */,
 				8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */,
 				8C32A9CF2202AFD3008A1ECE /* XGComposeTypeView.swift in Sources */,
+				8CA6E699220402F900A29513 /* XGEmotionsListViewModel.swift in Sources */,
 				8C6FA4DA21F843C000D3DD4F /* UIImageView+Extension.swift in Sources */,
 				8C14346421FB3C50007ED7E9 /* XGNormalStatusTableViewCell.swift in Sources */,
 				8CFAE97D21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift in Sources */,
@@ -636,6 +663,7 @@
 				8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */,
 				8C14346221FB39EF007ED7E9 /* XGPictureModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
+				8CA6E69D2204111B00A29513 /* XGEmotionGroupModel.swift in Sources */,
 				8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */,
 				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,
 				8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */,

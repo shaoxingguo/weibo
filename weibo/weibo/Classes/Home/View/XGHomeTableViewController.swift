@@ -9,6 +9,7 @@
 import UIKit
 import MJRefresh
 import SDWebImage
+import AFNetworking
 
 /// 原创微博cell重用标识符
 private let kNormalStatusTableViewCellReuseIdentifier = "XGNormalStatusTableViewCell"
@@ -19,6 +20,8 @@ class XGHomeTableViewController: XGVisitorViewController
 {
     /// 数据列表视图模型
     private lazy var statusListViewModel:XGStatusListViewModel = XGStatusListViewModel()
+    /// 表情信息视图模型
+    private lazy var emotionsListViewModel:XGEmotionsListViewModel = XGEmotionsListViewModel()
     
     // MARK: - 控制器生命周期方法
     
@@ -39,8 +42,8 @@ class XGHomeTableViewController: XGVisitorViewController
         setUpRefreshCountLabel()
         // 注册通知
         registerNotification()
-        // 刷新数据
-        tableView.mj_header.beginRefreshing()
+        // 加载表情信息
+        loadEmotionsData()
     }
     
     deinit {
@@ -137,6 +140,22 @@ extension XGHomeTableViewController
 
 extension XGHomeTableViewController
 {
+    /// 获取表情信息
+    private func loadEmotionsData() -> Void
+    {
+        DispatchQueue.main.async {
+            self.emotionsListViewModel.loadEmotionsList { (isSuccess) in
+                if !isSuccess {
+                    XGPrint("加载表情信息失败!")
+                    return
+                }
+                
+                // 加载微博数据
+                self.tableView.mj_header.beginRefreshing()
+            }
+        }
+    }
+    
     /// 获取最新微博数据
     @objc private func loadNewData() -> Void
     {

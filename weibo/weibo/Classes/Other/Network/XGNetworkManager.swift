@@ -38,6 +38,13 @@ class XGNetworkManager: AFHTTPSessionManager
     ///   - completion: 完成回调
     open class func request(type:HttpMethodType,URLString:String,parameters:[String:Any]?,completion:@escaping (Any?, Error?) -> Void)  -> Void
     {
+        // 网络不可用
+        if !AFNetworkReachabilityManager.shared().isReachable {
+            let error = NSError(domain: "网络不可用", code: 10000001, userInfo: nil)
+            completion(nil,error)
+            return
+        }
+        
         let successCompletion = { (dataTask:URLSessionDataTask?,responseObject:Any?) -> Void in
             completion(responseObject,nil)
         }

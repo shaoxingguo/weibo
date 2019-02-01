@@ -86,3 +86,5 @@ public let kHomeTimelineAPI:String = "2/statuses/home_timeline.json"
 public let kUnreadCountAPI:String = "https://rm.api.weibo.com/2/remind/unread_count.json"
 /// 获取用户信息接口
 public let kUserInfoAPI:String = "2/users/show.json"
+/// 获取微博官方表情的详细信息接口
+public let kEmotionsAPI:String = "2/emotions.json"

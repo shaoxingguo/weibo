@@ -82,18 +82,20 @@ extension XGStatusListViewModel
                 continue
             }
             
-            // 缓存单图
-            group.enter()
             let URLString = viewModel.picUrls?.first?.thumbnailPic ?? ""
-            SDWebImageManager.shared().loadImage(with: URL(string: URLString), options: [.retryFailed,.refreshCached], progress: nil) { (image, data, error, _, _, _) in
-                group.leave()
-                if error != nil {
-                    XGPrint("单图缓存失败!")
-                    return
+            if SDWebImageManager.shared().imageCache?.diskImageDataExists(withKey: URLString) == false {
+                // 缓存单图
+                group.enter()
+                SDWebImageManager.shared().loadImage(with: URL(string: URLString), options: [.retryFailed,.refreshCached], progress: nil) { (image, data, error, _, _, _) in
+                    group.leave()
+                    if error != nil {
+                        XGPrint("单图缓存失败!")
+                        return
+                    }
+                    
+                    // 重新计算配图视图大小
+                    viewModel.updatePictureViewSize(imageSize: image!.size)
                 }
-
-                // 重新计算配图视图大小
-                viewModel.updatePictureViewSize(imageSize: image!.size)
             }
         }
         

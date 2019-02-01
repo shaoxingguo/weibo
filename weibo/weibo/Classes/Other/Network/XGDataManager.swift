@@ -151,6 +151,28 @@ extension XGDataManager
         }
     }
     
+    
+    /// 获取微博官方表情的详细信息
+    ///
+    /// - Parameter completion: 完成回调
+    open class func loadEmotionsList(completion:@escaping ([XGEmotionModel]?,Error?) ->Void) -> Void
+    {
+        accessTokenRequest(type: .Get, URLString: kEmotionsAPI, parameters: nil) { (responseObject, error) in
+            if error != nil {
+                completion(nil,error)
+                return
+            } else {
+                guard let arr = responseObject as? [[String:Any]] else {
+                    completion(nil,error)
+                    return
+                }
+                
+                let dataArray = XGEmotionModel.mj_objectArray(withKeyValuesArray: arr)?.copy()
+                completion(dataArray as? [XGEmotionModel],nil)
+            }
+        }
+    }
+    
     /// access_token请求
     ///
     /// - Parameters:

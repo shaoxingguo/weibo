@@ -30,12 +30,13 @@ extension AppDelegate:UIApplicationDelegate
 {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+        // 初始化设置
+        initializationSetting()
+
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = XGTabBarController()//rootViewController()
         window?.makeKeyAndVisible()
         XGPrint(NSHomeDirectory())
-        initializationSetting()
-       
         return true
     }
     
