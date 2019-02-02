@@ -40,14 +40,14 @@ class XGRefreshHeader: MJRefreshHeader
         kInitScrollViewTopInset == 0 ? kInitScrollViewTopInset = scrollView.contentInset.top : ()
         // 当不处于下拉刷新时 隐藏视图
         contentView.isHidden = offset.y >= -(kInitScrollViewTopInset)
-        if offset.y >= -(scrollView.contentInset.top) {
+        if offset.y > -(scrollView.contentInset.top) {
             // 上拉刷新 正常滚动
             return
         }
         
         // 缩放袋鼠
-        let kMaxOffset = mj_h + scrollView.contentInset.top
-        let kMinOffset = kEarthDisplayHeight + scrollView.contentInset.top
+        let kMaxOffset = mj_h + kInitScrollViewTopInset
+        let kMinOffset = kEarthDisplayHeight + kInitScrollViewTopInset
         if offset.y < -kMaxOffset || offset.y > -kMinOffset {
             // 最大下拉偏移为 -(mj_h + scrollView.contentInset.top) 最小为-(kEarthDisplayHeight + scrollView.contentInset.top) 超过最大或低于最小袋鼠不进行缩放
             return
