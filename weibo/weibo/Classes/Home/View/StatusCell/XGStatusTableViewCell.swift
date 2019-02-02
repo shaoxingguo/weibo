@@ -15,7 +15,7 @@ class XGStatusTableViewCell: UITableViewCell
     open var statusViewModel:XGStatusViewModel? {
         didSet {
             topView.statusViewModel = statusViewModel
-            contentLabel.text = statusViewModel?.text
+            contentLabel.attributedText = statusViewModel?.attributesText
             bottomView.statusViewModel = statusViewModel
             picturesView.statusViewModel = statusViewModel
             // 更新高度

@@ -83,7 +83,8 @@ extension XGStatusListViewModel
             }
             
             let URLString = viewModel.picUrls?.first?.thumbnailPic ?? ""
-            if SDWebImageManager.shared().imageCache?.diskImageDataExists(withKey: URLString) == false {
+            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: URLString)
+            if image == nil {
                 // 缓存单图
                 group.enter()
                 SDWebImageManager.shared().loadImage(with: URL(string: URLString), options: [.retryFailed,.refreshCached], progress: nil) { (image, data, error, _, _, _) in
@@ -96,6 +97,9 @@ extension XGStatusListViewModel
                     // 重新计算配图视图大小
                     viewModel.updatePictureViewSize(imageSize: image!.size)
                 }
+            } else {
+                // 重新计算配图视图大小
+                viewModel.updatePictureViewSize(imageSize: image!.size)
             }
         }
         

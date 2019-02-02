@@ -13,6 +13,35 @@ class XGEmotionsListViewModel
 {
     /// 表情分组模型
     private(set) open var emotionsGroupList:[XGEmotionGroupModel] = [XGEmotionGroupModel]()
+    
+    // MARK: - 单例
+    
+    public static var shared:XGEmotionsListViewModel = XGEmotionsListViewModel()
+    private init() {}
+}
+
+// MARK: - 公开方法
+
+extension XGEmotionsListViewModel
+{
+    /// 根据表情文字返回表情模型
+    ///
+    /// - Parameter str: 表情文字
+    /// - Returns: XGEmotionModel
+    open func emotionModelWithValue(str:String?) -> XGEmotionModel?
+    {
+        guard let str = str else {
+            return nil
+        }
+        
+        for emotionGroup in emotionsGroupList {
+            if let result = emotionGroup.emotions?.filter({$0.value == str}).first {
+                return result
+            }
+        }
+        
+        return nil
+    }
 }
 
 // MARK: - 加载数据
@@ -35,6 +64,7 @@ extension XGEmotionsListViewModel
         }
     }
     
+    /// 缓存表情图片
     private func cacheEmoticonImage(emotionsList:[XGEmotionModel],completion:@escaping (Bool) -> Void) -> Void
     {
         // 调度组
@@ -67,10 +97,7 @@ extension XGEmotionsListViewModel
             
             // 将模型归入不同的分组
             for category in categoryGroup {
-                let emotions = emotionsList.filter({ (emotionModel) -> Bool in
-                    emotionModel.category?.compare(category) ==  ComparisonResult.orderedSame
-                })
-                
+                let emotions = emotionsList.filter() { $0.category == category }
                 self.emotionsGroupList.append(XGEmotionGroupModel(category: category, emotions: emotions))
             }
             

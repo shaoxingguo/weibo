@@ -15,6 +15,12 @@ class XGEmotionGroupModel: NSObject
     /// 表情模型
     var emotions:[XGEmotionModel]?
     
+    
+    /// 构造方法
+    ///
+    /// - Parameters:
+    ///   - category: 分组名称
+    ///   - emotions: 表情模型数组
     init(category:String?,emotions:[XGEmotionModel]?)
     {
         self.category = category

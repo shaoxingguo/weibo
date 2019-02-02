@@ -14,7 +14,7 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
     // MARK: - 数据模型
     override var statusViewModel: XGStatusViewModel? {
         didSet {
-            retweetTextLabel.text = statusViewModel?.retweetedStatusText
+            retweetTextLabel.attributedText = statusViewModel?.retweetedStatusAttributesText
         }
     }
     

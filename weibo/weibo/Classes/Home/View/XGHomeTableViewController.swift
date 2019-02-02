@@ -20,8 +20,6 @@ class XGHomeTableViewController: XGVisitorViewController
 {
     /// 数据列表视图模型
     private lazy var statusListViewModel:XGStatusListViewModel = XGStatusListViewModel()
-    /// 表情信息视图模型
-    private lazy var emotionsListViewModel:XGEmotionsListViewModel = XGEmotionsListViewModel()
     
     // MARK: - 控制器生命周期方法
     
@@ -144,7 +142,7 @@ extension XGHomeTableViewController
     private func loadEmotionsData() -> Void
     {
         DispatchQueue.main.async {
-            self.emotionsListViewModel.loadEmotionsList { (isSuccess) in
+            XGEmotionsListViewModel.shared.loadEmotionsList { (isSuccess) in
                 if !isSuccess {
                     XGPrint("加载表情信息失败!")
                     return
