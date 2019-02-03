@@ -57,8 +57,27 @@ class XGTabBarController: UITabBarController
     // 撰写按钮点击事件
     @objc private func publishAction() -> Void
     {
+        if !XGAccountViewModel.shared.isLogin {
+            return
+        }
+        
         let composeTypeView = XGComposeTypeView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
         view.addSubview(composeTypeView)
+        composeTypeView.selectedItemComletion = {[weak self,weak composeTypeView] className -> Void in
+            guard let className = className,
+                  let nameSpace = Bundle.main.nameSpace,
+                  let classType = NSClassFromString(nameSpace + className) as? UIViewController.Type else {
+                    composeTypeView?.removeFromSuperview()
+                    return
+            }
+            
+            // 控制器跳转
+            let viewController = classType.init()
+            let nav = UINavigationController(rootViewController: viewController)
+            self?.present(nav, animated: true, completion: {
+                composeTypeView?.removeFromSuperview()
+            })
+        }
     }
     
     // 更新未读数事件

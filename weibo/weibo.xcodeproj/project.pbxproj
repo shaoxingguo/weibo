@@ -18,6 +18,7 @@
 		8C14346721FB3C95007ED7E9 /* XGStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */; };
 		8C14346A21FB459A007ED7E9 /* XGStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346921FB459A007ED7E9 /* XGStatusViewModel.swift */; };
 		8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346B21FB56A0007ED7E9 /* XGUserModel.swift */; };
+		8C214FE52207495700965F2D /* XGTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214FE42207495700965F2D /* XGTextView.swift */; };
 		8C32A9CF2202AFD3008A1ECE /* XGComposeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */; };
 		8C32A9D12202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */; };
 		8C32A9D32202E763008A1ECE /* XGComposeTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */; };
@@ -70,6 +71,7 @@
 		8C14346621FB3C95007ED7E9 /* XGStatusTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusTopView.swift; sourceTree = "<group>"; };
 		8C14346921FB459A007ED7E9 /* XGStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusViewModel.swift; sourceTree = "<group>"; };
 		8C14346B21FB56A0007ED7E9 /* XGUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGUserModel.swift; sourceTree = "<group>"; };
+		8C214FE42207495700965F2D /* XGTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XGTextView.swift; sourceTree = "<group>"; };
 		8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeView.swift; sourceTree = "<group>"; };
 		8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeViewToolBar.swift; sourceTree = "<group>"; };
 		8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeButton.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */,
 				8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */,
 				8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */,
+				8C214FE42207495700965F2D /* XGTextView.swift */,
 				8C32A9D622032248008A1ECE /* XGComposeViewController.swift */,
 			);
 			path = View;
@@ -658,6 +661,7 @@
 				8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */,
 				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
+				8C214FE52207495700965F2D /* XGTextView.swift in Sources */,
 				8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */,
 				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,

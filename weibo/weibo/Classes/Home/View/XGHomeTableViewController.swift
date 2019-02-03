@@ -149,7 +149,7 @@ extension XGHomeTableViewController
                 }
                 
                 // 加载微博数据
-                self.tableView.mj_header.beginRefreshing()
+//                self.tableView.mj_header.beginRefreshing()
             }
         }
     }

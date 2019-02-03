@@ -13,6 +13,8 @@ import pop
 class XGComposeTypeView: UIView
 {
     // MARK: - 构造方法
+    /// 选择某个按钮的完成回调
+    open var selectedItemComletion:((String?) -> Void)?
     
     override init(frame: CGRect)
     {
@@ -49,14 +51,6 @@ class XGComposeTypeView: UIView
     // 其他撰写类型按钮点击事件
     @objc private func clickComposeTypeAction(selectedButton:XGComposeTypeButton) -> Void
     {
-        guard let nameSpace = Bundle.main.nameSpace,
-              let className = buttonsInfo[selectedButton.tag]["viewController"],
-              let classType = NSClassFromString(nameSpace + className) as? UIViewController.Type else {
-            return
-        }
-
-        // 控制器跳转
-         let viewController = classType.init()
         let page:Int = Int(scrollView.contentOffset.x / scrollView.width)    // 页码
         let contentView = scrollView.subviews[page] // 内容视图
         for (index,button) in contentView.subviews.enumerated() {
@@ -75,9 +69,7 @@ class XGComposeTypeView: UIView
             
             if index == 0 {
                 alphaAnimation.completionBlock = { _,_ -> Void in
-                    UIApplication.shared.keyWindow?.rootViewController?.present(viewController, animated: true, completion: {
-                        self.removeFromSuperview()
-                    })
+                    self.selectedItemComletion?(self.buttonsInfo[selectedButton.tag]["viewController"])
                 }
             }
         }
@@ -90,6 +82,8 @@ class XGComposeTypeView: UIView
         let effect = UIBlurEffect(style: .regular)
         return UIVisualEffectView(effect: effect)
     }()
+    /// logo图片
+    private lazy var logoImageView:UIImageView = UIImageView(image: UIImage(named: "compose_slogan"))
     /// scrollView
     private lazy var scrollView:UIScrollView = {
         let scrollView = UIScrollView()
@@ -201,12 +195,18 @@ extension XGComposeTypeView
         
         // 添加子控件
         addSubview(visualEffectView)
+        addSubview(logoImageView)
         addSubview(scrollView)
         addSubview(toolBar)
         
         // 设置自动布局
         visualEffectView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
+        }
+        
+        logoImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self).offset(100)
+            make.centerX.equalTo(self)
         }
         
         scrollView.snp.makeConstraints { (make) in
