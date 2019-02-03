@@ -15,5 +15,6 @@ pod 'SVProgressHUD'
 pod 'MLeaksFinder'
 pod 'MJRefresh'
 pod 'pop'
+pod 'MLEmojiLabel'
 
 end
