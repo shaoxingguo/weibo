@@ -33,6 +33,13 @@ public let kTabBarHeight:CGFloat = 49
 public let kToolBarHeight:CGFloat = 44
 /// 沙盒缓存版本对应的key
 public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
+
+// MARK: - 界面布局相关
+
+/// 正文字体大小
+public let kContentTextFontSize:CGFloat = 15
+// 正文字体颜色
+public let kContentTextColor:UIColor = UIColor.lightGray
 /// 占位图片
 public let kPlaceholderImage:UIImage? = UIImage(named: "avatar_default_big")
 /// 微博配图外部间距

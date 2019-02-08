@@ -24,11 +24,44 @@ class XGEmotionsListViewModel
 
 extension XGEmotionsListViewModel
 {
+    /// 将带表情的字符串转换为属性字符串
+    ///
+    /// - Parameters:
+    ///   - text: 源字符串
+    ///   - fontSize: 字体大小
+    ///   - textColor: 字体颜色
+    /// - Returns: NSAttributedString
+    open func emotionAttributedString(text:String?, fontSize:CGFloat,textColor:UIColor) -> NSAttributedString?
+    {
+        guard let text = text,
+              let regularExpression = try? NSRegularExpression(pattern: "\\[.*?\\]", options: [.caseInsensitive]) else {
+                return nil
+        }
+    
+        let attributesStringM = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize),NSAttributedString.Key.foregroundColor: textColor])
+        // 正则匹配
+        let resultsArray = regularExpression.matches(in: text, options: [.reportCompletion], range: NSRange(location: 0, length: attributesStringM.length))
+        // 遍历匹配结果 将表情字符 替换为表情图片
+        for result in resultsArray.reversed() {
+            let range = result.range(at: 0)
+            let value = (text as NSString).substring(with: range)
+            if let emotionModel = emotionModelWithValue(str: value) {
+                let attachment = XGEmotionTextAttachment(emotionModel: emotionModel)
+                if let imageAttributesString = attachment.emotionAttributedString(fontSize: fontSize) {
+                    attributesStringM.replaceCharacters(in: range, with: imageAttributesString)
+                }
+            }
+        }
+        
+        // 设置属性字符串属性 使用setAttributes无法给图片属性文本设置属性，造成无法显示图片 因此使用addAttributes
+        return attributesStringM.copy() as? NSAttributedString
+    }
+    
     /// 根据表情文字返回表情模型
     ///
     /// - Parameter str: 表情文字
     /// - Returns: XGEmotionModel
-    open func emotionModelWithValue(str:String?) -> XGEmotionModel?
+    private func emotionModelWithValue(str:String?) -> XGEmotionModel?
     {
         guard let str = str else {
             return nil

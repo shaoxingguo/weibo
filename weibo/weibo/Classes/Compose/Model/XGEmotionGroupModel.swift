@@ -38,7 +38,7 @@ class XGEmotionGroupModel: NSObject
     /// 返回对应分页的表情模型数组
     open func emotionsForPage(page:Int) -> [XGEmotionModel]?
     {
-        if page < 0 || page >= numberOfPages{
+        if page < 0 || page >= numberOfPages {
             return nil
         }
         

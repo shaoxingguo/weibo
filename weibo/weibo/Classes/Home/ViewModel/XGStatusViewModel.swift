@@ -12,8 +12,8 @@ class XGStatusViewModel
 {
     // MARK: - 微博属性
     
-    /// 正文属性文本
-    private(set) open var attributesText:NSAttributedString?
+    /// 微博正文
+    private(set) open var text:NSAttributedString?
     /// 昵称
     private(set) open var screenName:String?
     /// 头像图片地址
@@ -36,12 +36,12 @@ class XGStatusViewModel
     private(set) open var attitudesCountString:String?
     /// 配图视图大小
     private(set) open var picturesViewSize:CGSize = CGSize.zero
-    /// 转发微博属性文本
-    private(set) open var retweetedStatusAttributesText:NSAttributedString?
     /// 行高
     private(set) open var rowHeight:CGFloat = 0
     /// 微博来源字符串
     private(set) open var sourceString:String?
+    /// 转发微博文字
+    private(set) open var retweetedStatusText:NSAttributedString?
     
     /// 头像图片
     open var profileImage:UIImage? {
@@ -139,14 +139,14 @@ class XGStatusViewModel
         // 微博来源字符串
         sourceString = sourceStr(str: statusModel.source)
         
-        // 正文属性文本
-        attributesText = attributesStringFromString(str: statusModel.text)
+        // 微博正文
+        text = XGEmotionsListViewModel.shared.emotionAttributedString(text: statusModel.text, fontSize: kContentTextFontSize, textColor: kContentTextColor)
         
         // 转发微博文字
         if statusModel.retweetedStatus != nil {
             var str = "@" + (statusModel.retweetedStatus?.user?.screenName ?? "") + ":"
             str += "  " + (statusModel.retweetedStatus?.text ?? "")
-            retweetedStatusAttributesText = attributesStringFromString(str: str)
+            retweetedStatusText = XGEmotionsListViewModel.shared.emotionAttributedString(text: str, fontSize: kContentTextFontSize, textColor: kContentTextColor)
         }
         
         // 行高
@@ -247,15 +247,15 @@ extension XGStatusViewModel
         var rowHeight = kStatusCellPictureOuterMargin + kStatusCellPictureOuterMargin + iconWidth + kStatusCellPictureOuterMargin
         
         // 正文高度
-        if let attributesText = attributesText {
-            rowHeight += attributesText.boundingRect(with: CGSize(width: kPicturesViewMaxWidth, height: CGFloat(MAXFLOAT)), options: [.usesFontLeading,.usesLineFragmentOrigin], context: nil).size.height
+        if let text = text {
+            rowHeight += text.boundingRect(with: CGSize(width: kPicturesViewMaxWidth, height: CGFloat(MAXFLOAT)), options: [.usesFontLeading,.usesLineFragmentOrigin], context: nil).size.height
         }
         
         // 转发微博
         if statusModel.retweetedStatus != nil {
             rowHeight += kStatusCellPictureOuterMargin + kStatusCellPictureInnerMargin
-            if let retweetedStatusAttributesText = retweetedStatusAttributesText {
-                 rowHeight += retweetedStatusAttributesText.boundingRect(with: CGSize(width: kPicturesViewMaxWidth, height: CGFloat(MAXFLOAT)), options: [.usesFontLeading,.usesLineFragmentOrigin], context: nil).size.height
+            if let retweetedStatusText = retweetedStatusText {
+                 rowHeight += retweetedStatusText.boundingRect(with: CGSize(width: kPicturesViewMaxWidth, height: CGFloat(MAXFLOAT)), options: [.usesFontLeading,.usesLineFragmentOrigin], context: nil).size.height
             }
         }
         
@@ -287,39 +287,5 @@ extension XGStatusViewModel
         let range = result.range(at: 1)
         let subStr = (str as NSString).substring(with: range)
         return "来自 " + subStr
-    }
-    
-    
-    /// 将带表情字符的字符串转换为属性字符串
-    ///
-    /// - Parameter str: 源字符串
-    /// - Returns: NSAttributedString
-    private func attributesStringFromString(str:String?) -> NSAttributedString?
-    {
-        guard let str = str,
-              let regularExpression = try? NSRegularExpression(pattern: "\\[.*?\\]", options: [.caseInsensitive]) else {
-            return nil
-        }
-
-        let font = UIFont.systemFont(ofSize: 15)    // 属性文本字体大小
-        let attributesStringM = NSMutableAttributedString(string: str)
-        // 正则匹配
-        let resultsArray = regularExpression.matches(in: str, options: [.reportCompletion], range: NSRange(location: 0, length: attributesStringM.length))
-        // 遍历匹配结果 将表情字符 替换为表情图片
-        for result in resultsArray.reversed() {
-            let range = result.range(at: 0)
-            let value = (str as NSString).substring(with: range)
-            if let image = XGEmotionsListViewModel.shared.emotionModelWithValue(str: value)?.image {
-                let attachment = NSTextAttachment()
-                attachment.image = image
-                attachment.bounds = CGRect(x: 0, y: -3, width: font.lineHeight, height: font.lineHeight)
-                let imageAttributesString = NSAttributedString(attachment: attachment)
-                attributesStringM.replaceCharacters(in: range, with: imageAttributesString)
-            }
-        }
-
-        // 设置属性字符串属性 使用setAttributes无法给图片属性文本设置属性，造成无法显示图片 因此使用addAttributes 
-        attributesStringM.addAttributes([NSAttributedString.Key.font : font], range: NSRange(location: 0, length: attributesStringM.length))
-        return attributesStringM.copy() as? NSAttributedString
     }
 }

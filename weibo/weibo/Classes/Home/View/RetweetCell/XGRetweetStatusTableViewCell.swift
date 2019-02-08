@@ -14,7 +14,7 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
     // MARK: - 数据模型
     override var statusViewModel: XGStatusViewModel? {
         didSet {
-            retweetTextLabel.attributedText = statusViewModel?.retweetedStatusAttributesText
+            retweetTextLabel.attributedText = statusViewModel?.retweetedStatusText
         }
     }
     
@@ -59,6 +59,6 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
     }()
     
     /// 转发微博文字
-    private lazy var retweetTextLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
+    private lazy var retweetTextLabel:UILabel = UILabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
 
 }

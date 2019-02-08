@@ -15,7 +15,7 @@ class XGStatusTableViewCell: UITableViewCell
     open var statusViewModel:XGStatusViewModel? {
         didSet {
             topView.statusViewModel = statusViewModel
-            contentLabel.attributedText = statusViewModel?.attributesText
+            contentLabel.attributedText = statusViewModel?.text
             bottomView.statusViewModel = statusViewModel
             picturesView.statusViewModel = statusViewModel
             // 更新高度
@@ -58,7 +58,7 @@ class XGStatusTableViewCell: UITableViewCell
         return view
     }()
     /// 文本
-    private(set) open lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: 15, textColor: UIColor.lightGray, textAlignment: .left)
+    private(set) open lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
     /// 配图视图
     private(set) open lazy var picturesView:XGStatusPicturesView = {
         let view = XGStatusPicturesView()
