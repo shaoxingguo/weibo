@@ -73,7 +73,7 @@ class XGTabBarController: UITabBarController
             
             // 控制器跳转
             let viewController = classType.init()
-            let nav = UINavigationController(rootViewController: viewController)
+            let nav = XGNavigationController(rootViewController: viewController)
             self?.present(nav, animated: true, completion: {
                 composeTypeView?.removeFromSuperview()
             })
@@ -138,7 +138,7 @@ extension XGTabBarController
         
         // 设置navigationBar渲染颜色
         let navigationBar = UINavigationBar.appearance(whenContainedInInstancesOf: [XGNavigationController.self])
-        navigationBar.tintColor = UIColor.orange
+        navigationBar.tintColor = UIColor.darkGray
         
         // 设置navigationBar标题字体大小
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 20), NSAttributedString.Key.foregroundColor:UIColor.orange]

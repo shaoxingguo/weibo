@@ -64,6 +64,8 @@ class XGComposeViewController: UIViewController
                 return
         }
         
+        emotionKeyboardView.height = endFrame.size.height
+        
         let offset = (view.height - endFrame.origin.y) * -1
         toolBar.snp.updateConstraints { (make) in
             make.bottom.equalTo(view).offset(offset)
@@ -71,6 +73,14 @@ class XGComposeViewController: UIViewController
         
         UIView.animate(withDuration: TimeInterval(duration)) {
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func emotionKeyboardAction() -> Void
+    {
+        if XGEmotionsListViewModel.shared.emotionsGroupList.count > 0 {
+            textView.inputView = textView.inputView == nil ? emotionKeyboardView : nil
+            textView.reloadInputViews()
         }
     }
     
@@ -87,6 +97,12 @@ class XGComposeViewController: UIViewController
     
     /// 工具栏
     private lazy var toolBar:UIToolbar = UIToolbar()
+    /// 表情键盘
+    private lazy var emotionKeyboardView:XGEmotionKeyboardView = {
+        let view = XGEmotionKeyboardView()
+        view.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        return view
+    }()
 }
 
 // MARK: - UITextViewDelegate
@@ -140,15 +156,18 @@ extension XGComposeViewController
         let itemSettings = [["imageName": "compose_toolbar_picture"],
                             ["imageName": "compose_mentionbutton_background"],
                             ["imageName": "compose_trendbutton_background"],
-                            ["imageName": "compose_emoticonbutton_background", "actionName": "emoticonKeyboard"],
+                            ["imageName": "compose_emoticonbutton_background", "actionName": "emotionKeyboardAction"],
                             ["imageName": "compose_add_background"]]
         
         var items:[UIBarButtonItem] = [UIBarButtonItem]()
         for dictionary in itemSettings {
-            let imageName = dictionary["imageName"]
-            if imageName != nil {
-                let item = UIBarButtonItem(customView: UIButton(title: nil, imageName: imageName, target: nil, action: nil))
-                items.append(item)
+            if let imageName = dictionary["imageName"] {
+                let button = UIButton(title: nil, imageName: imageName, target: nil, action: nil)
+                if let actionName = dictionary["actionName"] {
+                    button.addTarget(self, action: Selector(actionName), for: .touchUpInside)
+                }
+                
+                items.append(UIBarButtonItem(customView: button))
                 items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil))
             }
         }
@@ -182,8 +201,9 @@ extension XGComposeViewController
     /// 发布按钮
     private func publishButtonItem() -> UIBarButtonItem
     {
-        let button = UIButton(title: "发布", backgroundImageName: "common_button_orange", fontSize: 15, normalColor: UIColor.brown, highlightedColor: UIColor.brown, target: nil, action: nil)
+        let button = UIButton(title: "发布", backgroundImageName: "common_button_orange", fontSize: 15, normalColor: UIColor.white, highlightedColor: UIColor.white, target: nil, action: nil)
         button.setBackgroundImage(UIImage.stretchableImage(imageName: "common_button_white_disable"), for: .disabled)
+        button.setTitleColor(UIColor.darkGray, for: .disabled)
         button.width = 60
         let item = UIBarButtonItem(customView: button)
         item.isEnabled = false

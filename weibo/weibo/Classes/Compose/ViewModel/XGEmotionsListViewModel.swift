@@ -101,6 +101,7 @@ extension XGEmotionsListViewModel
                 self.emotionsGroupList.append(XGEmotionGroupModel(category: category, emotions: emotions))
             }
             
+            self.emotionsGroupList.insert(XGEmotionGroupModel(category: "最近", emotions: nil), at: 0)
             completion(true)
         }
     }

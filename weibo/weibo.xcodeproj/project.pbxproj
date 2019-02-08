@@ -32,6 +32,7 @@
 		8C5754E321F9C81E00938F1B /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5754E221F9C81E00938F1B /* test.xib */; };
 		8C6FA4D821F8407400D3DD4F /* XGWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */; };
 		8C6FA4DA21F843C000D3DD4F /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FA4D921F843C000D3DD4F /* UIImageView+Extension.swift */; };
+		8C8AE12C220D560F00A3C1DE /* XGEmotionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AE12B220D560F00A3C1DE /* XGEmotionCollectionViewCell.swift */; };
 		8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832121F45F5D004F5CD8 /* XGAccountModel.swift */; };
 		8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */; };
 		8C8E832921F4B9ED004F5CD8 /* XGNewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E832821F4B9ED004F5CD8 /* XGNewFeatureViewController.swift */; };
@@ -51,6 +52,7 @@
 		8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */; };
 		8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */; };
 		8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */; };
+		8CD45F8F2208476D00812F6D /* XGEmotionKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD45F8E2208476D00812F6D /* XGEmotionKeyboardView.swift */; };
 		8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8486E21FD8BEC00EC027E /* XGStatusTableViewCell.swift */; };
 		8CD8487221FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8487121FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift */; };
 		8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */; };
@@ -87,6 +89,7 @@
 		8C5754E221F9C81E00938F1B /* test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGWelcomeViewController.swift; sourceTree = "<group>"; };
 		8C6FA4D921F843C000D3DD4F /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		8C8AE12B220D560F00A3C1DE /* XGEmotionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C8E832121F45F5D004F5CD8 /* XGAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAccountModel.swift; sourceTree = "<group>"; };
 		8C8E832521F4A6F7004F5CD8 /* XGAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAccountViewModel.swift; sourceTree = "<group>"; };
 		8C8E832821F4B9ED004F5CD8 /* XGNewFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNewFeatureViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDataManager.swift; sourceTree = "<group>"; };
 		8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementModel.swift; sourceTree = "<group>"; };
 		8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementViewModel.swift; sourceTree = "<group>"; };
+		8CD45F8E2208476D00812F6D /* XGEmotionKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionKeyboardView.swift; sourceTree = "<group>"; };
 		8CD8486E21FD8BEC00EC027E /* XGStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusTableViewCell.swift; sourceTree = "<group>"; };
 		8CD8487121FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGRetweetStatusTableViewCell.swift; sourceTree = "<group>"; };
 		8CF43FBE21EC91F10008B868 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 		8C32A9CD2202AF7C008A1ECE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C8AE12A220D532B00A3C1DE /* EmotionKeyboard */,
 				8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */,
 				8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */,
 				8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */,
@@ -358,6 +363,15 @@
 				8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */,
 			);
 			path = Welcome;
+			sourceTree = "<group>";
+		};
+		8C8AE12A220D532B00A3C1DE /* EmotionKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8C8AE12B220D560F00A3C1DE /* XGEmotionCollectionViewCell.swift */,
+				8CD45F8E2208476D00812F6D /* XGEmotionKeyboardView.swift */,
+			);
+			path = EmotionKeyboard;
 			sourceTree = "<group>";
 		};
 		8C8E832021F45F41004F5CD8 /* View */ = {
@@ -660,6 +674,7 @@
 				8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */,
 				8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */,
 				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
+				8CD45F8F2208476D00812F6D /* XGEmotionKeyboardView.swift in Sources */,
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
 				8C214FE52207495700965F2D /* XGTextView.swift in Sources */,
 				8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */,
@@ -669,6 +684,7 @@
 				8C9686F821FC26E2005E7289 /* XGStatusPicturesView.swift in Sources */,
 				8C32A9D12202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift in Sources */,
 				8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */,
+				8C8AE12C220D560F00A3C1DE /* XGEmotionCollectionViewCell.swift in Sources */,
 				8C14346221FB39EF007ED7E9 /* XGPictureModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
 				8CA6E69D2204111B00A29513 /* XGEmotionGroupModel.swift in Sources */,
