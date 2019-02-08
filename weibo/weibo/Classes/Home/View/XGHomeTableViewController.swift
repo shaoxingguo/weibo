@@ -9,7 +9,6 @@
 import UIKit
 import MJRefresh
 import SDWebImage
-import AFNetworking
 
 /// 原创微博cell重用标识符
 private let kNormalStatusTableViewCellReuseIdentifier = "XGNormalStatusTableViewCell"

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FFLabel
 
 class XGStatusTableViewCell: UITableViewCell
 {
@@ -58,7 +59,10 @@ class XGStatusTableViewCell: UITableViewCell
         return view
     }()
     /// 文本
-    private(set) open lazy var contentLabel:UILabel = UILabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
+    private(set) open lazy var contentLabel:UILabel = {
+        let label = FFLabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
+        return label
+    }()
     /// 配图视图
     private(set) open lazy var picturesView:XGStatusPicturesView = {
         let view = XGStatusPicturesView()
