@@ -18,6 +18,10 @@ public let kEmotionPageCount = kEmotionColumns * kEmotionRows - 1
 class XGEmotionCollectionViewCell: UICollectionViewCell
 {
     // MARK: - 数据模型
+    
+    /// 代理
+    open weak var delegate:XGEmotionCollectionViewCellDelegate?
+    
     var emotions:[XGEmotionModel]? {
         didSet {
             // 隐藏所有表情按钮
@@ -25,8 +29,10 @@ class XGEmotionCollectionViewCell: UICollectionViewCell
                 button.isHidden = true
             }
             
+            // 显示删除按钮
             contentView.subviews.last?.isHidden = false
             
+            // 设置表情图片
             if let emotions = emotions {
                 for (index,emotionModel) in emotions.enumerated() {
                     let button = contentView.subviews[index] as? UIButton
@@ -35,6 +41,16 @@ class XGEmotionCollectionViewCell: UICollectionViewCell
                 }
             }
         }
+    }
+    
+    // MARK: - 监听方法
+    
+    /// 表情选中事件
+    @objc private func emotionDidSelectedAction(button:UIButton) -> Void
+    {
+        // tag = 20 是删除传nil 其他根据索引取表情模型传入
+        let emotionModel:XGEmotionModel? = (button.tag == kEmotionPageCount ? nil : emotions?[button.tag])
+        delegate?.emotionCollectionViewCellEmotionDidSelected?(emotionModel: emotionModel)
     }
     
     // MARK: - 构造方法
@@ -50,6 +66,9 @@ class XGEmotionCollectionViewCell: UICollectionViewCell
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        XGPrint("我去了")
+    }
 }
 
 // MARK: - 设置界面
@@ -84,6 +103,7 @@ extension XGEmotionCollectionViewCell
         // 添加子控件
         for i in 0..<(kEmotionColumns * kEmotionRows) {
             let button = UIButton()
+            button.addTarget(self, action: #selector(emotionDidSelectedAction(button:)), for: .touchUpInside)
             if i == (kEmotionColumns * kEmotionRows - 1) {
                 button.setBackgroundImage(UIImage(named: "compose_emotion_delete"), for: .normal)
             }
@@ -92,4 +112,12 @@ extension XGEmotionCollectionViewCell
             contentView.addSubview(button)
         }
     }
+}
+
+@objc public protocol XGEmotionCollectionViewCellDelegate
+{
+    /// 表情选中事件
+    ///
+    /// - Parameter emotionModel: 选中的表情 emotionModel == nil时代表删除
+    @objc optional func emotionCollectionViewCellEmotionDidSelected(emotionModel:XGEmotionModel?) -> Void
 }

@@ -116,14 +116,14 @@ extension XGStatusTableViewCell:FFLabelDelegate
 {
     func labelDidSelectedLinkText(label: FFLabel, text: String)
     {
-        delegate?.statusCellDidSelectedURLString?(URLString: text)
+        delegate?.statusTableViewCellDidSelectedURLString?(URLString: text)
     }
 }
 
 // MARK: - XGStatusTableViewCellDelegate
 
-@objc protocol XGStatusTableViewCellDelegate
+@objc public protocol XGStatusTableViewCellDelegate
 {
-    @objc optional func statusCellDidSelectedURLString(URLString: String)
+    @objc optional func statusTableViewCellDidSelectedURLString(URLString: String)
 }
 

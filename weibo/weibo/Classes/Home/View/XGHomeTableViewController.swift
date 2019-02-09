@@ -139,7 +139,7 @@ extension XGHomeTableViewController
 
 extension XGHomeTableViewController:XGStatusTableViewCellDelegate
 {
-    func statusCellDidSelectedURLString(URLString: String)
+    func statusTableViewCellDidSelectedURLString(URLString: String)
     {
         if URLString.hasPrefix("http://") || URLString.hasPrefix("https://") {
             if let url = URL(string: URLString) {

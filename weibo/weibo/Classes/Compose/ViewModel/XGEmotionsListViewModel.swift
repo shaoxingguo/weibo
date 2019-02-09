@@ -45,11 +45,10 @@ extension XGEmotionsListViewModel
         for result in resultsArray.reversed() {
             let range = result.range(at: 0)
             let value = (text as NSString).substring(with: range)
-            if let emotionModel = emotionModelWithValue(str: value) {
-                let attachment = XGEmotionTextAttachment(emotionModel: emotionModel)
-                if let imageAttributesString = attachment.emotionAttributedString(fontSize: fontSize) {
+            if let emotionModel = emotionModelWithValue(str: value),
+                let imageAttributesString = emotionModel.emotionText(fontSize: fontSize) {
                     attributesStringM.replaceCharacters(in: range, with: imageAttributesString)
-                }
+                
             }
         }
         

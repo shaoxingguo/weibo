@@ -30,17 +30,20 @@ class XGEmotionTextAttachment: NSTextAttachment
 
 extension XGEmotionTextAttachment
 {
+    /// 表情字符串
+    open var emotionValue:String? {
+        return emotionModel.value
+    }
+    
     /// 返回表情属性字符串
     open func emotionAttributedString(fontSize:CGFloat) -> NSAttributedString?
     {
         if let image = emotionModel.image {
             self.image = image
-            bounds = CGRect(x: 0, y: -3, width: fontSize, height: fontSize)
-            let emotionAttributedStringM = NSMutableAttributedString(attachment: self)
-            emotionAttributedStringM.addAttributes(
-                [NSAttributedString.Key.font:UIFont.systemFont(ofSize: fontSize)],
-                range: NSRange(location: 0, length: 1))
-            return emotionAttributedStringM.copy() as? NSAttributedString
+            let lineHeight = UIFont.systemFont(ofSize: fontSize).lineHeight
+            bounds = CGRect(x: 0, y: -3, width: lineHeight, height: lineHeight)
+            let emotionAttributedString = NSAttributedString(attachment: self)
+            return emotionAttributedString
         } else {
             return nil
         }

@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-@objcMembers class XGEmotionModel: NSObject
+@objcMembers public class XGEmotionModel: NSObject
 {
     /// 图片URL地址
     var icon:String?
@@ -28,5 +28,19 @@ import SDWebImage
     /// 表情图片
     var image:UIImage? {
         return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: icon)
+    }
+    
+    /// 返回表情图片属性文本
+    ///
+    /// - Parameter fontSize: 字体大小
+    /// - Returns: NSAttributedString
+    open func emotionText(fontSize:CGFloat) -> NSAttributedString?
+    {
+        if image == nil {
+            return nil
+        }
+        
+        let attachment = XGEmotionTextAttachment(emotionModel: self)
+        return attachment.emotionAttributedString(fontSize: fontSize)
     }
 }

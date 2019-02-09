@@ -42,6 +42,12 @@ class XGComposeViewController: UIViewController
     
     // MARK: - 监听方法
     
+    /// 发布微博
+    @objc private func publishAction() -> Void
+    {
+        XGPrint(textView.textValue())
+    }
+    
     /// 关闭按钮监听事件
     @objc private func closeAction() -> Void
     {
@@ -87,9 +93,9 @@ class XGComposeViewController: UIViewController
     // MARK: - 懒加载
     
     /// textView
-    private lazy var textView:XGTextView = { [weak self] in
-        let textView = XGTextView()
-        textView.font = UIFont.systemFont(ofSize: 17)
+    private lazy var textView:XGEmotionTextView = { [weak self] in
+        let textView = XGEmotionTextView()
+        textView.font = UIFont.systemFont(ofSize: 22)
         textView.textColor = UIColor.lightGray
         textView.delegate = self
         return textView
@@ -98,8 +104,10 @@ class XGComposeViewController: UIViewController
     /// 工具栏
     private lazy var toolBar:UIToolbar = UIToolbar()
     /// 表情键盘
-    private lazy var emotionKeyboardView:XGEmotionKeyboardView = {
-        let view = XGEmotionKeyboardView()
+    private lazy var emotionKeyboardView:XGEmotionKeyboardView = { [weak self] in
+        let view = XGEmotionKeyboardView(callBack: { (emotionModel) in
+            self?.textView.insertEmotionModel(emotionModel: emotionModel)
+        })
         view.backgroundColor = UIColor(white: 0.95, alpha: 1)
         return view
     }()
@@ -201,7 +209,7 @@ extension XGComposeViewController
     /// 发布按钮
     private func publishButtonItem() -> UIBarButtonItem
     {
-        let button = UIButton(title: "发布", backgroundImageName: "common_button_orange", fontSize: 15, normalColor: UIColor.white, highlightedColor: UIColor.white, target: nil, action: nil)
+        let button = UIButton(title: "发布", backgroundImageName: "common_button_orange", fontSize: 15, normalColor: UIColor.white, highlightedColor: UIColor.white, target: self, action: #selector(publishAction))
         button.setBackgroundImage(UIImage.stretchableImage(imageName: "common_button_white_disable"), for: .disabled)
         button.setTitleColor(UIColor.darkGray, for: .disabled)
         button.width = 60

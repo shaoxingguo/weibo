@@ -16,10 +16,17 @@ class XGEmotionKeyboardView: UIView
 
     // MARK: - 构造方法
     
-    override init(frame: CGRect)
+    /// 选中表情回调
+    private var selectedEmotionCallBack:(XGEmotionModel?) -> Void
+    
+    init(callBack:@escaping (XGEmotionModel?) -> Void)
     {
-        super.init(frame: frame)
+        // 设置选中表情回调
+        selectedEmotionCallBack = callBack
+
+        super.init(frame: CGRect.zero)
         
+        // 设置界面
         setUpUI()
     }
     
@@ -36,6 +43,7 @@ class XGEmotionKeyboardView: UIView
     /// 工具栏分组被选中事件
     @objc private func groupScrollViewItemSelectedAction(button:UIButton) -> Void
     {
+        // 如果当前分组>上一个分组表示前进 滚动到当前分组的第一页 如果当前分组<上一个分组 滚动到当前分组的最后一页
         let item = button.tag > selectedGroupIndex ? 0 : XGEmotionsListViewModel.shared.emotionsGroupList[button.tag].numberOfPages - 1
        
         // 选则工具栏对应的分组
@@ -47,6 +55,8 @@ class XGEmotionKeyboardView: UIView
         // 表情滚动到对应的组
         let indexPath = IndexPath(item: item, section: selectedGroupIndex)
         emotionCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        // 重设pageControl
         pageControl.numberOfPages = XGEmotionsListViewModel.shared.emotionsGroupList[indexPath.section].numberOfPages
         pageControl.currentPage = indexPath.item
     }
@@ -104,6 +114,7 @@ extension XGEmotionKeyboardView:UICollectionViewDataSource,UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kEmotionCollectionViewCellReuseIdentifier, for: indexPath) as!XGEmotionCollectionViewCell
         let emotionGroupModel =  XGEmotionsListViewModel.shared.emotionsGroupList[indexPath.section]
         cell.emotions = emotionGroupModel.emotionsForPage(page: indexPath.item)
+        cell.delegate = self
         return cell
     }
     
@@ -127,6 +138,15 @@ extension XGEmotionKeyboardView:UICollectionViewDataSource,UICollectionViewDeleg
             pageControl.numberOfPages = XGEmotionsListViewModel.shared.emotionsGroupList[indexPath.section].numberOfPages
             pageControl.currentPage = indexPath.item
         }
+    }
+}
+
+extension XGEmotionKeyboardView:XGEmotionCollectionViewCellDelegate
+{
+    func emotionCollectionViewCellEmotionDidSelected(emotionModel: XGEmotionModel?)
+    {
+        // 传递回调
+        selectedEmotionCallBack(emotionModel)
     }
 }
 

@@ -104,6 +104,7 @@ class XGStatusViewModel
         
         // 认证图片
         let verifiedType = statusModel.user?.verifiedType ?? -1
+        
         // 认证类型，-1：没有认证，0，认证用户，2,3,5: 企业认证，220: 达人
         switch verifiedType {
         case 0:

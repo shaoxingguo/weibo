@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XGTextView: UITextView
+class XGEmotionTextView: UITextView
 {
     /// 占位字符串
     open var placeholder:String? {
@@ -16,6 +16,52 @@ class XGTextView: UITextView
             placeholderLabel.text = placeholder
             placeholderLabel.sizeToFit()
         }
+    }
+    
+    /// 插入表情
+    ///
+    /// - Parameter emotionModel: 表情模型
+    open func insertEmotionModel(emotionModel:XGEmotionModel?) -> Void
+    {
+        if emotionModel == nil {
+            // 删除
+            deleteBackward()
+        } else {
+            // 表情图片
+            let emotionTextM = NSMutableAttributedString(attributedString: attributedText)
+            let range = selectedRange
+            if let emotionText = emotionModel?.emotionText(fontSize: font?.pointSize ?? 0) {
+                // 插入表情属性字符串
+                emotionTextM.replaceCharacters(in: range, with: emotionText)
+            }
+           // 设置属性
+            emotionTextM.addAttributes([NSAttributedString.Key.foregroundColor:textColor!,NSAttributedString.Key.font:font!], range: NSRange(location: 0, length: emotionTextM.length))
+            // 替换
+            attributedText = emotionTextM.copy() as? NSAttributedString
+            // 重设光标
+            selectedRange = NSRange(location: range.location + 1, length: 0)
+            // 默认插入表情不会触发文本改变 手动调用
+            textDidChangeAction()
+        }
+    }
+    
+    /// 返回文本视图内的字符串内容
+    ///
+    /// - Returns: String
+    open func textValue() -> String
+    {
+        var strValue = ""
+        attributedText.enumerateAttributes(in: NSRange(location: 0, length: attributedText.length), options: []) { (attributedText, range, _) in
+            if let attachment = attributedText[NSAttributedString.Key.attachment] as? XGEmotionTextAttachment {
+                // 表情
+                strValue += (attachment.emotionValue ?? "")
+            } else {
+                // 文本内容
+                strValue += (self.attributedText.string as NSString).substring(with: range)
+            }
+        }
+        
+        return strValue
     }
     
     // MARK: - 构造方法
@@ -64,7 +110,7 @@ class XGTextView: UITextView
 
 // MARK: - 其他方法
 
-extension XGTextView
+extension XGEmotionTextView
 {
     /// textView文本改变通知监听方法
     @objc private func textDidChangeAction() -> Void
