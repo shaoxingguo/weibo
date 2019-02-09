@@ -69,6 +69,8 @@ public let kFromNewFeatureToToMain:String = "kFromNewFeatureToToMain"
 public let kFromWelcomeToMain:String = "kFromWelcomeToToMain"
 /// 从登录页面切换到主界面
 public let kFromLoginToMain:String = "kFromLoginToMain"
+/// 从主界面跳转到登录页面
+public let kFromMainToLogin:String = "kFromMainToLogin"
 
 // MARK: - 微博接口相关
 

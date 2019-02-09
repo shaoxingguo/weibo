@@ -15,6 +15,13 @@ class XGAccountViewModel:NSObject
     /// 单例
     public static let shared:XGAccountViewModel = XGAccountViewModel()
     
+    /// 移除用户账号信息
+    open func removeAccountInfos() ->  Void
+    {
+        try? FileManager.default.removeItem(atPath: accountInfosCachePath)
+        accountModel = nil
+    }
+    
     /// 获取用户授权令牌
     ///
     /// - Parameters:
@@ -30,7 +37,7 @@ class XGAccountViewModel:NSObject
                 // 记录模型
                 self.accountModel = accountModel
                 // 保存模型
-                NSKeyedArchiver.archiveRootObject(accountModel!, toFile: self.modelCachePath)
+                NSKeyedArchiver.archiveRootObject(accountModel!, toFile: self.accountInfosCachePath)
                 // 完成回调
                 completion(true,nil)
             }
@@ -74,8 +81,8 @@ class XGAccountViewModel:NSObject
         super.init()
         
         // 从文件读取用户账号模型
-        if FileManager.default.fileExists(atPath: modelCachePath) {
-            accountModel = NSKeyedUnarchiver.unarchiveObject(withFile: modelCachePath) as? XGAccountModel
+        if FileManager.default.fileExists(atPath: accountInfosCachePath) {
+            accountModel = NSKeyedUnarchiver.unarchiveObject(withFile: accountInfosCachePath) as? XGAccountModel
         }
     }
     
@@ -93,7 +100,7 @@ class XGAccountViewModel:NSObject
     
     // MARK: - 懒加载
     
-    private lazy var modelCachePath:String = {
+    private lazy var accountInfosCachePath:String = {
        let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
          return (cachePath as NSString).appendingPathComponent("XGAccountModel.plist")
     }()

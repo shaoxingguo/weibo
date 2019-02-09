@@ -26,6 +26,8 @@
 		8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D622032248008A1ECE /* XGComposeViewController.swift */; };
 		8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DB17521F58516007590CF /* XGStatusModel.swift */; };
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
+		8C47D35A220E9E6500757513 /* XGSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */; };
+		8C47D35C220EA15F00757513 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D35B220EA15F00757513 /* FileManager+Extension.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
 		8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */; };
@@ -82,6 +84,8 @@
 		8C32A9D622032248008A1ECE /* XGComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeViewController.swift; sourceTree = "<group>"; };
 		8C3DB17521F58516007590CF /* XGStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusModel.swift; sourceTree = "<group>"; };
 		8C46F43F21EDC1460071281F /* XGNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNavigationController.swift; sourceTree = "<group>"; };
+		8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGSettingTableViewController.swift; sourceTree = "<group>"; };
+		8C47D35B220EA15F00757513 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		8C51F8A121EB74CA0015FC0C /* weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				8C6FA4D921F843C000D3DD4F /* UIImageView+Extension.swift */,
 				8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */,
 				8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */,
+				8C47D35B220EA15F00757513 /* FileManager+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				8C11BF7621EC4DA200F2E958 /* XGMineTableViewController.swift */,
+				8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -683,6 +689,7 @@
 				8CFAE97D21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift in Sources */,
 				8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */,
 				8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */,
+				8C47D35A220E9E6500757513 /* XGSettingTableViewController.swift in Sources */,
 				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
 				8CD45F8F2208476D00812F6D /* XGEmotionKeyboardView.swift in Sources */,
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
@@ -719,6 +726,7 @@
 				8CCAB9CD21F3134300A7FC70 /* XGLoginViewController.swift in Sources */,
 				8CC26CA521EF669000A9E074 /* UILabel+Extension.swift in Sources */,
 				8C32A9D32202E763008A1ECE /* XGComposeTypeButton.swift in Sources */,
+				8C47D35C220EA15F00757513 /* FileManager+Extension.swift in Sources */,
 				8CCAB9D021F3191900A7FC70 /* XGAdvertisementViewController.swift in Sources */,
 				8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */,
 			);

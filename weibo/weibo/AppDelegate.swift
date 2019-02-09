@@ -102,6 +102,8 @@ extension AppDelegate
             XGPrint("新特性切换到主界面")
         case kFromWelcomeToMain:
             XGPrint("欢迎切换到主界面")
+        case kFromMainToLogin:
+            XGPrint("主界面切换到登录")
         default:
             break
         }

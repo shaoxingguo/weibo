@@ -84,11 +84,11 @@ extension XGEmotionsListViewModel
     /// 获取微博官方表情的详细信息
     ///
     /// - Parameter completion: 完成回调
-    open func loadEmotionsList(completion:@escaping (Bool) -> Void) -> Void
+    open func loadEmotionsList(completion:((Bool) -> Void)?) -> Void
     {
         XGDataManager.loadEmotionsList { (dataArray, error) in
             if error != nil || dataArray == nil {
-                completion(false)
+                completion?(false)
                 return
             } else {
                 // 缓存表情图片
@@ -98,7 +98,7 @@ extension XGEmotionsListViewModel
     }
     
     /// 缓存表情图片
-    private func cacheEmoticonImage(emotionsList:[XGEmotionModel],completion:@escaping (Bool) -> Void) -> Void
+    private func cacheEmoticonImage(emotionsList:[XGEmotionModel],completion:((Bool) -> Void)?) -> Void
     {
         // 调度组
         let group = DispatchGroup()
@@ -135,7 +135,7 @@ extension XGEmotionsListViewModel
             }
             
             self.emotionsGroupList.insert(XGEmotionGroupModel(category: "最近", emotions: nil), at: 0)
-            completion(true)
+            completion?(true)
         }
     }
 }
