@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FFLabel
 
 class XGRetweetStatusTableViewCell: XGStatusTableViewCell
 {
@@ -59,6 +60,9 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
     }()
     
     /// 转发微博文字
-    private lazy var retweetTextLabel:UILabel = UILabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
-
+    private lazy var retweetTextLabel:UILabel = { [weak self] in
+       let label = FFLabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
+        label.labelDelegate = self
+        return label
+    }()
 }

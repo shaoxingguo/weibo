@@ -9,6 +9,7 @@
 import UIKit
 import MJRefresh
 import SDWebImage
+import SafariServices
 
 /// 原创微博cell重用标识符
 private let kNormalStatusTableViewCellReuseIdentifier = "XGNormalStatusTableViewCell"
@@ -112,6 +113,7 @@ extension XGHomeTableViewController
         let reuseIdentifier = viewModel.isRetweetedStatus ? kRetweetStatusTableViewCellReuseIdentifier : kNormalStatusTableViewCellReuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? XGStatusTableViewCell
         cell?.statusViewModel = viewModel
+        cell?.delegate = self
         return cell!
     }
     
@@ -130,6 +132,21 @@ extension XGHomeTableViewController
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
         SDWebImageManager.shared().imageCache?.clearMemory()
+    }
+}
+
+// MARK: - XGStatusTableViewCellDelegate
+
+extension XGHomeTableViewController:XGStatusTableViewCellDelegate
+{
+    func statusCellDidSelectedURLString(URLString: String)
+    {
+        if URLString.hasPrefix("http://") || URLString.hasPrefix("https://") {
+            if let url = URL(string: URLString) {
+                let viewController = SFSafariViewController(url: url)
+                present(viewController, animated: true, completion: nil)
+            }
+        }
     }
 }
 

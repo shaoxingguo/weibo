@@ -26,8 +26,11 @@ class XGStatusTableViewCell: UITableViewCell
         }
     }
     
-    // MARK: - 构造方法
+    /// 代理
+    open weak var delegate:XGStatusTableViewCellDelegate?
     
+    // MARK: - 构造方法
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,8 +62,9 @@ class XGStatusTableViewCell: UITableViewCell
         return view
     }()
     /// 文本
-    private(set) open lazy var contentLabel:UILabel = {
+    private(set) open lazy var contentLabel:UILabel = { [weak self] in
         let label = FFLabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
+        label.labelDelegate = self
         return label
     }()
     /// 配图视图
@@ -104,5 +108,22 @@ class XGStatusTableViewCell: UITableViewCell
             make.height.equalTo(kToolBarHeight)
         }
     }
+}
+
+// MARK: - FFLabelDelegate
+
+extension XGStatusTableViewCell:FFLabelDelegate
+{
+    func labelDidSelectedLinkText(label: FFLabel, text: String)
+    {
+        delegate?.statusCellDidSelectedURLString?(URLString: text)
+    }
+}
+
+// MARK: - XGStatusTableViewCellDelegate
+
+@objc protocol XGStatusTableViewCellDelegate
+{
+    @objc optional func statusCellDidSelectedURLString(URLString: String)
 }
 
