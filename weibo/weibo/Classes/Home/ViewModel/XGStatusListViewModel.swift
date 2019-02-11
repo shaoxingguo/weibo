@@ -61,12 +61,14 @@ extension XGStatusListViewModel
     ///   - completion: 完成回调
     private func loadData(sinceId:Int64 = 0,maxId:Int64 = 0,completion:@escaping ([XGStatusViewModel]?,Error?) -> Void) -> Void
     {
-        XGDataManager.loadStatusList(sinceId: sinceId, maxId: maxId) { (dataArray, error) in
-            if error != nil || dataArray == nil {
+        XGStatusDAL.loadStatusList(sinceId: sinceId, maxId: maxId) { (responseObject, error) in
+            if error != nil || responseObject == nil {
                 completion(nil,error)
                 return
             } else {
-                let viewModlArray = XGStatusViewModel.viewModelArrayWithModelArray(statusModelArray: dataArray!)
+                // 字典转模型
+                let modelArray = XGStatusModel.mj_objectArray(withKeyValuesArray: responseObject)?.copy() as? [XGStatusModel]
+                let viewModlArray = XGStatusViewModel.viewModelArrayWithModelArray(statusModelArray: modelArray ?? [])
                 // 缓存单图
                 self.cacheSinglePicture(statusList: viewModlArray, completion: completion)
             }

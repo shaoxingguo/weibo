@@ -70,22 +70,26 @@ extension XGAdvertisementViewModel
     /// 加载广告页数据
     private func loadData() -> Void
     {
-        XGDataManager.loadAdvertisementData { (advertisementModel, error) in
-            if error != nil || advertisementModel == nil {
+        XGStatusDAL.loadAdvertisementData {[weak self] (responseObject, error) in
+            if error != nil || responseObject == nil {
                 XGPrint("广告数据加载失败")
                 return
             }
             
-            if self.advertisementModel?.pictureImageURL?.compare(advertisementModel!.pictureImageURL ?? "") ==  ComparisonResult.orderedSame {
+            // 字典转模型
+            let advertisementModel = XGAdvertisementModel.mj_object(withKeyValues: responseObject!)
+            
+            // 判断是否进行下载图片
+            if self?.advertisementModel?.pictureImageURL == advertisementModel?.pictureImageURL {
                 // 图片已经存在
                 return
             } else {
                 // 记录模型
-                self.advertisementModel = advertisementModel!
+                self?.advertisementModel = advertisementModel!
                 // 保存模型
-                NSKeyedArchiver.archiveRootObject(advertisementModel!, toFile: self.modelCachePath)
+                NSKeyedArchiver.archiveRootObject(advertisementModel!, toFile: self?.modelCachePath ?? "")
                 // 下载图片
-                self.downloadImage()
+                self?.downloadImage()
             }
         }
     }

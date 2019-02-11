@@ -85,13 +85,15 @@ extension XGEmotionsListViewModel
     /// - Parameter completion: 完成回调
     open func loadEmotionsList(completion:((Bool) -> Void)?) -> Void
     {
-        XGDataManager.loadEmotionsList { (dataArray, error) in
-            if error != nil || dataArray == nil {
+        XGStatusDAL.loadEmotionsList { (responseObject, error) in
+            if error != nil || responseObject == nil {
                 completion?(false)
                 return
             } else {
+                // 字典转模型
+                let modelArray = XGEmotionModel.mj_objectArray(withKeyValuesArray: responseObject)?.copy() as? [XGEmotionModel]
                 // 缓存表情图片
-                self.cacheEmoticonImage(emotionsList: dataArray ?? [], completion: completion)
+                self.cacheEmoticonImage(emotionsList: modelArray ?? [], completion: completion)
             }
         }
     }

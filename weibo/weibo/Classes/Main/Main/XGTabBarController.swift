@@ -83,7 +83,7 @@ class XGTabBarController: UITabBarController
     // 更新未读数事件
     @objc private func updateUnreadCountAction() -> Void
     {
-        XGDataManager.loadUnreadCount { (count, error) in
+        XGStatusDAL.loadUnreadCount { (count, error) in
             self.tabBar.items?.first?.badgeValue = count > 0 ? "\(count)" : nil
         }
     }

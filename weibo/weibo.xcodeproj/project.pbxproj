@@ -25,6 +25,7 @@
 		8C32A9D52202F4CA008A1ECE /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */; };
 		8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D622032248008A1ECE /* XGComposeViewController.swift */; };
 		8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DB17521F58516007590CF /* XGStatusModel.swift */; };
+		8C457B3B221133D600AE5555 /* XGStatusDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C457B3A221133D600AE5555 /* XGStatusDAL.swift */; };
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
 		8C47D35A220E9E6500757513 /* XGSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */; };
 		8C47D35C220EA15F00757513 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D35B220EA15F00757513 /* FileManager+Extension.swift */; };
@@ -52,7 +53,6 @@
 		8CC26CA721EF712800A9E074 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC26CA621EF712800A9E074 /* UIImage+Extension.swift */; };
 		8CCAB9CD21F3134300A7FC70 /* XGLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9CC21F3134300A7FC70 /* XGLoginViewController.swift */; };
 		8CCAB9D021F3191900A7FC70 /* XGAdvertisementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9CF21F3191900A7FC70 /* XGAdvertisementViewController.swift */; };
-		8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */; };
 		8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */; };
 		8CCAB9DB21F3372900A7FC70 /* XGAdvertisementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */; };
 		8CD45F8F2208476D00812F6D /* XGEmotionKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD45F8E2208476D00812F6D /* XGEmotionKeyboardView.swift */; };
@@ -83,6 +83,7 @@
 		8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		8C32A9D622032248008A1ECE /* XGComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeViewController.swift; sourceTree = "<group>"; };
 		8C3DB17521F58516007590CF /* XGStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusModel.swift; sourceTree = "<group>"; };
+		8C457B3A221133D600AE5555 /* XGStatusDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusDAL.swift; sourceTree = "<group>"; };
 		8C46F43F21EDC1460071281F /* XGNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNavigationController.swift; sourceTree = "<group>"; };
 		8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGSettingTableViewController.swift; sourceTree = "<group>"; };
 		8C47D35B220EA15F00757513 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		8CC26CA621EF712800A9E074 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		8CCAB9CC21F3134300A7FC70 /* XGLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGLoginViewController.swift; sourceTree = "<group>"; };
 		8CCAB9CF21F3191900A7FC70 /* XGAdvertisementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementViewController.swift; sourceTree = "<group>"; };
-		8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDataManager.swift; sourceTree = "<group>"; };
 		8CCAB9D721F31BE700A7FC70 /* XGAdvertisementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementModel.swift; sourceTree = "<group>"; };
 		8CCAB9DA21F3372900A7FC70 /* XGAdvertisementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGAdvertisementViewModel.swift; sourceTree = "<group>"; };
 		8CD45F8E2208476D00812F6D /* XGEmotionKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionKeyboardView.swift; sourceTree = "<group>"; };
@@ -194,6 +194,7 @@
 		8C11BF6F21EC428F00F2E958 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8C457B3C2211431700AE5555 /* Tools */,
 				8C9BEF3A21F2245300390BB0 /* Network */,
 				8CF43FC221EC9EC50008B868 /* Common */,
 				8C11BF7021EC429700F2E958 /* Extension */,
@@ -338,6 +339,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8C457B3C2211431700AE5555 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8C457B3A221133D600AE5555 /* XGStatusDAL.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		8C51F89821EB74C90015FC0C = {
 			isa = PBXGroup;
 			children = (
@@ -427,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				8C9BEF3B21F2247300390BB0 /* XGNetworkManager.swift */,
-				8CCAB9D121F3194200A7FC70 /* XGDataManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -695,6 +703,7 @@
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
 				8C214FE52207495700965F2D /* XGEmotionTextView.swift in Sources */,
 				8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */,
+				8C457B3B221133D600AE5555 /* XGStatusDAL.swift in Sources */,
 				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
 				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
 				8C14346721FB3C95007ED7E9 /* XGStatusTopView.swift in Sources */,
@@ -705,7 +714,6 @@
 				8C14346221FB39EF007ED7E9 /* XGPictureModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
 				8CA6E69D2204111B00A29513 /* XGEmotionGroupModel.swift in Sources */,
-				8CCAB9D221F3194200A7FC70 /* XGDataManager.swift in Sources */,
 				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,
 				8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */,
 				8C14346A21FB459A007ED7E9 /* XGStatusViewModel.swift in Sources */,

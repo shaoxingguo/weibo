@@ -29,11 +29,13 @@ class XGAccountViewModel:NSObject
     ///   - completion: 完成回调
     open func loadAccessToken(code:String,completion:@escaping (Bool,Error?) -> Void) -> Void
     {
-        XGDataManager.loadAccessToken(code: code) { (accountModel, error) in
-            if error != nil || accountModel == nil {
+        XGStatusDAL.loadAccessToken(code: code) { (responseObject, error) in
+            if error != nil || responseObject == nil {
                 completion(false,error)
                 return
             } else {
+                // 字典转模型
+                let accountModel = XGAccountModel.mj_object(withKeyValues: responseObject!)
                 // 记录模型
                 self.accountModel = accountModel
                 // 保存模型
