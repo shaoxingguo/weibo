@@ -53,6 +53,33 @@ class XGEmotionCollectionViewCell: UICollectionViewCell
         delegate?.emotionCollectionViewCellEmotionDidSelected?(emotionModel: emotionModel)
     }
     
+    /// 长按表情事件
+    @objc private func longPressEmotionAction(gestureRecognize:UILongPressGestureRecognizer) -> Void
+    {
+        let point = gestureRecognize.location(in: self)
+        let emotionButton = emotionButtonWithLocation(point: point)
+        if emotionButton == nil || emotionButton?.tag == kEmotionPageCount {
+            // 长按的位置 不在表情按钮上 或者 长按的是删除按钮
+            emotionTipView.isHidden = true
+            return
+        }
+        
+        switch gestureRecognize.state {
+        case .began,.changed:
+            let newPoint = contentView.convert(emotionButton!.center, to: window)
+            emotionTipView.layer.position = newPoint
+            emotionTipView.isHidden = false
+            emotionTipView.emotionModel = emotions?[emotionButton!.tag]
+        case .cancelled,.failed:
+            emotionTipView.isHidden = true
+        case .ended:
+            emotionTipView.isHidden = true
+            emotionDidSelectedAction(button: emotionButton!)
+        default:
+            break
+        }
+    }
+    
     // MARK: - 构造方法
     
     override init(frame: CGRect)
@@ -69,6 +96,15 @@ class XGEmotionCollectionViewCell: UICollectionViewCell
     deinit {
         XGPrint("我去了")
     }
+    
+    // MARK: - 懒加载
+    
+    /// 表情提示视图
+    private lazy var emotionTipView:XGEmotionTipView = {
+        let view = XGEmotionTipView()
+        view.layer.anchorPoint = CGPoint(x: 0.5, y: 1.2)
+        return view
+    }()
 }
 
 // MARK: - 设置界面
@@ -95,6 +131,18 @@ extension XGEmotionCollectionViewCell
             button.frame = CGRect(x: x, y: y, width: itemWidth, height: itemWidth)
         }
     }
+    
+    // 视图被添加到窗口上
+    override func willMove(toWindow newWindow: UIWindow?)
+    {
+        super.willMove(toWindow: newWindow)
+        
+        if let window = newWindow {
+            window.addSubview(emotionTipView)
+            emotionTipView.isHidden = true
+        }
+    }
+    
     /// 设置界面
     private func setUpUI() -> Void
     {
@@ -104,6 +152,8 @@ extension XGEmotionCollectionViewCell
         for i in 0..<(kEmotionColumns * kEmotionRows) {
             let button = UIButton()
             button.addTarget(self, action: #selector(emotionDidSelectedAction(button:)), for: .touchUpInside)
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressEmotionAction(gestureRecognize:)))
+            button.addGestureRecognizer(longPress)
             if i == (kEmotionColumns * kEmotionRows - 1) {
                 button.setBackgroundImage(UIImage(named: "compose_emotion_delete"), for: .normal)
             }
@@ -111,6 +161,18 @@ extension XGEmotionCollectionViewCell
             button.tag = i
             contentView.addSubview(button)
         }
+    }
+    
+    /// 根据点击的点 返回对应位置的表情按钮
+    private func emotionButtonWithLocation(point:CGPoint) -> UIButton?
+    {
+        for button in contentView.subviews {
+            if button.frame.contains(point) {
+                return button as? UIButton
+            }
+        }
+        
+        return nil
     }
 }
 

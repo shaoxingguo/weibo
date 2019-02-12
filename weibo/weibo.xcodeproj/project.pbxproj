@@ -20,6 +20,7 @@
 		8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346B21FB56A0007ED7E9 /* XGUserModel.swift */; };
 		8C214FE52207495700965F2D /* XGEmotionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214FE42207495700965F2D /* XGEmotionTextView.swift */; };
 		8C2E44BC2212CE0E006A50CC /* XGSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E44BB2212CE0E006A50CC /* XGSQLiteManager.swift */; };
+		8C2E44BE2212FC9C006A50CC /* XGEmotionTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E44BD2212FC9C006A50CC /* XGEmotionTipView.swift */; };
 		8C32A9CF2202AFD3008A1ECE /* XGComposeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */; };
 		8C32A9D12202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */; };
 		8C32A9D32202E763008A1ECE /* XGComposeTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */; };
@@ -80,6 +81,7 @@
 		8C14346B21FB56A0007ED7E9 /* XGUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGUserModel.swift; sourceTree = "<group>"; };
 		8C214FE42207495700965F2D /* XGEmotionTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XGEmotionTextView.swift; sourceTree = "<group>"; };
 		8C2E44BB2212CE0E006A50CC /* XGSQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGSQLiteManager.swift; sourceTree = "<group>"; };
+		8C2E44BD2212FC9C006A50CC /* XGEmotionTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionTipView.swift; sourceTree = "<group>"; };
 		8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeView.swift; sourceTree = "<group>"; };
 		8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeViewToolBar.swift; sourceTree = "<group>"; };
 		8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeButton.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			children = (
 				8C8AE12B220D560F00A3C1DE /* XGEmotionCollectionViewCell.swift */,
 				8CD45F8E2208476D00812F6D /* XGEmotionKeyboardView.swift */,
+				8C2E44BD2212FC9C006A50CC /* XGEmotionTipView.swift */,
 			);
 			path = EmotionKeyboard;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				8C47D35C220EA15F00757513 /* FileManager+Extension.swift in Sources */,
 				8CCAB9D021F3191900A7FC70 /* XGAdvertisementViewController.swift in Sources */,
 				8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */,
+				8C2E44BE2212FC9C006A50CC /* XGEmotionTipView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
