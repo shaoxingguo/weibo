@@ -25,9 +25,7 @@ class XGWelcomeViewController: UIViewController
     {
         super.viewDidLoad()
 
-        // FIXME:测试
-        iconImageView.image = UIImage(named: "icon")
-//        iconImageView.xg_setImage(URLString:  XGAccountViewModel.shared.avatarLarge, placeholderImage: UIImage(named: "avatar_default_big"))
+        iconImageView.xg_setImage(URLString:  XGAccountViewModel.shared.avatarLarge, placeholderImage: UIImage(named: "avatar_default_big"))
     }
     
     override func viewWillAppear(_ animated: Bool)

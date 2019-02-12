@@ -85,7 +85,7 @@ extension XGEmotionsListViewModel
     /// - Parameter completion: 完成回调
     open func loadEmotionsList(completion:((Bool) -> Void)?) -> Void
     {
-        XGStatusDAL.loadEmotionsList { (responseObject, error) in
+        XGStatusDAL.shared.loadEmotionsList { (responseObject, error) in
             if error != nil || responseObject == nil {
                 completion?(false)
                 return

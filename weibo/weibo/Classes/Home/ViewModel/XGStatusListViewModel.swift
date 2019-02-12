@@ -61,7 +61,7 @@ extension XGStatusListViewModel
     ///   - completion: 完成回调
     private func loadData(sinceId:Int64 = 0,maxId:Int64 = 0,completion:@escaping ([XGStatusViewModel]?,Error?) -> Void) -> Void
     {
-        XGStatusDAL.loadStatusList(sinceId: sinceId, maxId: maxId) { (responseObject, error) in
+        XGStatusDAL.shared.loadStatusList(sinceId: sinceId, maxId: maxId) { (responseObject, error) in
             if error != nil || responseObject == nil {
                 completion(nil,error)
                 return

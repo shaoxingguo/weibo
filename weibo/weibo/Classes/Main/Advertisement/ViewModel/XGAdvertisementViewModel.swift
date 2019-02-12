@@ -70,7 +70,8 @@ extension XGAdvertisementViewModel
     /// 加载广告页数据
     private func loadData() -> Void
     {
-        XGStatusDAL.loadAdvertisementData {[weak self] (responseObject, error) in
+        
+        XGStatusDAL.shared.loadAdvertisementData {[weak self] (responseObject, error) in
             if error != nil || responseObject == nil {
                 XGPrint("广告数据加载失败")
                 return

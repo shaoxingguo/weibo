@@ -29,7 +29,7 @@ class XGAccountViewModel:NSObject
     ///   - completion: 完成回调
     open func loadAccessToken(code:String,completion:@escaping (Bool,Error?) -> Void) -> Void
     {
-        XGStatusDAL.loadAccessToken(code: code) { (responseObject, error) in
+        XGStatusDAL.shared.loadAccessToken(code: code) { (responseObject, error) in
             if error != nil || responseObject == nil {
                 completion(false,error)
                 return
