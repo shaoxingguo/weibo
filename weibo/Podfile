@@ -16,5 +16,6 @@ pod 'MLeaksFinder'
 pod 'MJRefresh'
 pod 'pop'
 pod 'FFLabel'
+pod 'FMDB'
 
 end

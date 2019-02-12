@@ -19,6 +19,7 @@
 		8C14346A21FB459A007ED7E9 /* XGStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346921FB459A007ED7E9 /* XGStatusViewModel.swift */; };
 		8C14346C21FB56A0007ED7E9 /* XGUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C14346B21FB56A0007ED7E9 /* XGUserModel.swift */; };
 		8C214FE52207495700965F2D /* XGEmotionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214FE42207495700965F2D /* XGEmotionTextView.swift */; };
+		8C2E44BC2212CE0E006A50CC /* XGSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E44BB2212CE0E006A50CC /* XGSQLiteManager.swift */; };
 		8C32A9CF2202AFD3008A1ECE /* XGComposeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */; };
 		8C32A9D12202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */; };
 		8C32A9D32202E763008A1ECE /* XGComposeTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */; };
@@ -26,6 +27,7 @@
 		8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C32A9D622032248008A1ECE /* XGComposeViewController.swift */; };
 		8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DB17521F58516007590CF /* XGStatusModel.swift */; };
 		8C457B3B221133D600AE5555 /* XGStatusDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C457B3A221133D600AE5555 /* XGStatusDAL.swift */; };
+		8C457B3E2211462700AE5555 /* status.sql in Resources */ = {isa = PBXBuildFile; fileRef = 8C457B3D2211462700AE5555 /* status.sql */; };
 		8C46F44021EDC1460071281F /* XGNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46F43F21EDC1460071281F /* XGNavigationController.swift */; };
 		8C47D35A220E9E6500757513 /* XGSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */; };
 		8C47D35C220EA15F00757513 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D35B220EA15F00757513 /* FileManager+Extension.swift */; };
@@ -77,6 +79,7 @@
 		8C14346921FB459A007ED7E9 /* XGStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusViewModel.swift; sourceTree = "<group>"; };
 		8C14346B21FB56A0007ED7E9 /* XGUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGUserModel.swift; sourceTree = "<group>"; };
 		8C214FE42207495700965F2D /* XGEmotionTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XGEmotionTextView.swift; sourceTree = "<group>"; };
+		8C2E44BB2212CE0E006A50CC /* XGSQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGSQLiteManager.swift; sourceTree = "<group>"; };
 		8C32A9CE2202AFD3008A1ECE /* XGComposeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeView.swift; sourceTree = "<group>"; };
 		8C32A9D02202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeViewToolBar.swift; sourceTree = "<group>"; };
 		8C32A9D22202E763008A1ECE /* XGComposeTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeTypeButton.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		8C32A9D622032248008A1ECE /* XGComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGComposeViewController.swift; sourceTree = "<group>"; };
 		8C3DB17521F58516007590CF /* XGStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusModel.swift; sourceTree = "<group>"; };
 		8C457B3A221133D600AE5555 /* XGStatusDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusDAL.swift; sourceTree = "<group>"; };
+		8C457B3D2211462700AE5555 /* status.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = status.sql; sourceTree = "<group>"; };
 		8C46F43F21EDC1460071281F /* XGNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGNavigationController.swift; sourceTree = "<group>"; };
 		8C47D359220E9E6500757513 /* XGSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGSettingTableViewController.swift; sourceTree = "<group>"; };
 		8C47D35B220EA15F00757513 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 			isa = PBXGroup;
 			children = (
 				8C457B3A221133D600AE5555 /* XGStatusDAL.swift */,
+				8C2E44BB2212CE0E006A50CC /* XGSQLiteManager.swift */,
+				8C457B3D2211462700AE5555 /* status.sql */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C457B3E2211462700AE5555 /* status.sql in Resources */,
 				8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */,
 				8C5754E321F9C81E00938F1B /* test.xib in Resources */,
 			);
@@ -652,6 +659,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
 				"${BUILT_PRODUCTS_DIR}/FFLabel/FFLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
@@ -665,6 +673,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FFLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
@@ -726,6 +735,7 @@
 				8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */,
 				8C6FA4D821F8407400D3DD4F /* XGWelcomeViewController.swift in Sources */,
 				8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */,
+				8C2E44BC2212CE0E006A50CC /* XGSQLiteManager.swift in Sources */,
 				8C8E832921F4B9ED004F5CD8 /* XGNewFeatureViewController.swift in Sources */,
 				8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */,
 				8CA1B7CD2201707B008BFAB1 /* XGRefreshHeader.swift in Sources */,

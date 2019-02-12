@@ -10,7 +10,9 @@ import Foundation
 
 class XGStatusDAL
 {
-    
+    deinit {
+        XGPrint("数据访问层走啦")
+    }
 }
 
 // MARK: - 加载广告
