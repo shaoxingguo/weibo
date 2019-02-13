@@ -46,4 +46,16 @@ import SDWebImage
         let attachment = XGEmotionTextAttachment(emotionModel: self)
         return attachment.emotionAttributedString(fontSize: fontSize)
     }
+    
+    /// 重写判断相等方法
+    public override func isEqual(_ object: Any?) -> Bool {
+        return value == (object as? XGEmotionModel)?.value
+    }
+    
+    /// 将模型转为字典
+    open func emotionToKeyValues() -> [String:Any]
+    {
+        let keys = ["icon","value","category","useTimes"]
+        return dictionaryWithValues(forKeys: keys)
+    }
 }

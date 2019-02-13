@@ -45,7 +45,9 @@ class XGComposeViewController: UIViewController
     /// 发布微博
     @objc private func publishAction() -> Void
     {
-        XGPrint(textView.textValue())
+        closeAction()
+        // 保存最近分组数据
+        XGEmotionsListViewModel.shared.saveRecentEmotions()
     }
     
     /// 关闭按钮监听事件
@@ -106,7 +108,13 @@ class XGComposeViewController: UIViewController
     /// 表情键盘
     private lazy var emotionKeyboardView:XGEmotionKeyboardView = { [weak self] in
         let view = XGEmotionKeyboardView(callBack: { (emotionModel) in
+            // 插入表情
             self?.textView.insertEmotionModel(emotionModel: emotionModel)
+            // textView改变状态
+            if let emotionModel = emotionModel,
+               let textView = self?.textView {
+                self?.textViewDidChange(textView)
+            }
         })
         view.backgroundColor = UIColor(white: 0.95, alpha: 1)
         return view

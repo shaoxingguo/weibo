@@ -18,6 +18,11 @@ class XGEmotionsListViewModel
     
     public static var shared:XGEmotionsListViewModel = XGEmotionsListViewModel()
     private init() {}
+    /// 最近分组表情缓存路径
+    private lazy var recentEmotionsCachePath:String = {
+        let document = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+        return (document as NSString).appendingPathComponent("recentEmotions.plist")
+    }()
 }
 
 // MARK: - 公开方法
@@ -54,6 +59,57 @@ extension XGEmotionsListViewModel
         
         // 设置属性字符串属性 使用setAttributes无法给图片属性文本设置属性，造成无法显示图片 因此使用addAttributes
         return attributesStringM.copy() as? NSAttributedString
+    }
+    
+    
+    /// 添加最近表情
+    ///
+    /// - Parameter emotionModel: 表情模型
+    open func addRecentEmotion(emotionModel:XGEmotionModel) -> Void
+    {
+        let recentGroupModel = emotionsGroupList[0]
+
+        // 如果最近分组没有该表情,进行添加;
+        if recentGroupModel.emotions?.contains(emotionModel) == false {
+            // 如果已经到达最大数量 删除末尾的
+            if (recentGroupModel.emotions?.count ?? 0) == kEmotionPageCount {
+                recentGroupModel.emotions?.removeLast()
+            }
+            
+            // 使用次数+1
+            emotionModel.useTimes += 1
+            recentGroupModel.emotions?.append(emotionModel)
+        } else {
+            // 否则更新次数 因为从缓存生成的模型和网络加载的是不同的模型对象
+            let em = recentGroupModel.emotions?.filter({$0.value == emotionModel.value})[0]
+            em?.useTimes += 1
+        }
+        
+        // 将最近分组按使用次数进行排序 经常使用的房子前面
+        recentGroupModel.emotions?.sort(by: {$0.useTimes > $1.useTimes})
+    }
+    
+    /// 保存最近分组
+    open func saveRecentEmotions() -> Void
+    {
+        // 将模型数组转换为字典数组
+        let recentGroupModel = emotionsGroupList[0]
+        var jsonArray = [[String:Any]]()
+        for emotion in recentGroupModel.emotions ?? [] {
+            jsonArray.append(emotion.emotionToKeyValues())
+        }
+        
+        // 保存至缓存
+        (jsonArray as NSArray).write(to: URL(fileURLWithPath: recentEmotionsCachePath), atomically: true)
+    }
+    
+    /// 加载最近表情模型
+    private func loaRecentEmotions() -> Void
+    {
+        // 读取最近表情缓存数据
+        let emotionList = XGEmotionModel.mj_objectArray(withFile: recentEmotionsCachePath) as? [XGEmotionModel]
+        // 向分组表情数组中插入最近分组
+        emotionsGroupList.insert(XGEmotionGroupModel(category: "最近", emotions: emotionList ?? []), at: 0)
     }
     
     /// 根据表情文字返回表情模型
@@ -131,11 +187,12 @@ extension XGEmotionsListViewModel
             
             // 将模型归入不同的分组
             for category in categoryGroup {
-                let emotions = emotionsList.filter() { $0.category == category }
+                let emotions = emotionsList.filter {$0.category == category}
                 self.emotionsGroupList.append(XGEmotionGroupModel(category: category, emotions: emotions))
             }
             
-            self.emotionsGroupList.insert(XGEmotionGroupModel(category: "最近", emotions: []), at: 0)
+            // 加载最近表情
+            self.loaRecentEmotions()
             completion?(true)
         }
     }

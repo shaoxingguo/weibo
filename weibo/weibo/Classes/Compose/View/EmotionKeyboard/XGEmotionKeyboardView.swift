@@ -131,9 +131,12 @@ extension XGEmotionKeyboardView:XGEmotionCollectionViewCellDelegate
         // 传递回调 将选中的表情 显示在textView中
         selectedEmotionCallBack(emotionModel)
         
-        // FIXME: 添加最近表情
-        guard let emotionModel = emotionModel else {
-            return
+        // 添加最近表情 当前分组要不是0
+        if selectedGroupIndex != 0 && emotionModel != nil {
+            XGEmotionsListViewModel.shared.addRecentEmotion(emotionModel: emotionModel!)
+            // 刷新第0组 即最近分组
+            let indexSet = IndexSet(integersIn: 0..<1)
+            emotionCollectionView.reloadSections(indexSet)
         }
     }
 }
