@@ -30,6 +30,9 @@ import SDWebImage
         return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: icon)
     }
     
+    /// 使用次数
+    var useTimes:Int64 = 0
+    
     /// 返回表情图片属性文本
     ///
     /// - Parameter fontSize: 字体大小

@@ -28,12 +28,12 @@ class XGEmotionGroupModel: NSObject
         self.emotions = emotions
         
         // 设置表情页数
-        if let emotions = emotions {
-            numberOfPages = (emotions.count - 1) / kEmotionPageCount + 1
+        if category == "最近" {
+            // 最近 只有一页
+            numberOfPages = 1
+        } else {
+            numberOfPages = ((emotions?.count ?? 0) - 1) / kEmotionPageCount + 1
         }
-        
-        // 最近 只有一页
-        category == "最近" ? numberOfPages = 1 : ()
         
         super.init()
     }
