@@ -8,8 +8,26 @@
 
 import UIKit
 
-class XGImagePickerCollectionViewCell: UICollectionViewCell
+private let kDefaultImage = UIImage(named: "compose_pic_add")
+
+public class XGImagePickerCollectionViewCell: UICollectionViewCell
 {
+    /// 代理
+    open weak var delegate:XGImagePickerCollectionViewCellDelegate?
+    
+    /// 图片
+    open var image:UIImage? {
+        didSet {
+            if image != nil {
+                pictureButton.setBackgroundImage(image, for: .normal)
+                removeButton.isHidden = false
+            } else {
+                pictureButton.setBackgroundImage(kDefaultImage, for: .normal)
+                removeButton.isHidden = true
+            }
+        }
+    }
+    
     // MARK: - 构造方法
     
     override init(frame: CGRect)
@@ -23,12 +41,31 @@ class XGImagePickerCollectionViewCell: UICollectionViewCell
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - 事件监听
+    
+    /// 添加图片
+    @objc private func addPictureAction() -> Void
+    {
+        delegate?.imagePickerCollectionViewCellAddPicture?(cell: self)
+    }
+    
+    /// 移除图片
+    @objc private func removePictureAction() -> Void
+    {
+        delegate?.imagePickerCollectionViewCellRemovePicture?(cell: self)
+    }
+    
     // MARK: - 懒加载
     
     /// 图片按钮
-    private lazy var pictureButton:UIButton = UIButton(title: nil, imageName: "compose_pic_add",target: nil, action: nil)
+    private lazy var pictureButton:UIButton = { [weak self] in
+        let button = UIButton()
+        button.setBackgroundImage(kDefaultImage, for: .normal)
+        button.addTarget(self, action: #selector(addPictureAction), for: .touchUpInside)
+        return button
+    }()
     /// 删除按钮
-    private lazy var removeButton:UIButton = UIButton(title: nil, backgroundImageName: "compose_photo_close",target: nil, action: nil)
+    private lazy var removeButton:UIButton = UIButton(title: nil, backgroundImageName: "compose_photo_close",target: self, action: #selector(removePictureAction))
 }
 
 // MARK: - 设置界面
@@ -50,4 +87,10 @@ extension XGImagePickerCollectionViewCell
             make.top.right.equalTo(contentView)
         }
     }
+}
+
+@objc public protocol XGImagePickerCollectionViewCellDelegate
+{
+    @objc optional func imagePickerCollectionViewCellAddPicture(cell:XGImagePickerCollectionViewCell) -> Void
+    @objc optional func imagePickerCollectionViewCellRemovePicture(cell:XGImagePickerCollectionViewCell) -> Void
 }

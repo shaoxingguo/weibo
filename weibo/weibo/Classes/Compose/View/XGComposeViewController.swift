@@ -26,12 +26,6 @@ class XGComposeViewController: UIViewController
         setUpNavigationItem()
         setUpToolBar()
         registerNotification()
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
         textView.becomeFirstResponder()
     }
     

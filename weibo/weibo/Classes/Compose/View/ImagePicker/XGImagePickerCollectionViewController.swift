@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import TZImagePickerController
 
 /// cell重用标识符
 private let kReuseIdentifier = "XGImagePickerCollectionViewCell"
 
 class XGImagePickerCollectionViewController: UICollectionViewController
 {
-
+    /// 图片二进制数据
+    open var imageData:Data?
+    /// 选中的图片 
+    private var selectedImages:[UIImage] = [UIImage]()
+    /// 当前选择的索引
+    private var selectedIndex:Int = 0
+    
     // MARK: - 构造方法
     
     init()
@@ -47,14 +54,68 @@ class XGImagePickerCollectionViewController: UICollectionViewController
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 9
+        return (selectedImages.count < 9 ? selectedImages.count + 1 : 9)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kReuseIdentifier, for: indexPath) as! XGImagePickerCollectionViewCell
-        
+        cell.delegate = self
+        cell.image = indexPath.item < selectedImages.count ? selectedImages[indexPath.item] : nil
         return cell
+    }
+}
+
+// MARK: - XGImagePickerCollectionViewCellDelegate
+
+extension XGImagePickerCollectionViewController: XGImagePickerCollectionViewCellDelegate
+{
+    /// 添加照片
+    func imagePickerCollectionViewCellAddPicture(cell: XGImagePickerCollectionViewCell)
+    {
+        selectedIndex = (collectionView.indexPath(for: cell)?.item ?? 0)
+        let pickerController:TZImagePickerController = TZImagePickerController(maxImagesCount: 1, columnNumber: 3, delegate: self)
+        present(pickerController, animated: true, completion: nil)
+    }
+    
+    /// 移除照片
+    func imagePickerCollectionViewCellRemovePicture(cell:
+        XGImagePickerCollectionViewCell)
+    {
+        selectedIndex = (collectionView.indexPath(for: cell)?.item ?? 0)
+        selectedImages.remove(at: selectedIndex)
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - TZImagePickerControllerDelegate!
+
+extension XGImagePickerCollectionViewController: TZImagePickerControllerDelegate
+{
+    /// 选中图片回调
+    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]?,sourceAssets assets: [Any]?, isSelectOriginalPhoto: Bool)
+    {
+        guard let image = photos?.first,
+              let asset = assets?[0] as? PHAsset else {
+                return
+        }
+        
+        // 取出选中的图片的二进制数据
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        PHImageManager.default().requestImageData(for: asset, options: options) {[weak self] (data, _, _, _) in
+            self?.imageData = data
+        }
+        
+        // index = 0 count = 0 添加 index = 1 count = 1 添加 index = 0 count = 2 覆盖  index == count 添加 index < count 覆盖
+        if selectedIndex == selectedImages.count {
+            selectedImages.append(image)
+        } else {
+            selectedImages[selectedIndex] = image
+        }
+        
+        // 刷新表格
+        collectionView.reloadData()
     }
 }
 
