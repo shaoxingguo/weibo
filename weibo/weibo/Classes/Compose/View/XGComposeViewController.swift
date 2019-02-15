@@ -84,11 +84,28 @@ class XGComposeViewController: UIViewController
         }
     }
     
-    @objc private func emotionKeyboardAction() -> Void
+    /// 显示表情键盘
+    @objc private func showEmotionKeyboardAction() -> Void
     {
         if XGEmotionsListViewModel.shared.emotionsGroupList.count > 0 {
             textView.inputView = textView.inputView == nil ? emotionKeyboardView : nil
             textView.reloadInputViews()
+        }
+    }
+    
+    /// 展示图片选择器
+    @objc private func showImagePickerAction() -> Void
+    {
+        textView.resignFirstResponder()
+        
+        var height:CGFloat = imagePickerController.view.height
+        height = (height == 0 ? 400 : 0)
+        imagePickerController.view.snp.updateConstraints { (make) in
+            make.height.equalTo(height).priority(.high)
+        }
+        
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -119,6 +136,8 @@ class XGComposeViewController: UIViewController
         view.backgroundColor = UIColor(white: 0.95, alpha: 1)
         return view
     }()
+    /// 照片选择器
+    private lazy var imagePickerController:XGImagePickerCollectionViewController = XGImagePickerCollectionViewController()
 }
 
 // MARK: - UITextViewDelegate
@@ -141,8 +160,12 @@ extension XGComposeViewController
     {
         view.backgroundColor = UIColor.white
         
+        // 添加子控制器
+        addChild(imagePickerController)
+        
         // 添加子控件
         view.addSubview(textView)
+        view.addSubview(imagePickerController.view)
         view.addSubview(toolBar)
         
         // 设置自动布局
@@ -156,6 +179,11 @@ extension XGComposeViewController
             make.left.right.bottom.equalTo(view)
             make.height.equalTo(kToolBarHeight)
         }
+        
+        imagePickerController.view.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.height.equalTo(0).priority(.high)
+        }        
     }
     
     /// 设置导航栏
@@ -169,10 +197,11 @@ extension XGComposeViewController
     /// 设置工具栏
     private func setUpToolBar() -> Void
     {
-        let itemSettings = [["imageName": "compose_toolbar_picture"],
+        let itemSettings = [["imageName": "compose_toolbar_picture",
+                             "actionName": "showImagePickerAction"],
                             ["imageName": "compose_mentionbutton_background"],
                             ["imageName": "compose_trendbutton_background"],
-                            ["imageName": "compose_emoticonbutton_background", "actionName": "emotionKeyboardAction"],
+                            ["imageName": "compose_emoticonbutton_background", "actionName": "showEmotionKeyboardAction"],
                             ["imageName": "compose_add_background"]]
         
         var items:[UIBarButtonItem] = [UIBarButtonItem]()

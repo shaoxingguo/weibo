@@ -37,6 +37,8 @@
 		8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */; };
 		8C5754E321F9C81E00938F1B /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5754E221F9C81E00938F1B /* test.xib */; };
 		8C5C0F81220DE0A000165B8C /* XGEmotionTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C0F80220DE0A000165B8C /* XGEmotionTextAttachment.swift */; };
+		8C6C8F522216C4F700711FCC /* XGImagePickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8F512216C4F700711FCC /* XGImagePickerCollectionViewController.swift */; };
+		8C6C8F542216CB7800711FCC /* XGImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8F532216CB7800711FCC /* XGImagePickerCollectionViewCell.swift */; };
 		8C6FA4D821F8407400D3DD4F /* XGWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */; };
 		8C6FA4DA21F843C000D3DD4F /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FA4D921F843C000D3DD4F /* UIImageView+Extension.swift */; };
 		8C89D98D2213EC19000E7A43 /* XGEmotionViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C89D98C2213EC19000E7A43 /* XGEmotionViewToolBar.swift */; };
@@ -101,6 +103,8 @@
 		8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8C5754E221F9C81E00938F1B /* test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		8C5C0F80220DE0A000165B8C /* XGEmotionTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionTextAttachment.swift; sourceTree = "<group>"; };
+		8C6C8F512216C4F700711FCC /* XGImagePickerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGImagePickerCollectionViewController.swift; sourceTree = "<group>"; };
+		8C6C8F532216CB7800711FCC /* XGImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGWelcomeViewController.swift; sourceTree = "<group>"; };
 		8C6FA4D921F843C000D3DD4F /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		8C89D98C2213EC19000E7A43 /* XGEmotionViewToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionViewToolBar.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 		8C32A9CD2202AF7C008A1ECE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C6C8F4E22168D2100711FCC /* ImagePicker */,
 				8C89D98B2213DBB5000E7A43 /* Menu */,
 				8C8AE12A220D532B00A3C1DE /* EmotionKeyboard */,
 				8C214FE42207495700965F2D /* XGEmotionTextView.swift */,
@@ -389,6 +394,15 @@
 				8C5C0F80220DE0A000165B8C /* XGEmotionTextAttachment.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		8C6C8F4E22168D2100711FCC /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				8C6C8F532216CB7800711FCC /* XGImagePickerCollectionViewCell.swift */,
+				8C6C8F512216C4F700711FCC /* XGImagePickerCollectionViewController.swift */,
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 		8C6FA4D621F8405800D3DD4F /* Welcome */ = {
@@ -723,6 +737,7 @@
 				8C47D35A220E9E6500757513 /* XGSettingTableViewController.swift in Sources */,
 				8CD8486F21FD8BEC00EC027E /* XGStatusTableViewCell.swift in Sources */,
 				8CD45F8F2208476D00812F6D /* XGEmotionKeyboardView.swift in Sources */,
+				8C6C8F542216CB7800711FCC /* XGImagePickerCollectionViewCell.swift in Sources */,
 				8C9686E321FC11EF005E7289 /* XGStatusBottomView.swift in Sources */,
 				8C214FE52207495700965F2D /* XGEmotionTextView.swift in Sources */,
 				8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */,
@@ -741,6 +756,7 @@
 				8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */,
 				8C14346A21FB459A007ED7E9 /* XGStatusViewModel.swift in Sources */,
 				8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */,
+				8C6C8F522216C4F700711FCC /* XGImagePickerCollectionViewController.swift in Sources */,
 				8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */,
 				8C89D98D2213EC19000E7A43 /* XGEmotionViewToolBar.swift in Sources */,
 				8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */,
