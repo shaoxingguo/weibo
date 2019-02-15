@@ -74,6 +74,7 @@ class XGTabBarController: UITabBarController
             // 控制器跳转
             let viewController = classType.init()
             let nav = XGNavigationController(rootViewController: viewController)
+            nav.view.layoutIfNeeded()
             self?.present(nav, animated: true, completion: {
                 composeTypeView?.removeFromSuperview()
             })

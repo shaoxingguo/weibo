@@ -15,14 +15,14 @@ class XGStatusPicturesView: UIView
     
     open var statusViewModel:XGStatusViewModel? {
         didSet {
-            if statusViewModel?.picUrls == nil || statusViewModel?.picUrls?.count == 0 {
-                // 没有配图
-                return
-            }
-            
             // 隐藏所有图片视图
             for view in subviews {
                 view.isHidden = true
+            }
+            
+            if statusViewModel?.picUrls == nil || statusViewModel?.picUrls?.count == 0 {
+                // 没有配图
+                return
             }
             
             if statusViewModel?.picUrls?.count == 1 {
@@ -67,6 +67,10 @@ class XGStatusPicturesView: UIView
     ///   - imageSize: 图片尺寸
     private func setImage(imageView:UIImageView,image:UIImage? = nil,URLString:String? = nil,imageSize:CGSize = CGSize(width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)) -> Void
     {
+        // 是否显示gif提示
+        imageView.subviews[0].isHidden = !(URLString?.lowercased() ?? "").hasSuffix("gif")
+        
+        // 设置图片
         if image != nil {
             imageView.image = image
         } else if URLString != nil {
@@ -104,20 +108,23 @@ extension XGStatusPicturesView
     /// 设置界面
     private func setUpUI() -> Void
     {
-        clipsToBounds = true
-        
         for i in 0..<kStatusPicturesViewColumns * kStatusPicturesViewColumns {
-            let imageView = UIImageView()
-            imageView.backgroundColor = UIColor.orange
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            addSubview(imageView)
-            
             let row = i / kStatusPicturesViewColumns
             let column = i % kStatusPicturesViewColumns
             let x = CGFloat(column) * (kStatusCellPictureInnerMargin + kStatusPicturesViewItemWidth)
             let y = kStatusCellPictureOuterMargin + CGFloat(row) * (kStatusCellPictureInnerMargin + kStatusPicturesViewItemWidth)
+            
+            let imageView = UIImageView()
+            imageView.backgroundColor = UIColor.orange
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+        
+            let gifTipImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
+            gifTipImageView.origin = CGPoint(x: kStatusPicturesViewItemWidth - gifTipImageView.width, y: kStatusPicturesViewItemWidth - gifTipImageView.height)
+            imageView.addSubview(gifTipImageView)
+            
+            addSubview(imageView)
             imageView.frame = CGRect(x: x, y: y, width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)
         }
-    }
+    } 
 }
