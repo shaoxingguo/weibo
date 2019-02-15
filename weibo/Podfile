@@ -17,5 +17,6 @@ pod 'MJRefresh'
 pod 'pop'
 pod 'FFLabel'
 pod 'FMDB'
+pod 'TZImagePickerController'
 
 end
