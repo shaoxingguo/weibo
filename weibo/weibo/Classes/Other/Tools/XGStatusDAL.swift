@@ -187,7 +187,12 @@ extension XGStatusDAL
     /// - Parameter completion: 完成回调
     open func loadUnreadCount(completion:@escaping (Int,Error?) ->Void) -> Void
     {
-        let parameters = ["uid":XGAccountViewModel.shared.uid!]
+        guard let uid = XGAccountViewModel.shared.uid else {
+            completion(0,NSError(domain: "error", code: 100000003, userInfo: ["reason" : "uid为空!"]))
+            return
+        }
+        
+        let parameters = ["uid":uid]
         accessTokenRequest(type: .Get, URLString: kUnreadCountAPI, parameters: parameters) { (responseObject, error) in
             if error != nil {
                 completion(0,error)
@@ -214,8 +219,8 @@ extension XGStatusDAL
                 completion(nil,error)
                 return
             } else {
-                 let emotionArray = responseObject as? [[String:Any]]
-                completion(emotionArray,nil)
+                 let dictArray = responseObject as? [[String:Any]]
+                completion(dictArray,nil)
             }
         }
     }
@@ -229,19 +234,31 @@ extension XGStatusDAL
     ///   - completion: 完成回调
     private func accessTokenRequest(type:HttpMethodType, URLString:String,parameters:[String:Any]?,completion:@escaping (Any?,Error?) ->Void) -> Void
     {
-        guard let accessToken = XGAccountViewModel.shared.accessToken else {
+        // 追加参数
+        var parameters = parameters
+        if !appendAccessToken(parameters: &parameters) {
             completion(nil,NSError(domain: "error", code: 100000002, userInfo: ["reason" : "accessToken为空!"]))
             return
         }
         
-        var parameters = parameters
+        // 发送网络请求
+        XGNetworkManager.request(type: type, URLString: URLString, parameters: parameters, completion: completion)
+    }
+    
+    /// 追加access_token参数
+    private func appendAccessToken(parameters:inout [String:Any]?) -> Bool
+    {
+        guard let accessToken = XGAccountViewModel.shared.accessToken else {
+            return false
+        }
+        
         if parameters == nil {
             parameters = ["access_token":accessToken]
         } else {
             parameters!["access_token"] = accessToken
         }
         
-        XGNetworkManager.request(type: type, URLString: URLString, parameters: parameters, completion: completion)
+        return true
     }
     
     /// 从本地缓存数据库中加载微博数据
@@ -303,6 +320,60 @@ extension XGStatusDAL
         let dateStr = dateFormatter.string(from: date)
         let sql = "DELETE FROM T_status WHERE createTime < ?;"
         _ = SQLiteManager.delete(sql: sql, arguments: [dateStr])
+    }
+}
+
+// MARK: - 发送微博
+
+extension XGStatusDAL
+{
+    
+    /// 发送微博
+    ///
+    /// - Parameters:
+    ///   - text: 微博文字
+    ///   - imageData: 图片数据
+    ///   - completion: 完成回调
+    open func sendStatus(text:String,imageData:Data?,completion:@escaping ([String:Any]?,Error?) -> Void) -> Void
+    {
+        let statusText = text + "\nhttp://www.weibo.com/"
+        if let imageData = imageData {
+            // 发送图片微博
+            sendImageStatus(text: statusText, imageData: imageData, completion: completion)
+        } else {
+            // 发送纯文本微博
+            sendTextStatus(text: statusText, completion: completion)
+        }
+    }
+    
+    /// 发送纯文本微博
+    private func sendTextStatus(text:String,completion:@escaping ([String:Any]?,Error?) -> Void) -> Void
+    {
+        let parameters = ["status":text]
+        accessTokenRequest(type: .Post, URLString: kShareAPI, parameters: parameters) { (responseObject, error) in
+            if error != nil || responseObject == nil {
+                completion(nil,error)
+                return
+            }
+            
+            completion(responseObject as? [String:Any],nil)
+        }
+    }
+    
+    /// 发送带图片微博
+    private func sendImageStatus(text:String,imageData:Data,completion:@escaping ([String:Any]?,Error?) -> Void) -> Void
+    {
+        var parameters:[String:Any]? = ["status":text]
+        if appendAccessToken(parameters: &parameters) {
+            XGNetworkManager.uploadFile(URLString: kShareAPI, parameters: parameters, fileData: imageData, filedName: "pic") { (responseObject, error) in
+                if error != nil || responseObject == nil {
+                    completion(nil,error)
+                    return
+                }
+                
+                completion(responseObject as? [String:Any],nil)
+            }
+        }
     }
 }
 

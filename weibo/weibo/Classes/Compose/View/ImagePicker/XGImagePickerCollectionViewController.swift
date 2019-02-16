@@ -33,6 +33,10 @@ class XGImagePickerCollectionViewController: UICollectionViewController
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        XGPrint("我去了")
+    }
+    
     // MARK: - 控制器生命周期方法
     
     override func viewDidLoad()
@@ -88,7 +92,7 @@ extension XGImagePickerCollectionViewController: XGImagePickerCollectionViewCell
     }
 }
 
-// MARK: - TZImagePickerControllerDelegate!
+// MARK: - TZImagePickerControllerDelegate
 
 extension XGImagePickerCollectionViewController: TZImagePickerControllerDelegate
 {

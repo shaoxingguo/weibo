@@ -93,10 +93,6 @@ class XGEmotionCollectionViewCell: UICollectionViewCell
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        XGPrint("我去了")
-    }
-    
     // MARK: - 懒加载
     
     /// 表情提示视图

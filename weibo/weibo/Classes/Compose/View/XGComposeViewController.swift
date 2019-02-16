@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class XGComposeViewController: UIViewController
 {
@@ -39,9 +40,18 @@ class XGComposeViewController: UIViewController
     /// 发布微博
     @objc private func publishAction() -> Void
     {
-        closeAction()
         // 保存最近分组数据
         XGEmotionsListViewModel.shared.saveRecentEmotions()
+        // 获取输入的内容
+        XGStatusDAL.shared.sendStatus(text: textView.textValue(), imageData: imagePickerController.imageData) { [weak self](responseObject, error) in
+            self?.closeAction()
+            if error != nil || responseObject == nil {
+                SVProgressHUD.showError(withStatus: "发送失败")
+                return
+            }
+            
+            SVProgressHUD.showSuccess(withStatus: "发送成功")
+        }
     }
     
     /// 关闭按钮监听事件

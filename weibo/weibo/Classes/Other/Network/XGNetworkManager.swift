@@ -58,4 +58,33 @@ class XGNetworkManager: AFHTTPSessionManager
            sharedManager.post(URLString, parameters: parameters, progress: nil, success: successCompletion, failure: failureCompletion)
         }
     }
+    
+    /// 上传文件
+    ///
+    /// - Parameters:
+    ///   - URLString: 接口地址
+    ///   - parameters: 参数
+    ///   - fileData: 文件二进制数据
+    ///   - filedName: 文件字段
+    ///   - completion: 完成回调
+    open class func uploadFile(URLString:String,parameters:[String:Any]?,fileData:Data,filedName:String,completion:@escaping (Any?, Error?) -> Void)  -> Void
+    {
+        let successCompletion = { (dataTask:URLSessionDataTask?,responseObject:Any?) -> Void in
+            completion(responseObject,nil)
+        }
+        
+        let failureCompletion = { (dataTask:URLSessionDataTask?,error:Error?) ->Void in
+            let response = dataTask?.response as? HTTPURLResponse
+            if response?.statusCode == 403 {
+                // token过期
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil, userInfo: nil)
+            }
+            
+            completion(nil,error)
+        }
+        
+        sharedManager.post(URLString, parameters: parameters, constructingBodyWith: { (formData) in
+            formData.appendPart(withFileData: fileData, name: filedName, fileName: "", mimeType: "application/octet-stream")
+        }, progress: nil, success: successCompletion, failure: failureCompletion)
+    }
 }

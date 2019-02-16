@@ -43,10 +43,6 @@ class XGEmotionTipView: UIImageView
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        XGPrint("我去了")
-    }
-    
     // MARK: - 懒加载
     
     /// 表情视图

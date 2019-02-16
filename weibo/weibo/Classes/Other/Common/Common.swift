@@ -75,9 +75,9 @@ public let kFromMainToLogin:String = "kFromMainToLogin"
 // MARK: - 微博接口相关
 
 /// 应用程序AppKey
-public let kAppKey:String = "4222298338"//"2247988996"
+public let kAppKey:String = "2247988996"
 /// 应用程序AppSecret
-public let kAppSecret:String = "c8afe57650c618374945b33fccf066b3"//"ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
+public let kAppSecret:String = "ea0e0c5d1d2fd153a7c68f8d5f97c9a4"
 /// 授权回调页
 public let kRedirectURLString:String = "https://api.weibo.com/oauth2/default.html"
 
@@ -97,3 +97,5 @@ public let kUnreadCountAPI:String = "https://rm.api.weibo.com/2/remind/unread_co
 public let kUserInfoAPI:String = "2/users/show.json"
 /// 获取微博官方表情的详细信息接口
 public let kEmotionsAPI:String = "2/emotions.json"
+/// 第三方分享一条链接到微博接口
+public let kShareAPI:String = "2/statuses/share.json"
