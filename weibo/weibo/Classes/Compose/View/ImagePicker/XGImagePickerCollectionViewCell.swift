@@ -18,13 +18,8 @@ public class XGImagePickerCollectionViewCell: UICollectionViewCell
     /// 图片
     open var image:UIImage? {
         didSet {
-            if image != nil {
-                pictureButton.setBackgroundImage(image, for: .normal)
-                removeButton.isHidden = false
-            } else {
-                pictureButton.setBackgroundImage(kDefaultImage, for: .normal)
-                removeButton.isHidden = true
-            }
+            pictureButton.setBackgroundImage(image != nil ? image : kDefaultImage, for: .normal)
+            removeButton.isHidden = image == nil
         }
     }
     
@@ -88,6 +83,8 @@ extension XGImagePickerCollectionViewCell
         }
     }
 }
+
+// MARK: - XGImagePickerCollectionViewCellDelegate
 
 @objc public protocol XGImagePickerCollectionViewCellDelegate
 {

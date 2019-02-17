@@ -42,6 +42,8 @@ class XGStatusTopView: UIView
             verifiedImageView.image = statusViewModel?.verifiedImage
             // 设置微博来源
             soureLabel.text = statusViewModel?.sourceString
+            // 设置创建时间
+            createTimeLabel.text = statusViewModel?.createTimeString
         }
     }
     

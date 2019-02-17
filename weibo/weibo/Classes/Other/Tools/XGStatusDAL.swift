@@ -314,10 +314,7 @@ extension XGStatusDAL
     /// 清除过期数据
     private func clearCache() -> Void
     {
-        let date = Date(timeIntervalSinceNow: kMaxCacheTime)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateStr = dateFormatter.string(from: date)
+        let dateStr = Date.dateToString(sinceNow: kMaxCacheTime)
         let sql = "DELETE FROM T_status WHERE createTime < ?;"
         _ = SQLiteManager.delete(sql: sql, arguments: [dateStr])
     }

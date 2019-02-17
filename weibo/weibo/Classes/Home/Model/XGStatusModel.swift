@@ -31,6 +31,8 @@ import MJExtension
     var retweetedStatus:XGStatusModel?
     /// 微博来源
     var source:String?
+    /// 微博创建时间
+    var createdAt:String?
 }
 
 // MARK: - 设置模型key

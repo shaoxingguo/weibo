@@ -14,9 +14,9 @@ class XGStatusViewModel
     
     /// 微博正文
     private(set) open var text:NSAttributedString?
-    /// 昵称
+    /// 用户昵称
     private(set) open var screenName:String?
-    /// 头像图片地址
+    /// 用户头像图片地址
     private(set) open var profileImageUrl:String?
     /// 微博id
     private(set) open var id:Int64 = 0
@@ -42,6 +42,8 @@ class XGStatusViewModel
     private(set) open var sourceString:String?
     /// 转发微博文字
     private(set) open var retweetedStatusText:NSAttributedString?
+    /// 微博创建时间
+    private(set) open var createTimeString:String?
     
     /// 头像图片
     open var profileImage:UIImage? {
@@ -149,6 +151,9 @@ class XGStatusViewModel
             str += "  " + (statusModel.retweetedStatus?.text ?? "")
             retweetedStatusText = XGEmotionsListViewModel.shared.emotionAttributedString(text: str, fontSize: kContentTextFontSize, textColor: kContentTextColor)
         }
+        
+        // 微博创建时间
+        createTimeString = createTime()
         
         // 行高
         rowHeight = calcRowHeight()
@@ -288,5 +293,44 @@ extension XGStatusViewModel
         let range = result.range(at: 1)
         let subStr = (str as NSString).substring(with: range)
         return "来自 " + subStr
+    }
+
+    /// 返回微博创建时间
+    /// 刚刚(一分钟内)
+    /// X分钟前(一小时内)
+    /// X小时前(当天)
+    /// 昨天 HH:mm(昨天)
+    /// MM-dd HH:mm(一年内)
+    /// yyyy-MM-dd HH:mm(更早期)
+    /// - Returns: String
+    private func createTime() -> String
+    {
+        
+        guard let createString = statusModel.createdAt,
+              let createDate = Date.stringToDate(dateString: createString, format:  "EEE MMM dd HH:mm:ss zzz yyyy") else {
+            return ""
+        }
+        
+        let currentCalendar = Calendar.current
+        if currentCalendar.isDateInToday(createDate) {
+            // 今天
+            let seconds = createDate.timeIntervalSinceNow * -1
+            if seconds < 60 {
+                return "刚刚"
+            } else if seconds < 3600 {
+                
+                return String(format: "%d", Int(seconds / 60)) + "分钟前"
+            } else {
+                return String(format: "%d", Int(seconds / 3600)) + "小时前"
+            }
+        } else if currentCalendar.isDateInYesterday(createDate) {
+            // 昨天
+            return "昨天" + createDate.formatString(format: "HH:mm")
+        } else {
+            // 一年内或是超出一年
+            let year = (currentCalendar.dateComponents(Set(arrayLiteral: Calendar.Component.year), from: createDate, to: Date()).year ?? 0)
+            let format = year < 1 ? "MM-dd HH:mm" : "yyyy-MM-dd HH:mm"
+            return createDate.formatString(format: format)
+        }
     }
 }

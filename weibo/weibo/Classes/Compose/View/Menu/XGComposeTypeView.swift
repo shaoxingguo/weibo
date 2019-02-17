@@ -211,7 +211,7 @@ extension XGComposeTypeView
         
         scrollView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self)
-            make.bottom.equalTo(toolBar.snp.top).offset(-30)
+            make.bottom.equalTo(toolBar.snp.top)
             make.height.equalTo(224)
         }
         
