@@ -130,7 +130,7 @@ extension XGImagePickerCollectionViewController
     /// 设置CollectionView
     private func setUpCollectionView() -> Void
     {
-        // 设置布局
+        // 设置cell布局
         let columns:Int = 3 // 列数
         let itemWidth:CGFloat = 100
         let margin = (collectionView.width - CGFloat(columns) * itemWidth) / CGFloat(columns - 1 + 2)
@@ -140,6 +140,7 @@ extension XGImagePickerCollectionViewController
         flowLayout.minimumLineSpacing = margin
         flowLayout.minimumInteritemSpacing = margin
         
+        // 设置collectionView属性
         collectionView.bounces = false
         collectionView.contentInset = UIEdgeInsets(top: margin, left: margin, bottom: 0, right: margin)
         

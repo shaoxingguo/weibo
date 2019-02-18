@@ -71,6 +71,8 @@
 		8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC321EC9ECE0008B868 /* Common.swift */; };
 		8CFAE97D21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */; };
 		8CFE316D221AEECE00C586B7 /* XGPicturesBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE316C221AEECE00C586B7 /* XGPicturesBrowserViewController.swift */; };
+		8CFE316F221B027A00C586B7 /* XGPicturesBrowserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE316E221B027A00C586B7 /* XGPicturesBrowserCollectionViewCell.swift */; };
+		8CFE3171221B088D00C586B7 /* XGProgressImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE3170221B088D00C586B7 /* XGProgressImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,8 @@
 		8CF43FC321EC9ECE0008B868 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusListViewModel.swift; sourceTree = "<group>"; };
 		8CFE316C221AEECE00C586B7 /* XGPicturesBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGPicturesBrowserViewController.swift; sourceTree = "<group>"; };
+		8CFE316E221B027A00C586B7 /* XGPicturesBrowserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGPicturesBrowserCollectionViewCell.swift; sourceTree = "<group>"; };
+		8CFE3170221B088D00C586B7 /* XGProgressImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGProgressImageView.swift; sourceTree = "<group>"; };
 		BAFD46C9B95B61530AFD5263 /* Pods-weibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-weibo/Pods-weibo.release.xcconfig"; sourceTree = "<group>"; };
 		E6792319D52B5BD0A4081F28 /* Pods_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -630,6 +634,8 @@
 		8CFE316B221AEE8E00C586B7 /* PicturesBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				8CFE3170221B088D00C586B7 /* XGProgressImageView.swift */,
+				8CFE316E221B027A00C586B7 /* XGPicturesBrowserCollectionViewCell.swift */,
 				8CFE316C221AEECE00C586B7 /* XGPicturesBrowserViewController.swift */,
 			);
 			path = PicturesBrowser;
@@ -843,12 +849,14 @@
 				8CD8487221FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift in Sources */,
 				8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */,
 				8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */,
+				8CFE3171221B088D00C586B7 /* XGProgressImageView.swift in Sources */,
 				8C6FA4D821F8407400D3DD4F /* XGWelcomeViewController.swift in Sources */,
 				8CC26CA121EF65AA00A9E074 /* XGVisitorViewController.swift in Sources */,
 				8C2E44BC2212CE0E006A50CC /* XGSQLiteManager.swift in Sources */,
 				8C6A5E9822196C6600440082 /* Date+Extension.swift in Sources */,
 				8C8E832921F4B9ED004F5CD8 /* XGNewFeatureViewController.swift in Sources */,
 				8CC26CA321EF65C000A9E074 /* XGVisitorView.swift in Sources */,
+				8CFE316F221B027A00C586B7 /* XGPicturesBrowserCollectionViewCell.swift in Sources */,
 				8CA1B7CD2201707B008BFAB1 /* XGRefreshHeader.swift in Sources */,
 				8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */,
 				8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */,

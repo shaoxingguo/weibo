@@ -56,6 +56,8 @@ public class XGImagePickerCollectionViewCell: UICollectionViewCell
     private lazy var pictureButton:UIButton = { [weak self] in
         let button = UIButton()
         button.setBackgroundImage(kDefaultImage, for: .normal)
+        button.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
+        button.imageView?.clipsToBounds = true
         button.addTarget(self, action: #selector(addPictureAction), for: .touchUpInside)
         return button
     }()

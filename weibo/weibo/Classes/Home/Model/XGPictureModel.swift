@@ -13,7 +13,14 @@ import UIKit
     // MARK: - 模型属性
     
     /// 缩略图
-    open var thumbnailPic:String?
+    open var thumbnailPic:String? {
+        didSet {
+            bmiddlePic = (thumbnailPic as NSString?)?.replacingOccurrences(of: "/thumbnail/", with: "/bmiddle/")
+        }
+    }
+    
+    /// 中等图
+    open var bmiddlePic:String?
 }
 
 // MARK: - 设置模型key
