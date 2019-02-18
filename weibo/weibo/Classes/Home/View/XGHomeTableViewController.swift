@@ -82,7 +82,20 @@ class XGHomeTableViewController: XGVisitorViewController
         button.isSelected = !button.isSelected
     }
     
+    // 点击cell图片通知监听
+    @objc private func picturesBrowserAction(notification:Notification) -> Void
+    {
+        guard let selectedIndex = notification.userInfo?[kPicturesBrowserSelectedIndexKey] as? Int,
+              let pictures = notification.userInfo?[kPicturesBrowserPicturesKey] as? [XGPictureModel] else {
+            return
+        }
+        
+        let viewController = XGPicturesBrowserViewController(selectedIndex: selectedIndex, pictures: pictures)
+        present(viewController, animated: true, completion: nil)
+    }
+    
     // MARK: - 懒加载
+    
     private lazy var refreshCountLabel:UILabel = {
         let label = UILabel(text: "刷新到10条新微博", fontSize: 15, textColor: UIColor.white, textAlignment: .center)
         label.backgroundColor = UIColor.orange
@@ -165,7 +178,7 @@ extension XGHomeTableViewController
                 }
                 
                 // 加载微博数据
-//                self.tableView.mj_header.beginRefreshing()
+                self.tableView.mj_header.beginRefreshing()
             }
         }
     }
@@ -221,7 +234,7 @@ extension XGHomeTableViewController
     {
         //设置标题按钮
         let title = (XGAccountViewModel.shared.screenName ?? "") + "  "
-        let titleButton = UIButton(title: title, fontSize: 17, normalColor: UIColor.darkGray, highlightedColor: UIColor.darkGray, target: self, action: #selector(titleButtonClickAction(button:)))
+        let titleButton = UIButton(title: title, normalColor: UIColor.darkGray, highlightedColor: UIColor.darkGray, fontSize: 17, target: self, action: #selector(titleButtonClickAction(button:)))
         titleButton.setImage(UIImage(named: "navigationbar_arrow_down"), for: .normal)
         titleButton.setImage(UIImage(named: "navigationbar_arrow_up"), for: .selected)
         titleButton.layoutButtonWithEdgeInsetsStyle(style: .right, space: 0)
@@ -260,9 +273,12 @@ extension XGHomeTableViewController
     /// 注册通知
     private func registerNotification() -> Void
     {
-        // 注册通知
+        // 监听授权过期通知
         NotificationCenter.default.addObserver(self, selector: #selector(accessTokenTimeOutAction(notification:)), name: NSNotification.Name(rawValue: kAccessTokenTimeOutNotification), object: nil)
+        // 监听点击tabBar通知
         NotificationCenter.default.addObserver(self, selector: #selector(tapHomeTabBarBadgeValueAction(notification:)), name: NSNotification.Name(rawValue: kTapHomeTabBarBadgeValueNotification), object: nil)
+        // 监听点击cell内图片通知
+        NotificationCenter.default.addObserver(self, selector: #selector(picturesBrowserAction(notification:)), name: NSNotification.Name(rawValue: kPicturesBrowserNotification), object: nil)
     }
     
     // 设置刷新数量label

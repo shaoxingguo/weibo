@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		336CD66138F77DA75E592225 /* Pods_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6792319D52B5BD0A4081F28 /* Pods_weibo.framework */; };
-		8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */; };
+		8C11BF6E21EC428100F2E958 /* XGMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF6D21EC428100F2E958 /* XGMainViewController.swift */; };
 		8C11BF7721EC4DA200F2E958 /* XGMineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7621EC4DA200F2E958 /* XGMineTableViewController.swift */; };
 		8C11BF7A21EC4E6100F2E958 /* XGDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */; };
 		8C11BF7D21EC4E6B00F2E958 /* XGMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */; };
@@ -39,7 +39,6 @@
 		8C5C0F81220DE0A000165B8C /* XGEmotionTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C0F80220DE0A000165B8C /* XGEmotionTextAttachment.swift */; };
 		8C6A5E9822196C6600440082 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A5E9722196C6600440082 /* Date+Extension.swift */; };
 		8C6A5EA022197CC600440082 /* weiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A5E9F22197CC600440082 /* weiboTests.swift */; };
-		8C6A5F4722197DE200440082 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A5F4622197DE200440082 /* Date+Extension.swift */; };
 		8C6C8F522216C4F700711FCC /* XGImagePickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8F512216C4F700711FCC /* XGImagePickerCollectionViewController.swift */; };
 		8C6C8F542216CB7800711FCC /* XGImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8F532216CB7800711FCC /* XGImagePickerCollectionViewCell.swift */; };
 		8C6FA4D821F8407400D3DD4F /* XGWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */; };
@@ -71,6 +70,7 @@
 		8CF43FC121EC96A10008B868 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */; };
 		8CF43FC421EC9ECE0008B868 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43FC321EC9ECE0008B868 /* Common.swift */; };
 		8CFAE97D21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */; };
+		8CFE316D221AEECE00C586B7 /* XGPicturesBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE316C221AEECE00C586B7 /* XGPicturesBrowserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +85,7 @@
 
 /* Begin PBXFileReference section */
 		69E3567696EA90B0465C6A0B /* Pods-weibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-weibo/Pods-weibo.debug.xcconfig"; sourceTree = "<group>"; };
-		8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGTabBarController.swift; sourceTree = "<group>"; };
+		8C11BF6D21EC428100F2E958 /* XGMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMainViewController.swift; sourceTree = "<group>"; };
 		8C11BF7621EC4DA200F2E958 /* XGMineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMineTableViewController.swift; sourceTree = "<group>"; };
 		8C11BF7921EC4E6100F2E958 /* XGDiscoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGDiscoverTableViewController.swift; sourceTree = "<group>"; };
 		8C11BF7C21EC4E6B00F2E958 /* XGMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGMessageTableViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +120,6 @@
 		8C6A5E9D22197CC600440082 /* weiboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weiboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6A5E9F22197CC600440082 /* weiboTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weiboTests.swift; sourceTree = "<group>"; };
 		8C6A5EA122197CC600440082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C6A5F4622197DE200440082 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Extension.swift"; path = "weibo/Classes/Other/Extension/Date+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		8C6C8F512216C4F700711FCC /* XGImagePickerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGImagePickerCollectionViewController.swift; sourceTree = "<group>"; };
 		8C6C8F532216CB7800711FCC /* XGImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C6FA4D721F8407400D3DD4F /* XGWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGWelcomeViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		8CF43FC021EC96A10008B868 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		8CF43FC321EC9ECE0008B868 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		8CFAE97C21FEBA6C00FAA2A1 /* XGStatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGStatusListViewModel.swift; sourceTree = "<group>"; };
+		8CFE316C221AEECE00C586B7 /* XGPicturesBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGPicturesBrowserViewController.swift; sourceTree = "<group>"; };
 		BAFD46C9B95B61530AFD5263 /* Pods-weibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-weibo/Pods-weibo.release.xcconfig"; sourceTree = "<group>"; };
 		E6792319D52B5BD0A4081F28 /* Pods_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -317,6 +317,7 @@
 		8C11BF7E21EC4E7000F2E958 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CFE316B221AEE8E00C586B7 /* PicturesBrowser */,
 				8CA1B7CB2201707B008BFAB1 /* Refresh */,
 				8CD8486D21FD8BC400EC027E /* StatusCell */,
 				8C14346521FB3C56007ED7E9 /* NormalCell */,
@@ -427,7 +428,6 @@
 		8C6A5E9E22197CC600440082 /* weiboTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C6A5F4622197DE200440082 /* Date+Extension.swift */,
 				8C6A5E9F22197CC600440082 /* weiboTests.swift */,
 				8C6A5EA122197CC600440082 /* Info.plist */,
 			);
@@ -549,7 +549,7 @@
 		8CCAB9CA21F3132500A7FC70 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				8C11BF6D21EC428100F2E958 /* XGTabBarController.swift */,
+				8C11BF6D21EC428100F2E958 /* XGMainViewController.swift */,
 				8C46F43F21EDC1460071281F /* XGNavigationController.swift */,
 				8C5754E221F9C81E00938F1B /* test.xib */,
 			);
@@ -625,6 +625,14 @@
 				8CF43FC321EC9ECE0008B868 /* Common.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		8CFE316B221AEE8E00C586B7 /* PicturesBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				8CFE316C221AEECE00C586B7 /* XGPicturesBrowserViewController.swift */,
+			);
+			path = PicturesBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -813,7 +821,7 @@
 				8C32A9D722032248008A1ECE /* XGComposeViewController.swift in Sources */,
 				8C457B3B221133D600AE5555 /* XGStatusDAL.swift in Sources */,
 				8C3DB17621F58516007590CF /* XGStatusModel.swift in Sources */,
-				8C11BF6E21EC428100F2E958 /* XGTabBarController.swift in Sources */,
+				8C11BF6E21EC428100F2E958 /* XGMainViewController.swift in Sources */,
 				8C14346721FB3C95007ED7E9 /* XGStatusTopView.swift in Sources */,
 				8C9686F821FC26E2005E7289 /* XGStatusPicturesView.swift in Sources */,
 				8C32A9D12202B5F4008A1ECE /* XGComposeTypeViewToolBar.swift in Sources */,
@@ -829,6 +837,7 @@
 				8C6C8F522216C4F700711FCC /* XGImagePickerCollectionViewController.swift in Sources */,
 				8C8E832621F4A6F7004F5CD8 /* XGAccountViewModel.swift in Sources */,
 				8C89D98D2213EC19000E7A43 /* XGEmotionViewToolBar.swift in Sources */,
+				8CFE316D221AEECE00C586B7 /* XGPicturesBrowserViewController.swift in Sources */,
 				8C8E832221F45F5D004F5CD8 /* XGAccountModel.swift in Sources */,
 				8CCAB9D821F31BE700A7FC70 /* XGAdvertisementModel.swift in Sources */,
 				8CD8487221FD8FCB00EC027E /* XGRetweetStatusTableViewCell.swift in Sources */,
@@ -858,7 +867,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C6A5EA022197CC600440082 /* weiboTests.swift in Sources */,
-				8C6A5F4722197DE200440082 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -77,7 +77,7 @@ extension XGEmotionViewToolBar
     private func setUpUI() -> Void
     {
         for (index,emotionsGroupModel) in XGEmotionsListViewModel.shared.emotionsGroupList.enumerated() {
-            let button = UIButton(title: emotionsGroupModel.category, backgroundImageName: "common_button_white_disable", normalColor: UIColor.darkGray, highlightedColor: UIColor.darkGray, target: self, action: #selector(groupScrollViewItemSelectedAction(button:)))
+            let button = UIButton(title: emotionsGroupModel.category, normalColor: UIColor.darkGray, highlightedColor: UIColor.darkGray, backgroundImageName: "common_button_white_disable", target: self, action: #selector(groupScrollViewItemSelectedAction(button:)))            
             button.tag = index
             button.setTitleColor(UIColor.white, for: .selected)
             button.setBackgroundImage(UIImage.stretchableImage(imageName: "common_button_orange"), for: .selected)

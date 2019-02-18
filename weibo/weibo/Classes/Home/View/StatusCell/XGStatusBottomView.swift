@@ -37,19 +37,19 @@ class XGStatusBottomView: UIView
     
     /// 转发按钮
     private lazy var retweetButton:UIButton = {
-       let button = UIButton(title: "转发", imageName: "timeline_icon_retweet", fontSize: 15, normalColor: UIColor.lightGray, highlightedColor: UIColor.lightGray, target: nil, action: nil)
+        let button = UIButton(title: "转发", normalColor: UIColor.lightGray, highlightedColor: UIColor.lightGray, fontSize: 15, imageName: "timeline_icon_retweet", target: nil, action: nil)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         return button
     }()
     /// 评论按钮
     private lazy var commentButton:UIButton = {
-        let button = UIButton(title: "评论", imageName: "timeline_icon_comment", fontSize: 15, normalColor: UIColor.lightGray, highlightedColor: UIColor.lightGray, target: nil, action: nil)
+        let button = UIButton(title: "评论", normalColor: UIColor.lightGray, highlightedColor: UIColor.lightGray, fontSize: 15, imageName: "timeline_icon_comment", target: nil, action: nil)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         return button
     }()
     /// 点赞按钮
     private lazy var likeButton:UIButton = {
-        let button = UIButton(title: "点赞", imageName: "timeline_icon_unlike", fontSize: 15, normalColor: UIColor.lightGray, highlightedColor: UIColor.lightGray, target: nil, action: nil)
+        let button = UIButton(title: "点赞", normalColor: UIColor.lightGray, highlightedColor: UIColor.lightGray, fontSize: 15, imageName: "timeline_icon_unlike", target: nil, action: nil)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         return button
     }()

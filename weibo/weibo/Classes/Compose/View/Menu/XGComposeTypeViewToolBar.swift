@@ -87,15 +87,9 @@ class XGComposeTypeViewToolBar: UIView
     // MARK: - 懒加载
     
     /// 关闭按钮
-    private lazy var closeButton:UIButton = {
-        let button = UIButton(title: nil, imageName: "tabbar_compose_background_icon_close",target: self, action: #selector(closeAction))
-        return button
-    }()
+    private lazy var closeButton:UIButton = UIButton(imageName: "tabbar_compose_background_icon_close",target: self, action: #selector(closeAction))
     /// 返回按钮
-    private lazy var goBackButton:UIButton = {
-        let button = UIButton(title: nil, imageName: "tabbar_compose_background_icon_return",target: self, action: #selector(goBackAction))
-        return button
-    }()
+    private lazy var goBackButton:UIButton = UIButton(imageName: "tabbar_compose_background_icon_return",target: self, action: #selector(goBackAction))
 }
 
 // MARK: - 设置界面

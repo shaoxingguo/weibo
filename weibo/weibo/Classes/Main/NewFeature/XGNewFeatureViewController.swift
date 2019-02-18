@@ -42,10 +42,7 @@ class XGNewFeatureViewController: UIViewController
         return scrollView
     }()
     /// 登录按钮
-    private lazy var enterButton:UIButton = {
-        let button = UIButton(title: "立即进入", backgroundImageName: "new_feature_finish_button",normalColor: UIColor.white, highlightedColor: UIColor.orange, target: self, action: #selector(enterButtonClickAction))
-        return button
-    }()
+    private lazy var enterButton:UIButton = UIButton(title: "立即进入", normalColor: UIColor.white, highlightedColor: UIColor.orange, backgroundImageName: "new_feature_finish_button", target: self, action: #selector(enterButtonClickAction))
     /// 分页指示器
     private lazy var pageControl:UIPageControl = {
         let pageControl = UIPageControl()

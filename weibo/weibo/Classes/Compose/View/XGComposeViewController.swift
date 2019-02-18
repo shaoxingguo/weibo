@@ -250,7 +250,7 @@ extension XGComposeViewController
     /// 发布按钮
     private func publishButtonItem() -> UIBarButtonItem
     {
-        let button = UIButton(title: "发布", backgroundImageName: "common_button_orange", fontSize: 15, normalColor: UIColor.white, highlightedColor: UIColor.white, target: self, action: #selector(publishAction))
+        let button = UIButton(title: "发布", normalColor: UIColor.white, highlightedColor: UIColor.white, fontSize: 15, backgroundImageName: "common_button_orange", target: self, action: #selector(publishAction))
         button.setBackgroundImage(UIImage.stretchableImage(imageName: "common_button_white_disable"), for: .disabled)
         button.setTitleColor(UIColor.darkGray, for: .disabled)
         button.width = 60

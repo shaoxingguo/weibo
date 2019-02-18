@@ -71,6 +71,12 @@ public let kFromWelcomeToMain:String = "kFromWelcomeToToMain"
 public let kFromLoginToMain:String = "kFromLoginToMain"
 /// 从主界面跳转到登录页面
 public let kFromMainToLogin:String = "kFromMainToLogin"
+/// 浏览图片通知
+public let kPicturesBrowserNotification:String = "kPicturesBrowserNotification"
+/// 选中的图片索引
+public let kPicturesBrowserSelectedIndexKey:String = "kPicturesBrowserSelectedIndexKey"
+/// 浏览的图片数组
+public let kPicturesBrowserPicturesKey:String = "kPicturesBrowserPicturesKey"
 
 // MARK: - 微博接口相关
 

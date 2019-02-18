@@ -34,7 +34,7 @@ extension AppDelegate:UIApplicationDelegate
         initializationSetting()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = XGTabBarController()//rootViewController()
+        window?.rootViewController = XGMainViewController()//rootViewController()
         window?.makeKeyAndVisible()
         XGPrint(NSHomeDirectory())
         return true
@@ -82,7 +82,7 @@ extension AppDelegate
             return XGWelcomeViewController()
         } else {
             // 主界面
-            return XGTabBarController()
+            return XGMainViewController()
         }
     }
     
@@ -107,7 +107,7 @@ extension AppDelegate
         default:
             break
         }
-        let viewController:UIViewController = XGTabBarController()
+        let viewController:UIViewController = XGMainViewController()
         window?.rootViewController = viewController
     }
     /// 初始化设置

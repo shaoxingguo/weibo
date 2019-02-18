@@ -85,11 +85,7 @@ class XGAdvertisementViewController: UIViewController
     }()
     
     /// 跳过按钮
-    private lazy var skipButton:UIButton = {
-        let button = UIButton(title: "测试文本", normalColor: UIColor.white, highlightedColor: UIColor.white, target: self, action: #selector(skipAction))
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        return button
-    }()
+    private lazy var skipButton:UIButton = UIButton(title: "测试文本", normalColor: UIColor.white, highlightedColor: UIColor.white, fontSize: 15, backgroundColor: UIColor.black.withAlphaComponent(0.3), target: self, action: #selector(skipAction))
     /// 定时器
     private var timer:Timer?
     /// 倒计时秒数

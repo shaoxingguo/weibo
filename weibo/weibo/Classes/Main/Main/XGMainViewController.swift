@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XGTabBarController: UITabBarController
+class XGMainViewController: UITabBarController
 {
     // MARK: - 控制器生命周期方法
     
@@ -92,17 +92,14 @@ class XGTabBarController: UITabBarController
     // MARK: - 懒加载
     
     /// 撰写按钮
-    private lazy var publishButton:UIButton = { [weak self] in
-        let button = UIButton(backgroundImageName: "tabbar_compose_button", imageName: "tabbar_compose_icon_add", target:self, action: #selector(publishAction))
-        return button
-    }()
+    private lazy var publishButton:UIButton = UIButton(backgroundImageName: "tabbar_compose_button", imageName: "tabbar_compose_icon_add", target:self, action: #selector(publishAction))
     /// 定时器
     private var timer:Timer?
 }
 
 // MARK: - UITabBarControllerDelegate
 
-extension XGTabBarController:UITabBarControllerDelegate
+extension XGMainViewController:UITabBarControllerDelegate
 {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool
     {
@@ -123,18 +120,18 @@ extension XGTabBarController:UITabBarControllerDelegate
 
 // MARK: - 设置界面
 
-extension XGTabBarController
+extension XGMainViewController
 {
     /// 设置外观
     private func setUpAppearance() -> Void
     {
         // 设置tabbar渲染颜色
-        let tabBar = UITabBar.appearance(whenContainedInInstancesOf: [XGTabBarController.self])
+        let tabBar = UITabBar.appearance(whenContainedInInstancesOf: [XGMainViewController.self])
         tabBar.tintColor = UIColor.orange
         
         // 设置tabbarItem字体大小
         let attributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)]
-        let tabBarItem = UITabBarItem.appearance(whenContainedInInstancesOf: [XGTabBarController.self])
+        let tabBarItem = UITabBarItem.appearance(whenContainedInInstancesOf: [XGMainViewController.self])
         tabBarItem.setTitleTextAttributes(attributes, for: UIControl.State(rawValue: 0))
         
         // 设置navigationBar渲染颜色

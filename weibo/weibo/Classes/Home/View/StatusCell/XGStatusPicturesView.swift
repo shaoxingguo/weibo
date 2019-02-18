@@ -87,6 +87,22 @@ class XGStatusPicturesView: UIView
         }
     }
     
+    // MARK: - 监听方法
+    
+    @objc private func tapImageViewAction(tap:UITapGestureRecognizer) -> Void
+    {
+        guard let picUrls = statusViewModel?.picUrls,
+              let imageView = tap.view as? UIImageView else {
+            return
+        }
+      
+        var index = imageView.tag
+        // 点击的图片索引
+        index = picUrls.count == 4 && index > 1 ? index - 1 : index
+        // 发布通知
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPicturesBrowserNotification), object: nil, userInfo: [kPicturesBrowserSelectedIndexKey:index,                        kPicturesBrowserPicturesKey:picUrls])
+    }
+    
     // MARK: - 构造方法
     
     override init(frame: CGRect)
@@ -109,6 +125,7 @@ extension XGStatusPicturesView
     private func setUpUI() -> Void
     {
         for i in 0..<kStatusPicturesViewColumns * kStatusPicturesViewColumns {
+            // 添加图片视图
             let row = i / kStatusPicturesViewColumns
             let column = i % kStatusPicturesViewColumns
             let x = CGFloat(column) * (kStatusCellPictureInnerMargin + kStatusPicturesViewItemWidth)
@@ -118,7 +135,11 @@ extension XGStatusPicturesView
             imageView.backgroundColor = UIColor.orange
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
+            imageView.tag = i
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImageViewAction(tap:))))
         
+            // 添加gif标志
             let gifTipImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
             gifTipImageView.origin = CGPoint(x: kStatusPicturesViewItemWidth - gifTipImageView.width, y: kStatusPicturesViewItemWidth - gifTipImageView.height)
             imageView.addSubview(gifTipImageView)
