@@ -12,10 +12,15 @@ extension Bundle
 {
     /// 命名空间
     open var nameSpace:String? {
-        guard let appName = (infoDictionary?[kCFBundleNameKey as String] as? String) else {
+        guard let progectName = (infoDictionary?[kCFBundleNameKey as String] as? String) else {
             return nil
         }
         
-        return appName + "."
+        return progectName + "."
+    }
+    
+    /// 应用程序名称
+    open var appName:String? {
+        return infoDictionary?["CFBundleDisplayName"] as? String
     }
 }

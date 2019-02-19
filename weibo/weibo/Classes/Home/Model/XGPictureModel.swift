@@ -21,6 +21,12 @@ import UIKit
     
     /// 中等图
     open var bmiddlePic:String?
+    
+    
+    /// 是否是gif图片
+    open var isGif:Bool {
+        return thumbnailPic?.lowercased().hasSuffix("gif") == true
+    }
 }
 
 // MARK: - 设置模型key

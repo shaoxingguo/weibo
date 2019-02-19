@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SDWebImage
+import SVProgressHUD
+import Photos
 
 /// cell重用标识符
 private let kReuseIdentifier = "XGPicturesBrowserCollectionViewCell"
@@ -65,7 +68,31 @@ class XGPicturesBrowserViewController: UIViewController
     /// 保存按钮事件监听
     @objc private func savePictureAction() -> Void
     {
-        XGPrint("保存")
+        guard let appName = Bundle.main.appName else {
+            return
+        }
+        
+        let pictureModel = pictures[selectedIndex]
+        if SDWebImageManager.shared().imageCache?.diskImageDataExists(withKey: pictureModel.bmiddlePic) == false {
+            // 图片还没有下载完成
+            return
+        }
+
+        let completion = { (error:NSError?) -> Void in
+            if error == nil {
+                SVProgressHUD.showSuccess(withStatus: "保存成功!")
+            } else {
+                SVProgressHUD.showError(withStatus: "保存失败")
+            }
+        }
+        if pictureModel.isGif {
+            let cachePath = SDWebImageManager.shared().imageCache?.defaultCachePath(forKey: pictureModel.bmiddlePic)
+            let fileURL = URL(fileURLWithPath: cachePath!)
+            PHPhotoLibrary.saveImage(imageFielURL: fileURL, collectionName: appName, completion: completion)
+        } else {
+            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: pictureModel.bmiddlePic)
+            PHPhotoLibrary.saveImage(image: image,collectionName: appName, completion: completion)
+        }
     }
     
     // MARK: - 私有属性

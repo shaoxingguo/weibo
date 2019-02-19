@@ -34,6 +34,7 @@
 		8C47D35C220EA15F00757513 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47D35B220EA15F00757513 /* FileManager+Extension.swift */; };
 		8C51F8A521EB74CA0015FC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */; };
 		8C51F8AC21EB74CB0015FC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */; };
+		8C5691C7221BFF540049A338 /* PHPhotoLibrary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5691C6221BFF540049A338 /* PHPhotoLibrary+Extension.swift */; };
 		8C5754E121F9C1D800938F1B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */; };
 		8C5754E321F9C81E00938F1B /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5754E221F9C81E00938F1B /* test.xib */; };
 		8C5C0F81220DE0A000165B8C /* XGEmotionTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C0F80220DE0A000165B8C /* XGEmotionTextAttachment.swift */; };
@@ -115,6 +116,7 @@
 		8C51F8A421EB74CA0015FC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C51F8AB21EB74CB0015FC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C51F8B021EB74CB0015FC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C5691C6221BFF540049A338 /* PHPhotoLibrary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary+Extension.swift"; sourceTree = "<group>"; };
 		8C5754E021F9C1D800938F1B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8C5754E221F9C81E00938F1B /* test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		8C5C0F80220DE0A000165B8C /* XGEmotionTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGEmotionTextAttachment.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				8C32A9D42202F4CA008A1ECE /* Bundle+Extension.swift */,
 				8C47D35B220EA15F00757513 /* FileManager+Extension.swift */,
 				8C6A5E9722196C6600440082 /* Date+Extension.swift */,
+				8C5691C6221BFF540049A338 /* PHPhotoLibrary+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				8C14346221FB39EF007ED7E9 /* XGPictureModel.swift in Sources */,
 				8CF43FBF21EC91F10008B868 /* UIView+Extension.swift in Sources */,
 				8CA6E69D2204111B00A29513 /* XGEmotionGroupModel.swift in Sources */,
+				8C5691C7221BFF540049A338 /* PHPhotoLibrary+Extension.swift in Sources */,
 				8C11BF8021EC4E7700F2E958 /* XGHomeTableViewController.swift in Sources */,
 				8C9BEF3C21F2247300390BB0 /* XGNetworkManager.swift in Sources */,
 				8C14346A21FB459A007ED7E9 /* XGStatusViewModel.swift in Sources */,

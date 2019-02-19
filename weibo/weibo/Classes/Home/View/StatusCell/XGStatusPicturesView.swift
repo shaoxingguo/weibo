@@ -138,14 +138,15 @@ extension XGStatusPicturesView
             imageView.tag = i
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImageViewAction(tap:))))
+            imageView.frame = CGRect(x: x, y: y, width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)
         
             // 添加gif标志
             let gifTipImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
-            gifTipImageView.origin = CGPoint(x: kStatusPicturesViewItemWidth - gifTipImageView.width, y: kStatusPicturesViewItemWidth - gifTipImageView.height)
             imageView.addSubview(gifTipImageView)
-            
             addSubview(imageView)
-            imageView.frame = CGRect(x: x, y: y, width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)
+            gifTipImageView.snp.makeConstraints { (make) in
+                make.right.bottom.equalTo(imageView)
+            }
         }
     } 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import FLAnimatedImage
 
 class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
 {
@@ -43,7 +44,6 @@ class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
         placeImageView.image = placeImage
         placeImageView.sizeToFit()
         placeImageView.center = CGPoint(x: width / 2, y: height / 2)
-        
         if let bigImageData = SDWebImageManager.shared().imageCache?.diskImageData(forKey: pictureModel.bmiddlePic){
             // 有大图 设置大图
             setBigImage(imageData: bigImageData)
@@ -71,8 +71,9 @@ class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
     {
         placeImageView.isHidden = true
         
-        if pictureModel?.bmiddlePic?.lowercased().hasSuffix("gif") == true {
+        if pictureModel?.isGif == true {
             // gif图片
+            bigImageView.animatedImage = FLAnimatedImage(animatedGIFData: imageData)
         } else {
             // 普通图片
             bigImageView.image = UIImage(data: imageData)
@@ -111,7 +112,7 @@ class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
     /// 占位图片
     private lazy var placeImageView:XGProgressImageView = XGProgressImageView()
     /// 大图
-    private lazy var bigImageView:UIImageView = UIImageView()
+    private lazy var bigImageView:FLAnimatedImageView = FLAnimatedImageView()
     /// scrollView
     private lazy var scrollView:UIScrollView = UIScrollView()
 }
@@ -124,12 +125,6 @@ extension XGPicturesBrowserCollectionViewCell:UIScrollViewDelegate
     func viewForZooming(in scrollView: UIScrollView) -> UIView?
     {
         return bigImageView
-    }
-    
-    // 正在缩放
-    func scrollViewDidZoom(_ scrollView: UIScrollView)
-    {
-        
     }
     
      // 停止缩放
@@ -155,6 +150,7 @@ extension XGPicturesBrowserCollectionViewCell
         
         // 添加子控件
         contentView.addSubview(scrollView)
+        contentView.addSubview(placeImageView)
         
         // 设置布局
         scrollView.frame = contentView.bounds
