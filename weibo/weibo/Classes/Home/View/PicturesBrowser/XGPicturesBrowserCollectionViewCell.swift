@@ -153,7 +153,9 @@ extension XGPicturesBrowserCollectionViewCell
         contentView.addSubview(placeImageView)
         
         // 设置布局
-        scrollView.frame = contentView.bounds
+        var rect = contentView.bounds
+        rect.size.width -= kPicturesCellMargin
+        scrollView.frame = rect
     }
     
     /// 设置scrollView

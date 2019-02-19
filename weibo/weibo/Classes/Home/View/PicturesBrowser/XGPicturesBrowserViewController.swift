@@ -13,6 +13,8 @@ import Photos
 
 /// cell重用标识符
 private let kReuseIdentifier = "XGPicturesBrowserCollectionViewCell"
+/// 图片cell间距
+public let kPicturesCellMargin:CGFloat = 20
 
 class XGPicturesBrowserViewController: UIViewController
 {
@@ -35,7 +37,7 @@ class XGPicturesBrowserViewController: UIViewController
     
     override func loadView()
     {
-        view = UIView(frame: UIScreen.main.bounds)
+        super.loadView()
         view.backgroundColor = UIColor.black
         setUpUI()
     }
@@ -47,7 +49,8 @@ class XGPicturesBrowserViewController: UIViewController
         setUpCollectionView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         
         // 滚动到选中的图片
@@ -101,6 +104,8 @@ class XGPicturesBrowserViewController: UIViewController
     private var selectedIndex:Int = 0
     /// 浏览的图片数组模型
     private var pictures:[XGPictureModel]
+    /// 容器视图
+    private lazy var contentView:UIView = UIView()
     /// collectionView 展示图片
     private lazy var collectionView:UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
     /// 关闭按钮
@@ -143,23 +148,29 @@ extension XGPicturesBrowserViewController
     private func setUpUI() -> Void
     {
         // 添加子控件
-        view.addSubview(collectionView)
-        view.addSubview(closeButton)
-        view.addSubview(saveButton)
+        view.addSubview(contentView)
+        contentView.backgroundColor = UIColor.black
+        contentView.frame = CGRect(x: 0, y: 0, width: kScreenWidth + kPicturesCellMargin, height: kScreenHeight)
+        
+        // 向容器内添加视图 直接修改self.view.frame无效 因此在控制器内放一个view 大小比屏幕宽20
+        contentView.addSubview(collectionView)
+        contentView.addSubview(closeButton)
+        contentView.addSubview(saveButton)
         
         collectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+            make.edges.equalTo(contentView)
         }
         
-        // 设置自动布局
+        
         closeButton.snp.makeConstraints { (make) in
-            make.left.equalTo(view).offset(12)
-            make.bottom.equalTo(view).offset(-12)
+            make.left.equalTo(contentView).offset(12)
+            make.bottom.equalTo(contentView).offset(-12)
             make.size.equalTo(CGSize(width: 100, height: 36))
         }
         
         saveButton.snp.makeConstraints { (make) in
-            make.right.bottom.equalTo(view).offset(-12)
+            make.right.equalTo(contentView).offset(-12 + -kPicturesCellMargin)
+            make.bottom.equalTo(contentView).offset(-12)
             make.size.equalTo(closeButton)
         }
     }
@@ -173,7 +184,7 @@ extension XGPicturesBrowserViewController
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
-        flowLayout.itemSize = view.size
+        flowLayout.itemSize = contentView.size
         
         // 设置collectionView属性
         collectionView.bounces = false
