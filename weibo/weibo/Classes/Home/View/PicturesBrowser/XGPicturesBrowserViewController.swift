@@ -116,7 +116,7 @@ class XGPicturesBrowserViewController: UIViewController
 
 // MARK: - UICollectionViewDataSource
 
-extension XGPicturesBrowserViewController: UICollectionViewDataSource
+extension XGPicturesBrowserViewController: UICollectionViewDataSource,UICollectionViewDelegate
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -136,6 +136,11 @@ extension XGPicturesBrowserViewController: UICollectionViewDataSource
         cell.delegate = self
         return cell
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        selectedIndex = Int(scrollView.contentOffset.x / scrollView.width)
+    }
 }
 
 // MARK: - XGPicturesBrowserCollectionViewCellDelegate
@@ -145,6 +150,37 @@ extension XGPicturesBrowserViewController: XGPicturesBrowserCollectionViewCellDe
     func picturesBrowserCollectionViewCellDidTapImageView()
     {
         closeAction()
+    }
+}
+
+extension XGPicturesBrowserViewController: XGPictureBrowserTransitioningAnimatorDismissDelegate
+{
+    func showDismissAnimationImageView() -> UIImageView
+    {
+        let key = pictures[selectedIndex].bmiddlePic
+        let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: key)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }
+    
+    func dismissImageViewIndex() -> Int
+    {
+        return selectedIndex
+    }
+    
+    func dismissFromRect() -> CGRect
+    {
+        guard let key = pictures[selectedIndex].bmiddlePic,
+              let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: key) else {
+                return CGRect.zero
+        }
+    
+        let width = kScreenWidth
+        let height = width / image.size.width * image.size.height
+        let y = height > kScreenHeight ? 0 : (kScreenHeight - height) * 0.5
+        return CGRect(x: 0, y: y, width: width, height: height)
     }
 }
 
@@ -173,7 +209,6 @@ extension XGPicturesBrowserViewController
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalTo(contentView)
         }
-        
         
         closeButton.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(12)
@@ -206,6 +241,7 @@ extension XGPicturesBrowserViewController
         
         // 设置数据源和代理
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         // 注册cell
         collectionView.register(XGPicturesBrowserCollectionViewCell.self, forCellWithReuseIdentifier: kReuseIdentifier)

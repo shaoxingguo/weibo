@@ -50,21 +50,6 @@ class XGStatusViewModel
         return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: profileImageUrl)
     }
     
-    /// 微博配图图片数组
-    open var pictures:[UIImage?]? {
-        if picUrls == nil || picUrls?.count == 0 {
-            return nil
-        }
-        
-        var images = [UIImage?]()
-        for pictureModel in picUrls! {
-            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: pictureModel.thumbnailPic)
-            images.append(image)
-        }
-        
-        return (images.count > 0 ? images : nil)
-    }
-    
     // MARK: - 构造方法
     
     init(model:XGStatusModel)

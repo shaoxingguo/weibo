@@ -95,8 +95,8 @@ class XGHomeTableViewController: XGVisitorViewController
         // 自定义modal动画
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = pictureBrowserTransitioningAnimator
-        pictureBrowserTransitioningAnimator.presentedDelegate = statusPicturesView
-        pictureBrowserTransitioningAnimator.index = selectedIndex
+        pictureBrowserTransitioningAnimator.selecedIndex = selectedIndex
+        pictureBrowserTransitioningAnimator.setDelegate(presentedDelegate: statusPicturesView, dismissDelegate: viewController, selectedIndex: selectedIndex)
         present(viewController, animated: true, completion: nil)
     }
     

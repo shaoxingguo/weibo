@@ -50,7 +50,12 @@ class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
     /// 占位图片
     private lazy var placeImageView:XGProgressImageView = XGProgressImageView()
     /// 大图
-    private lazy var bigImageView:FLAnimatedImageView = FLAnimatedImageView()
+    private lazy var bigImageView:FLAnimatedImageView = {
+        let imageView = FLAnimatedImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     /// scrollView
     private lazy var scrollView:UIScrollView = UIScrollView()
 }

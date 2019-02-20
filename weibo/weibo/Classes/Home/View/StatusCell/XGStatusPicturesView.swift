@@ -34,9 +34,9 @@ class XGStatusPicturesView: UIView
                 let imageView = subviews[0] as! UIImageView
                 imageView.isHidden = false
                 imageView.frame = CGRect(x: 0, y: kStatusCellPictureOuterMargin, width: width, height: height)
-                
                 // 设置图片
-                setImage(imageView: imageView, image: statusViewModel?.pictures?[0], URLString: statusViewModel?.picUrls?.first?.thumbnailPic, imageSize: imageView.size)
+                let URLString = statusViewModel!.picUrls![0].thumbnailPic!
+                setImage(imageView: imageView, URLString: URLString, imageSize: imageView.size)
                 return
             } else {
                 // 多图
@@ -50,7 +50,8 @@ class XGStatusPicturesView: UIView
                 for i in 0..<(statusViewModel?.picUrls?.count ?? 0) {
                     let imageView = subviews[index] as! UIImageView
                     imageView.isHidden = false
-                    setImage(imageView: imageView, image: statusViewModel?.pictures?[i], URLString: statusViewModel?.picUrls?[i].thumbnailPic)
+                     let URLString = statusViewModel!.picUrls![i].thumbnailPic!
+                    setImage(imageView: imageView, URLString: URLString)
                     index += 1
                     statusViewModel?.picUrls?.count == 4 && index == 2 ? index += 1 : ()
                 }
@@ -58,31 +59,23 @@ class XGStatusPicturesView: UIView
         }
     }
     
-    /// 为imageView设置图片 如果有图片直接设置 如果没有进行网络加载
+    /// / 为imageView设置图片 如果有图片直接设置 如果没有进行网络加载
     ///
     /// - Parameters:
-    ///   - imageView: UIImageView
-    ///   - image: image
-    ///   - URLString: URLString
+    ///   - imageView: 要设置图像imageView
+    ///   - URLString: 图片地址
     ///   - imageSize: 图片尺寸
-    private func setImage(imageView:UIImageView,image:UIImage? = nil,URLString:String? = nil,imageSize:CGSize = CGSize(width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)) -> Void
+    private func setImage(imageView:UIImageView,URLString:String,imageSize:CGSize = CGSize(width: kStatusPicturesViewItemWidth, height: kStatusPicturesViewItemWidth)) -> Void
     {
         // 是否显示gif提示
-        imageView.subviews[0].isHidden = !(URLString?.lowercased() ?? "").hasSuffix("gif")
+        imageView.subviews[0].isHidden = !(URLString.lowercased().hasSuffix("gif"))
         
-        // 设置图片
-        if image != nil {
-            imageView.image = image
-        } else if URLString != nil {
-            imageView.xg_setImage(URLString: URLString, placeholderImage: kPlaceholderImage) { [weak self](image) in
-                if image != nil {
-                    // 缩放图片
-                    let newImage = image?.scaleToSize(imageSize: imageSize, backgroundColor: self?.backgroundColor ?? UIColor.white)
-                    imageView.image = newImage
-                    
-                    // 重新保存图片
-                    SDWebImageManager.shared().imageCache?.store(newImage, forKey: URLString)
-                }
+        // 设置图片 下载完毕进行缩放
+        imageView.xg_setImage(URLString: URLString, placeholderImage: kPlaceholderImage) { [weak self] (image) in
+            if image != nil {
+                // 缩放图片
+                let newImage = image?.scaleToSize(imageSize: imageSize, backgroundColor: self?.backgroundColor ?? UIColor.white)
+                imageView.image = newImage
             }
         }
     }
