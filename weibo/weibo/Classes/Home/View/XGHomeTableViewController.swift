@@ -83,14 +83,20 @@ class XGHomeTableViewController: XGVisitorViewController
     }
     
     // 点击cell图片通知监听
-    @objc private func picturesBrowserAction(notification:Notification) -> Void
+    @objc private func showPicturesBrowserAction(notification:Notification) -> Void
     {
         guard let selectedIndex = notification.userInfo?[kPicturesBrowserSelectedIndexKey] as? Int,
-              let pictures = notification.userInfo?[kPicturesBrowserPicturesKey] as? [XGPictureModel] else {
+              let pictures = notification.userInfo?[kPicturesBrowserPicturesKey] as? [XGPictureModel],
+              let statusPicturesView = notification.object as? XGStatusPicturesView else {
             return
         }
         
         let viewController = XGPicturesBrowserViewController(selectedIndex: selectedIndex, pictures: pictures)
+        // 自定义modal动画
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = pictureBrowserTransitioningAnimator
+        pictureBrowserTransitioningAnimator.presentedDelegate = statusPicturesView
+        pictureBrowserTransitioningAnimator.index = selectedIndex
         present(viewController, animated: true, completion: nil)
     }
     
@@ -102,6 +108,7 @@ class XGHomeTableViewController: XGVisitorViewController
         return label
     }()
 
+    private lazy var pictureBrowserTransitioningAnimator:XGPictureBrowserTransitioningAnimator = XGPictureBrowserTransitioningAnimator()
 }
 
 // MARK: - tableView数据源和代理方法
@@ -278,7 +285,7 @@ extension XGHomeTableViewController
         // 监听点击tabBar通知
         NotificationCenter.default.addObserver(self, selector: #selector(tapHomeTabBarBadgeValueAction(notification:)), name: NSNotification.Name(rawValue: kTapHomeTabBarBadgeValueNotification), object: nil)
         // 监听点击cell内图片通知
-        NotificationCenter.default.addObserver(self, selector: #selector(picturesBrowserAction(notification:)), name: NSNotification.Name(rawValue: kPicturesBrowserNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPicturesBrowserAction(notification:)), name: NSNotification.Name(rawValue: kPicturesBrowserNotification), object: nil)
     }
     
     // 设置刷新数量label

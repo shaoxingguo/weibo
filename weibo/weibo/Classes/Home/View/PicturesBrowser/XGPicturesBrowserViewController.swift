@@ -114,7 +114,9 @@ class XGPicturesBrowserViewController: UIViewController
     private lazy var saveButton:UIButton = UIButton(title: "保存", normalColor: UIColor.white, highlightedColor: UIColor.white, fontSize: 15, backgroundColor: UIColor.darkGray, target: self, action: #selector(savePictureAction))
 }
 
-extension XGPicturesBrowserViewController:UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
+
+extension XGPicturesBrowserViewController: UICollectionViewDataSource
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -131,7 +133,18 @@ extension XGPicturesBrowserViewController:UICollectionViewDataSource
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kReuseIdentifier, for: indexPath) as! XGPicturesBrowserCollectionViewCell
         cell.pictureModel = pictures[indexPath.item]
+        cell.delegate = self
         return cell
+    }
+}
+
+// MARK: - XGPicturesBrowserCollectionViewCellDelegate
+
+extension XGPicturesBrowserViewController: XGPicturesBrowserCollectionViewCellDelegate
+{
+    func picturesBrowserCollectionViewCellDidTapImageView()
+    {
+        closeAction()
     }
 }
 

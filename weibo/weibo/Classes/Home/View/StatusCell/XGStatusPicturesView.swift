@@ -97,10 +97,10 @@ class XGStatusPicturesView: UIView
         }
       
         var index = imageView.tag
-        // 点击的图片索引
+        // 点击的图片索引 4张图特殊处理 因为中间隐藏了一个imageView
         index = picUrls.count == 4 && index > 1 ? index - 1 : index
         // 发布通知
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPicturesBrowserNotification), object: nil, userInfo: [kPicturesBrowserSelectedIndexKey:index,                        kPicturesBrowserPicturesKey:picUrls])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPicturesBrowserNotification), object: self, userInfo: [kPicturesBrowserSelectedIndexKey:index,                        kPicturesBrowserPicturesKey:picUrls])
     }
     
     // MARK: - 构造方法
@@ -114,6 +114,43 @@ class XGStatusPicturesView: UIView
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - XGPictureBrowserTransitioningAnimatorPresentedDelegate
+
+extension XGStatusPicturesView: XGPictureBrowserTransitioningAnimatorPresentedDelegate
+{
+    func showPresentedAnimationImageView(index: Int) -> UIImageView
+    {
+        let key = statusViewModel?.picUrls?[index].thumbnailPic
+        let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: key)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }
+    
+    func presentedFromRect(index: Int) -> CGRect
+    {
+        // 点击的图片索引 4张图特殊处理 因为中间隐藏了一个imageView
+        let selectedIndex = statusViewModel?.picUrls?.count == 4 && index > 1 ? index + 1 : index
+        let selectedImageView = (subviews[selectedIndex] as! UIImageView)
+        let rect = convert(selectedImageView.frame, to: UIApplication.shared.keyWindow)
+        return rect
+    }
+    
+    func presentedToRect(index: Int) -> CGRect
+    {
+        guard let key = statusViewModel?.picUrls?[index].thumbnailPic,
+              let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: key) else {
+                return CGRect.zero
+        }
+        
+        let width = kScreenWidth
+        let height = width / image.size.width * image.size.height
+        let y = height > kScreenHeight ? 0 : (kScreenHeight - height) * 0.5
+        return CGRect(x: 0, y: y, width: width, height: height)
     }
 }
 
