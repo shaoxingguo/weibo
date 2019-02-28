@@ -40,7 +40,7 @@ class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
     
     // MARK: - 事件监听
     
-    @objc private func tapImageViewAction(tap:UITapGestureRecognizer) -> Void
+    @objc private func tapImageViewAction() -> Void
     {
         delegate?.picturesBrowserCollectionViewCellDidTapImageView?()
     }
@@ -50,7 +50,7 @@ class XGPicturesBrowserCollectionViewCell: UICollectionViewCell
     /// 占位图片
     private lazy var placeImageView:XGProgressImageView = XGProgressImageView()
     /// 大图
-    private lazy var bigImageView:FLAnimatedImageView = {
+    private(set) open lazy var bigImageView:FLAnimatedImageView = {
         let imageView = FLAnimatedImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -68,6 +68,12 @@ extension XGPicturesBrowserCollectionViewCell:UIScrollViewDelegate
     func viewForZooming(in scrollView: UIScrollView) -> UIView?
     {
         return bigImageView
+    }
+    
+    // 正在缩放
+    func scrollViewDidZoom(_ scrollView: UIScrollView)
+    {
+        delegate?.picturesBrowserCollectionViewCellDidZoom?(scale: bigImageView.transform.a)
     }
     
      // 停止缩放
@@ -191,7 +197,7 @@ extension XGPicturesBrowserCollectionViewCell
         
         // 添加imageView
         bigImageView.isUserInteractionEnabled = true
-        bigImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImageViewAction(tap:))))
+        bigImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImageViewAction)))
         scrollView.addSubview(bigImageView)
     }
 }
@@ -201,4 +207,5 @@ extension XGPicturesBrowserCollectionViewCell
 @objc public protocol XGPicturesBrowserCollectionViewCellDelegate
 {
     @objc optional func picturesBrowserCollectionViewCellDidTapImageView() -> Void
+    @objc optional func picturesBrowserCollectionViewCellDidZoom(scale:CGFloat) -> Void
 }

@@ -151,6 +151,14 @@ extension XGPicturesBrowserViewController: XGPicturesBrowserCollectionViewCellDe
     {
         closeAction()
     }
+    
+    func picturesBrowserCollectionViewCellDidZoom(scale: CGFloat)
+    {
+        if scale < 0.5 {
+            closeAction()
+            return
+        }
+    }
 }
 
 extension XGPicturesBrowserViewController: XGPictureBrowserTransitioningAnimatorDismissDelegate
@@ -172,15 +180,12 @@ extension XGPicturesBrowserViewController: XGPictureBrowserTransitioningAnimator
     
     func dismissFromRect() -> CGRect
     {
-        guard let key = pictures[selectedIndex].bmiddlePic,
-              let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: key) else {
+        guard let bigImageView = (collectionView.visibleCells[0] as? XGPicturesBrowserCollectionViewCell)?.bigImageView,
+              let rect = bigImageView.superview?.convert(bigImageView.frame, to: UIApplication.shared.keyWindow) else {
                 return CGRect.zero
         }
-    
-        let width = kScreenWidth
-        let height = width / image.size.width * image.size.height
-        let y = height > kScreenHeight ? 0 : (kScreenHeight - height) * 0.5
-        return CGRect(x: 0, y: y, width: width, height: height)
+        
+        return rect
     }
 }
 

@@ -130,6 +130,8 @@ extension XGRefreshHeader
         rotationAnimation.toValue = 2 * Double.pi
         rotationAnimation.duration = 6
         rotationAnimation.repeatCount = MAXFLOAT
+        rotationAnimation.isRemovedOnCompletion = false
+        rotationAnimation.fillMode = .forwards
         earthImageView.layer.add(rotationAnimation, forKey: nil)
         
         kangarooImageView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
