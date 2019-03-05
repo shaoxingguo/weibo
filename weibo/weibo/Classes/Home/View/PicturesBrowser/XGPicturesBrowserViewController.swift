@@ -193,6 +193,10 @@ extension XGPicturesBrowserViewController: XGPictureBrowserTransitioningAnimator
 
 extension XGPicturesBrowserViewController
 {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     // 隐藏状态栏
     override var prefersStatusBarHidden: Bool {
         return true

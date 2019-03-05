@@ -24,13 +24,11 @@ class XGWelcomeViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        iconImageView.xg_setImage(URLString:  XGAccountViewModel.shared.avatarLarge, placeholderImage: UIImage(named: "avatar_default_big"))
+        iconImageView.sd_setImage(with: URL(string: XGAccountViewModel.shared.avatarLarge ?? ""), placeholderImage: kPlaceholderImage, options: [.refreshCached,.retryFailed])
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         showAnimation()
     }
@@ -46,7 +44,6 @@ class XGWelcomeViewController: UIViewController
     /// 用户头像
     private lazy var iconImageView:UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "avatar_default_big"))
-        imageView.size = CGSize(width: kIconWith, height: kIconWith)
         imageView.layer.cornerRadius = kIconWith * 0.5
         imageView.layer.masksToBounds = true
         return imageView
@@ -70,6 +67,7 @@ extension XGWelcomeViewController
         iconImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(backgroundImageView)
             make.centerY.equalTo(backgroundImageView.height * 0.7)
+            make.size.equalTo(CGSize(width: kIconWith, height: kIconWith))
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -91,8 +89,8 @@ extension XGWelcomeViewController
             make.centerY.equalTo(backgroundImageView.height * 0.3)
         }
         
-        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 10, options: [], animations: {
-            self.backgroundImageView.layoutIfNeeded()
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 8, options: [], animations: {
+            self.view.layoutIfNeeded()
         }) { (_) in
             UIView.animate(withDuration: 1, animations: {
                 self.titleLabel.alpha = 1

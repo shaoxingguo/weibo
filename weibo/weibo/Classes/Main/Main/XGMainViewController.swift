@@ -122,6 +122,11 @@ extension XGMainViewController:UITabBarControllerDelegate
 
 extension XGMainViewController
 {
+    // 设置支持方向 会影响自己及所有子控制器 如果想修改其他控制器支持方向 重写此属性即可
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     /// 设置外观
     private func setUpAppearance() -> Void
     {

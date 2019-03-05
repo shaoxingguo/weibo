@@ -34,7 +34,7 @@ extension AppDelegate:UIApplicationDelegate
         initializationSetting()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = XGMainViewController()//rootViewController()
+        window?.rootViewController = rootViewController()
         window?.makeKeyAndVisible()
         XGPrint(NSHomeDirectory())
         return true
