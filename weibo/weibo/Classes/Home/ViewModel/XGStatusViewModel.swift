@@ -45,11 +45,6 @@ class XGStatusViewModel
     /// 微博创建时间
     private(set) open var createTimeString:String?
     
-    /// 头像图片
-    open var profileImage:UIImage? {
-        return SDWebImageManager.shared().imageCache?.imageFromCache(forKey: profileImageUrl)
-    }
-    
     // MARK: - 构造方法
     
     init(model:XGStatusModel)

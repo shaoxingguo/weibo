@@ -20,20 +20,10 @@ class XGStatusTopView: UIView
     open var statusViewModel:XGStatusViewModel? {
         didSet {
             // 设置头像
-            if statusViewModel?.profileImage != nil {
-                iconImageView.image = statusViewModel?.profileImage
-            } else {
-                iconImageView.xg_setImage(URLString: statusViewModel?.profileImageUrl, placeholderImage: kPlaceholderImage) { [weak self] (image) in
-                    if image != nil {
-                        // 设置圆形图片
-                        let circleImage = image?.circleIconImage(imageSize: CGSize(width: kIconWidth, height: kIconWidth), backgroundColor: self?.backgroundColor ?? UIColor.white)
-                        self?.iconImageView.image = circleImage
-                        
-                        // 重新保存图片
-                        SDWebImageManager.shared().imageCache?.store(circleImage, forKey: self?.statusViewModel?.profileImageUrl)
-                    }
-                }
+            XGImageCacheManager.shared.imageForKey(key: statusViewModel?.profileImageUrl, size: CGSize(width: kIconWidth, height: kIconWidth), backgroundColor: backgroundColor ?? UIColor.white, isUserIcon: true) { (image) in
+                self.iconImageView.image = image
             }
+            
             // 设置昵称
             nameLabel.text = statusViewModel?.screenName
             // 设置VIP

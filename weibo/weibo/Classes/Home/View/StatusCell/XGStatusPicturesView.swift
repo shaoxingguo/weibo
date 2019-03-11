@@ -50,7 +50,7 @@ class XGStatusPicturesView: UIView
                 for i in 0..<(statusViewModel?.picUrls?.count ?? 0) {
                     let imageView = subviews[index] as! UIImageView
                     imageView.isHidden = false
-                     let URLString = statusViewModel!.picUrls![i].thumbnailPic!
+                    let URLString = statusViewModel!.picUrls![i].thumbnailPic!
                     setImage(imageView: imageView, URLString: URLString)
                     index += 1
                     statusViewModel?.picUrls?.count == 4 && index == 2 ? index += 1 : ()
@@ -71,12 +71,8 @@ class XGStatusPicturesView: UIView
         imageView.subviews[0].isHidden = !(URLString.lowercased().hasSuffix("gif"))
         
         // 设置图片 下载完毕进行缩放
-        imageView.xg_setImage(URLString: URLString, placeholderImage: kPlaceholderImage) { [weak self] (image) in
-            if image != nil {
-                // 缩放图片
-                let newImage = image?.scaleToSize(imageSize: imageSize, backgroundColor: self?.backgroundColor ?? UIColor.white)
-                imageView.image = newImage
-            }
+        XGImageCacheManager.shared.imageForKey(key: URLString, size: imageSize, backgroundColor: backgroundColor ?? UIColor.white) { (image) in
+            imageView.image = image
         }
     }
     

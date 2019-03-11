@@ -80,7 +80,7 @@ extension UIImage
     ///
     /// - Parameters:
     ///   - imageSize: 图像大小
-    ///   - backgroundColor: 背景色
+    ///   - backgroundColor: 背景色 默认白色
     /// - Returns: UIImage?
     open func scaleToSize(imageSize:CGSize,backgroundColor:UIColor = UIColor.white) -> UIImage?
     {
