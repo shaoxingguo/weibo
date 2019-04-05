@@ -70,7 +70,7 @@ class XGStatusPicturesView: UIView
         // 是否显示gif提示
         imageView.subviews[0].isHidden = !(URLString.lowercased().hasSuffix("gif"))
         
-        // 设置图片 下载完毕进行缩放
+        // 设置图片
         XGImageCacheManager.shared.imageForKey(key: URLString, size: imageSize, backgroundColor: backgroundColor ?? UIColor.white) { (image) in
             imageView.image = image
         }

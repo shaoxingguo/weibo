@@ -391,10 +391,10 @@
 		8C457B3C2211431700AE5555 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				8C4A2E8F22360CE300108DE1 /* XGImageCacheManager.swift */,
 				8C457B3A221133D600AE5555 /* XGStatusDAL.swift */,
 				8C2E44BB2212CE0E006A50CC /* XGSQLiteManager.swift */,
 				8C457B3D2211462700AE5555 /* status.sql */,
-				8C4A2E8F22360CE300108DE1 /* XGImageCacheManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -703,9 +703,11 @@
 				TargetAttributes = {
 					8C51F8A021EB74C90015FC0C = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					8C6A5E9C22197CC600440082 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = 8C51F8A021EB74C90015FC0C;
 					};
 				};
@@ -1036,7 +1038,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.heima.woaiweibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1058,7 +1060,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.heima.woaiweibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1076,7 +1078,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.heima.weiboTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/weibo.app/weibo";
 			};
@@ -1095,7 +1097,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.heima.weiboTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/weibo.app/weibo";
 			};
