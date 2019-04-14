@@ -60,15 +60,31 @@ class XGStatusTopView: UIView
     /// 头像
     private lazy var iconImageView:UIImageView = UIImageView()
     /// 昵称
-    private lazy var nameLabel:UILabel = UILabel(text: "菠萝吹雪", fontSize: 15, textColor: UIColor.colorWithHexString(hexadecimal: "#F33E00"), textAlignment: .left)
+    private lazy var nameLabel:UILabel = {
+        let label = UILabel(text: "菠萝吹雪", fontSize: 15, textColor: UIColor.colorWithHexString(hexadecimal: "#F33E00"), textAlignment: .left)
+        label.layer.masksToBounds = true
+        label.backgroundColor = UIColor.white
+        return label
+    }()
+    
     /// VIP
     private lazy var vipImageView:UIImageView = UIImageView()
     /// 认证图片
     private lazy var verifiedImageView:UIImageView = UIImageView()
     /// 发布时间
-    private lazy var createTimeLabel:UILabel = UILabel(text: "刚刚", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#FF6C00"))
+    private lazy var createTimeLabel:UILabel = {
+        let label = UILabel(text: "刚刚", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#FF6C00"))
+        label.layer.masksToBounds = true
+        label.backgroundColor = UIColor.white
+        return label
+    }()
     /// 来源
-    private lazy var soureLabel:UILabel = UILabel(text: "微博", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#828282"))
+    private lazy var soureLabel:UILabel = {
+        let label = UILabel(text: "微博", fontSize: 13, textColor: UIColor.colorWithHexString(hexadecimal: "#828282"))
+        label.layer.masksToBounds = true
+        label.backgroundColor = UIColor.white
+        return label
+    }()
     
 }
 // MARK: - 设置界面

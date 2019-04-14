@@ -65,6 +65,8 @@ class XGStatusTableViewCell: UITableViewCell
     private(set) open lazy var contentLabel:UILabel = { [weak self] in
         let label = FFLabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
         label.labelDelegate = self
+        label.layer.masksToBounds = true
+        label.backgroundColor = UIColor.white
         return label
     }()
     /// 配图视图
@@ -79,7 +81,6 @@ class XGStatusTableViewCell: UITableViewCell
         view.backgroundColor = UIColor.corlorWith(red: 243, green: 243, blue: 243)
         return view
     }()
-
 
     // MARK: - 设置界面
     

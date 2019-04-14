@@ -63,6 +63,8 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
     private lazy var retweetTextLabel:UILabel = { [weak self] in
        let label = FFLabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
         label.labelDelegate = self
+        label.layer.masksToBounds = true
+        label.backgroundColor = UIColor.white
         return label
     }()
 }
