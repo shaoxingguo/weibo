@@ -44,6 +44,13 @@ class XGHomeTableViewController: XGVisitorViewController
         loadEmotionsData()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        XGPrint(tableView.contentInset)
+//        XGPrint(tableView.safeAreaInsets)
+//        XGPrint(tableView.adjustedContentInset)
+//    }
+    
     deinit {
         // 注销通知
         NotificationCenter.default.removeObserver(self)
@@ -271,7 +278,7 @@ extension XGHomeTableViewController
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
         
         // 设置内容边距
-        tableView.contentInset = UIEdgeInsets(top: kNavigationBarHeight, left: 0, bottom: kTabBarHeight, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: kNavigationBarHeight, left: 0, bottom: kTabBarHeight + kBottmMargin, right: 0)
         
         // 设置滚动指示器
         tableView.scrollIndicatorInsets = tableView.contentInset
@@ -291,6 +298,7 @@ extension XGHomeTableViewController
     // 设置刷新数量label
     private func setUpRefreshCountLabel() -> Void
     {
+        /*
         for view in navigationController?.navigationBar.subviews ?? [] {
             if let UIBarBackgroundClass = NSClassFromString("_UIBarBackground") {
                 if view.isKind(of: UIBarBackgroundClass) {
@@ -299,7 +307,12 @@ extension XGHomeTableViewController
                     refreshCountLabel.isHidden = true
                 }
             }
-        }
+        }*/
+        
+        navigationController?.navigationBar.addSubview(refreshCountLabel)
+        refreshCountLabel.frame = CGRect(x: 0, y: 0, width: view.width, height: kToolBarHeight)
+        navigationController?.navigationBar.sendSubviewToBack(refreshCountLabel)
+        refreshCountLabel.isHidden = true
     }
     
     /// 展示刷新数量

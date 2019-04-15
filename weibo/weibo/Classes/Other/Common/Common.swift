@@ -24,13 +24,21 @@ func XGPrint(_ item : Any, file : String = #file, lineNum : Int = #line)
 public let kScreenWidth:CGFloat = UIScreen.main.bounds.width
 /// 屏幕高度
 public let kScreenHeight:CGFloat = UIScreen.main.bounds.height
+/// 屏幕比例
 public let kScreenScale:CGFloat = UIScreen.main.scale
 /// 导航栏高度
-public let kNavigationBarHeight:CGFloat = 64
+public let kNavigationBarHeight:CGFloat = 44 + kStatusBarHeight
 /// tabBar高度
 public let kTabBarHeight:CGFloat = 49
 /// 工具栏高度
 public let kToolBarHeight:CGFloat = 44
+/// 状态栏高度
+public let kStatusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.size.height
+/// 是否是IPhoneX
+public let isIPhoneX:Bool = (UIApplication.shared.statusBarFrame.size.height > 20)
+/// 底部间距
+public let kBottmMargin:CGFloat = (isIPhoneX ? 34 : 0)
+
 /// 沙盒缓存版本对应的key
 public let kSandBoxVersionKey:String = "kSandBoxVersionKey"
 

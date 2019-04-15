@@ -64,7 +64,7 @@ class XGRetweetStatusTableViewCell: XGStatusTableViewCell
        let label = FFLabel(text: "测试文本", fontSize: kContentTextFontSize, textColor: kContentTextColor, textAlignment: .left)
         label.labelDelegate = self
         label.layer.masksToBounds = true
-        label.backgroundColor = UIColor.white
+        label.backgroundColor = UIColor(white: 0.9, alpha: 1)
         return label
     }()
 }

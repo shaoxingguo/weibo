@@ -81,6 +81,8 @@ class XGAdvertisementViewController: UIViewController
         imageView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapBackgroundImageViewAction(tap:)))
         imageView.addGestureRecognizer(tap)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
