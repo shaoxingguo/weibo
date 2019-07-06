@@ -18,7 +18,7 @@ class XGNetworkManager: AFHTTPSessionManager
 {
     // MARK: - 单例
     
-    private static let sharedManager:XGNetworkManager = {
+    public static let sharedManager:XGNetworkManager = {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 15
         config.requestCachePolicy = .useProtocolCachePolicy

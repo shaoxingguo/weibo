@@ -31,7 +31,9 @@ class XGHomeTableViewController: XGVisitorViewController
         if !XGAccountViewModel.shared.isLogin {
             return
         }
-        
+
+        // 监听网络状态
+        NotificationCenter.default.addObserver(self, selector: #selector(networkingReachabilityDidChange(notification:)), name: Notification.Name.AFNetworkingReachabilityDidChange, object: nil);
         // 导航栏设置
         setUpNavigationItem()
         // tableView设置
@@ -44,19 +46,24 @@ class XGHomeTableViewController: XGVisitorViewController
         loadEmotionsData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        XGPrint(tableView.contentInset)
-//        XGPrint(tableView.safeAreaInsets)
-//        XGPrint(tableView.adjustedContentInset)
-//    }
-    
     deinit {
         // 注销通知
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        SDWebImageManager.shared().imageCache?.clearMemory()
+    }
+    
     // MARK: - 事件监听
+    
+    /// 网络状态改变通知监听
+    @objc private func networkingReachabilityDidChange(notification:Notification) -> Void
+    {
+        // 刷新第0组
+        tableView.reloadSections(IndexSet(integer: 0), with: .top)
+    }
     
     /// access_token过期通知监听
     @objc private func accessTokenTimeOutAction(notification:Notification) -> Void
@@ -124,41 +131,42 @@ extension XGHomeTableViewController
 {
     override func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let count = statusListViewModel.statusList.count
-        tableView.mj_footer.isHidden = count == 0
-        return count
+        if section == 0 {
+            return (XGNetworkManager.sharedManager.reachabilityManager.isReachable ? 0 : 1)
+        } else {
+            let count = statusListViewModel.statusList.count
+            tableView.mj_footer.isHidden = count == 0
+            return count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let viewModel = statusListViewModel.statusList[indexPath.row]
-        let reuseIdentifier = viewModel.isRetweetedStatus ? kRetweetStatusTableViewCellReuseIdentifier : kNormalStatusTableViewCellReuseIdentifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? XGStatusTableViewCell
-        cell?.statusViewModel = viewModel
-        cell?.delegate = self
-        return cell!
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(XGNetworkTipTableViewCell.self)")
+            return cell!
+        } else {
+            let viewModel = statusListViewModel.statusList[indexPath.row]
+            let reuseIdentifier = viewModel.isRetweetedStatus ? kRetweetStatusTableViewCellReuseIdentifier : kNormalStatusTableViewCellReuseIdentifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? XGStatusTableViewCell
+            cell?.statusViewModel = viewModel
+            cell?.delegate = self
+            return cell!
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return statusListViewModel.statusList[indexPath.row].rowHeight
-    }
-    
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
-    {
-        if !decelerate {
-            SDWebImageManager.shared().imageCache?.clearMemory()
+        if indexPath.section == 0 {
+            return 44
+        } else {
+            return statusListViewModel.statusList[indexPath.row].rowHeight
         }
-    }
-    
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-    {
-        SDWebImageManager.shared().imageCache?.clearMemory()
     }
 }
 
@@ -260,7 +268,8 @@ extension XGHomeTableViewController
     {
         // 注册cell
         tableView.register(XGNormalStatusTableViewCell.self, forCellReuseIdentifier: kNormalStatusTableViewCellReuseIdentifier)
-         tableView.register(XGRetweetStatusTableViewCell.self, forCellReuseIdentifier: kRetweetStatusTableViewCellReuseIdentifier)
+        tableView.register(XGRetweetStatusTableViewCell.self, forCellReuseIdentifier: kRetweetStatusTableViewCellReuseIdentifier)
+        tableView.register(XGNetworkTipTableViewCell.self, forCellReuseIdentifier: "\(XGNetworkTipTableViewCell.self)")
         
         // 设置行高
         tableView.estimatedRowHeight = 200
@@ -298,17 +307,6 @@ extension XGHomeTableViewController
     // 设置刷新数量label
     private func setUpRefreshCountLabel() -> Void
     {
-        /*
-        for view in navigationController?.navigationBar.subviews ?? [] {
-            if let UIBarBackgroundClass = NSClassFromString("_UIBarBackground") {
-                if view.isKind(of: UIBarBackgroundClass) {
-                    view.addSubview(refreshCountLabel)
-                    refreshCountLabel.frame = CGRect(x: 0, y: kNavigationBarHeight - kToolBarHeight, width: view.width, height: kToolBarHeight)
-                    refreshCountLabel.isHidden = true
-                }
-            }
-        }*/
-        
         navigationController?.navigationBar.addSubview(refreshCountLabel)
         refreshCountLabel.frame = CGRect(x: 0, y: 0, width: view.width, height: kToolBarHeight)
         navigationController?.navigationBar.sendSubviewToBack(refreshCountLabel)
