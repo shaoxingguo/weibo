@@ -60,6 +60,10 @@ class XGPicturesBrowserViewController: UIViewController
         }
     }
     
+    deinit {
+        SDWebImageManager.shared().imageCache?.clearMemory()
+    }
+    
     // MARK: - 事件监听
     
     /// 关闭按钮事件监听
@@ -112,6 +116,8 @@ class XGPicturesBrowserViewController: UIViewController
     private lazy var closeButton:UIButton = UIButton(title: "关闭", normalColor: UIColor.white, highlightedColor: UIColor.white, fontSize: 15, backgroundColor: UIColor.darkGray, target: self, action: #selector(closeAction))
     /// 保存按钮
     private lazy var saveButton:UIButton = UIButton(title: "保存", normalColor: UIColor.white, highlightedColor: UIColor.white, fontSize: 15, backgroundColor: UIColor.darkGray, target: self, action: #selector(savePictureAction))
+    /// 状态栏样式
+    private var statusBarStyle:UIStatusBarStyle = .lightContent
 }
 
 // MARK: - UICollectionViewDataSource
@@ -154,10 +160,19 @@ extension XGPicturesBrowserViewController: XGPicturesBrowserCollectionViewCellDe
     
     func picturesBrowserCollectionViewCellDidZoom(scale: CGFloat)
     {
-        if scale < 0.5 {
+        if scale < 0.3 {
             closeAction()
             return
         }
+        
+        // scale = 0.5 clear scale = 1 black
+        var alpha = (scale - 0.5) / 0.5
+        alpha = scale < 1 ? fmax(alpha, 0) : fmin(alpha, 1)
+        statusBarStyle = alpha < 0.5 ? .default : .lightContent
+        setNeedsStatusBarAppearanceUpdate()
+        collectionView.backgroundColor = UIColor.black.withAlphaComponent(alpha)
+        closeButton.isHidden = scale < 1
+        saveButton.isHidden = scale < 1
     }
 }
 
@@ -198,16 +213,19 @@ extension XGPicturesBrowserViewController
     }
     
     // 隐藏状态栏
-    override var prefersStatusBarHidden: Bool {
-        return true
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarStyle
     }
     
     /// 设置界面
     private func setUpUI() -> Void
     {
+        view.backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
+        collectionView.backgroundColor = UIColor.black
+        
         // 添加子控件
         view.addSubview(contentView)
-        contentView.backgroundColor = UIColor.black
         contentView.frame = CGRect(x: 0, y: 0, width: kScreenWidth + kPicturesCellMargin, height: kScreenHeight)
         
         // 向容器内添加视图 直接修改self.view.frame无效 因此在控制器内放一个view 大小比屏幕宽20
@@ -235,8 +253,6 @@ extension XGPicturesBrowserViewController
     /// 设置collectionView
     private func setUpCollectionView() -> Void
     {
-        collectionView.backgroundColor = UIColor.black
-        
         // 设置cell布局
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.scrollDirection = .horizontal

@@ -168,9 +168,7 @@ extension XGPicturesBrowserCollectionViewCell
     }
     /// 设置界面
     private func setUpUI() -> Void
-    {
-        backgroundColor = UIColor.black
-        
+    {        
         // 添加子控件
         contentView.addSubview(scrollView)
         contentView.addSubview(placeImageView)
@@ -187,6 +185,7 @@ extension XGPicturesBrowserCollectionViewCell
         // 设置scrollView
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.bounces = false
+        scrollView.contentInsetAdjustmentBehavior = .never
         
         // 设置缩放
         scrollView.minimumZoomScale = 0.5
